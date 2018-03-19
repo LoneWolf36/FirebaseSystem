@@ -1,4 +1,4 @@
-package com.team.deltacentauri.firebasenotification;
+package com.team.deltacentauri.preciselyvague;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.team.deltacentauri.firebasenotification", appContext.getPackageName());
+        assertEquals("com.team.deltacentauri.preciselyvague", appContext.getPackageName());
     }
 }

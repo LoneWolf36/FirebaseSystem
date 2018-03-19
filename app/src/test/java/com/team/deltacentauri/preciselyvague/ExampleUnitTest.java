@@ -1,4 +1,4 @@
-package com.team.deltacentauri.firebasenotification;
+package com.team.deltacentauri.preciselyvague;
 
 import org.junit.Test;
 

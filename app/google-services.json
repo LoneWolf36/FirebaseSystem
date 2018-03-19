@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "790568253988-a27kcccrkhkunj126dnvfql2pc2rsdv8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.qjtechnologies.firebasenotification",
+            "certificate_hash": "e4bdc050923d1c774278e88c2abaf87f12e2caaf"
+          }
+        },
+        {
           "client_id": "790568253988-pmrufhkrrhop8bt6nqpa417ouij26ocf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -171,6 +179,50 @@
         "appinvite_service": {
           "status": 1,
           "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790568253988:android:445e8b7df73582bd",
+        "android_client_info": {
+          "package_name": "com.team.deltacentauri.preciselyvague"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790568253988-4oekrblndbeg7gbnsckoiqa00qmjo78b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.team.deltacentauri.preciselyvague",
+            "certificate_hash": "b1cf0af2ab7c2ba139cca0e63c56a961d1a7ac1b"
+          }
+        },
+        {
+          "client_id": "790568253988-mrlno33egajahcmkvrtir1m9c76ctjum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbmn_47_xU28F3Q0CtmZvbgmNUj-PHCRY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790568253988-mrlno33egajahcmkvrtir1m9c76ctjum.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

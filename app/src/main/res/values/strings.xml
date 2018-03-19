@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">FirebaseNotification</string>
+    <string name="app_name">Precisely Vague</string>
+    <string name="enter_your_data">Enter your data</string>
+    <string name="push_data">Push data</string>
+    <string name="title_activity_nav">navActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
