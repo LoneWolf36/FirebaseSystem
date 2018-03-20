@@ -7,18 +7,18 @@ package com.team.deltacentauri.preciselyvague;
 public class notification {
 
     private String id;
-    private String data;
+    private String name;
 
-    public notification(String id, String data){
-        this.data = data;
+    public notification(String id, String name){
         this.id = id;
+        this.name = name;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getData() {
-        return data;
+    public String getName() {
+        return name;
     }
 }

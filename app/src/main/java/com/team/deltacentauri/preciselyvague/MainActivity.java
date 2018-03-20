@@ -3,6 +3,7 @@ package com.team.deltacentauri.preciselyvague;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -67,9 +68,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void saveData() {
-        String data = dataToBeAdded.getText().toString();
-        notification notify = new notification(myRef.push().getKey(),data);
-        if(!data.equals("")){
+        String name = dataToBeAdded.getText().toString();
+        notification notify = new notification(myRef.push().getKey(), name);
+        if(!name.equals("")){
             myRef.child(notify.getId()).setValue(notify);
         }
         else{
