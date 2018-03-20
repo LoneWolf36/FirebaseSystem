@@ -35,4 +35,13 @@
         </menu>
     </item>
 
+    <item android:title="@string/user_options">
+        <menu>
+            <item
+                android:id="@+id/logOut"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Logout" />
+        </menu>
+    </item>
+
 </menu>

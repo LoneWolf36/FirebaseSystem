@@ -21,4 +21,5 @@ public class notification {
     public String getName() {
         return name;
     }
+
 }

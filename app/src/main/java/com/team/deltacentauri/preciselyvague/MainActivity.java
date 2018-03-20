@@ -1,6 +1,7 @@
 package com.team.deltacentauri.preciselyvague;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,9 +30,12 @@ public class MainActivity extends AppCompatActivity
     private EditText dataToBeAdded;
     private Button addToDatabase;
 
+    // Instance of FirebaseAuth
+    private FirebaseAuth mAuth;
+
     //Firebase database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("users");
+    DatabaseReference myRef = database.getReference("users/pune");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity
         //Declaring buttons and text view
         addToDatabase = findViewById(R.id.button);
         dataToBeAdded = findViewById(R.id.EditText);
+
+        // Initialize FirebaseAuth instance
+        mAuth = FirebaseAuth.getInstance();
 
         setSupportActionBar(toolbar);
 
@@ -71,9 +79,9 @@ public class MainActivity extends AppCompatActivity
 
     private void saveData() {
         String name = dataToBeAdded.getText().toString();
-        notification notify = new notification(myRef.push().getKey(), name);
+        notification notify = new notification("465", name);
         if(!name.equals("")){
-            myRef.child(notify.getId()).setValue(notify);
+            myRef.child(myRef.push().getKey()).setValue(notify);
         }
         else{
             Toast.makeText(MainActivity.this, "Enter valid data", Toast.LENGTH_SHORT).show();
@@ -144,6 +152,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.logOut) {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
