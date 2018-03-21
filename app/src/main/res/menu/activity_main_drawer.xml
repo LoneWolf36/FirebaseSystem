@@ -11,6 +11,12 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Emergency Notification" />
         <item
+            android:id="@+id/add_schedule"
+            android:icon="@mipmap/add_schedule"
+            android:title="Add Schedule">
+
+        </item>
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Log Out" />

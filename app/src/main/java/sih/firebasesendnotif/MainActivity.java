@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Log.d("ALI ", "SAYS YES");
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.toPopulate, new Add_schedule());
+                    ft.commit();
                 }
             });
 
@@ -153,7 +156,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             ft.commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.add_schedule) {
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new Add_schedule());
+
+            ft.commit();
+        }else if (id == R.id.nav_slideshow) {
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
