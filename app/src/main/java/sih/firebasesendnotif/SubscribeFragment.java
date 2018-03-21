@@ -20,10 +20,6 @@ package sih.firebasesendnotif;
 
         import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by Belal on 18/09/16.
- */
-
 
 public class SubscribeFragment extends Fragment {
 
@@ -41,16 +37,16 @@ public class SubscribeFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.frament_subscribe, container, false);
-        c1=view.findViewById(R.id.checkBox1);
+        c1=(CheckBox) view.findViewById(R.id.checkBox1);
         c1.setChecked(chk1);
 
-        c1=view.findViewById(R.id.checkBox2);
+        c1=(CheckBox)view.findViewById(R.id.checkBox2);
         c1.setChecked(chk2);
 
-        c1=view.findViewById(R.id.checkBox3);
+        c1=(CheckBox)view.findViewById(R.id.checkBox3);
         c1.setChecked(chk3);
 
-        c1=view.findViewById(R.id.checkBox4);
+        c1=(CheckBox)view.findViewById(R.id.checkBox4);
         c1.setChecked(chk4);
         //return inflater.inflate(R.layout.frament_subscribe, container, false);
 
@@ -63,7 +59,7 @@ public class SubscribeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Subscribe Schedule");
+        getActivity().setTitle("Subscribe to Schedule");
 
         // final CheckBox c1 = (CheckBox) this.getView().findViewById(R.id.checkBox1);
 
