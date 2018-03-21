@@ -5,4 +5,5 @@ package sih.firebasesendnotif;
  */
 
 public class ScheduleData {
+    int a;
 }
