@@ -4,12 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,6 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PushThemNotifications extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("users");
+
+    // Instance of FirebaseAuth
+    private FirebaseAuth mAuth;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,6 +72,7 @@ public class PushThemNotifications extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -81,12 +89,14 @@ public class PushThemNotifications extends Fragment {
             public void onClick(View view) {
                 String t1=e1.getText().toString();
                 //int t2=Integer.parseInt(e1.getText().toString());
-                User u1= new User(ref.child("users").push().getKey(),t1);
+                //User u1= new User(ref.child("users").push().getKey(),t1);
 
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                User u1 = new User(ref.child(user.getUid()).push().getKey(),t1);
                 //note.setUid(database.child("notes").push().getKey());
 
-
-                ref.child(u1.getId()).setValue(u1);
+                ref.child(user.getUid()).child(u1.getId()).setValue(u1);
                 // DatabaseReference pushedPostRef = ref.push();
                 //database.child("notes").child(note.getUid()).setValue(note);
                 e1.setText("");
