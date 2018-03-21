@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
 
-    // Firebase database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("users/pune");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
+
+        // Firebase database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users/pune");
     }
 
 
