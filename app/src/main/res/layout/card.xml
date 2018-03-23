@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:elevation="3dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <!--<TextView-->
+            <!--android:id="@+id/vname"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toEndOf="@+id/vaddress" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/vaddress"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--<Button-->
+            <!--android:id="@+id/button2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/vname"-->
+            <!--android:layout_toEndOf="@+id/vname"-->
+            <!--android:text="Notify" />-->
+
+            <!--<Button-->
+            <!--android:id="@+id/button3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBaseline="@+id/button2"-->
+            <!--android:layout_alignBottom="@+id/button2"-->
+            <!--android:layout_toEndOf="@+id/button2"-->
+            <!--android:text="Update" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/vname"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@+id/button2"-->
+            <!--android:layout_toEndOf="@+id/vname"-->
+            <!--android:text="TextView" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/vaddress"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_toEndOf="@+id/button2"-->
+            <!--android:text="TextView" />-->
+
+            <TextView
+                android:id="@+id/vname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/vaddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="131dp"
+                android:text="TextView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:text="Notify"
+                android:background="@color/Notify"
+                android:layout_toStartOf="@+id/button5" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:background="@color/Update"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/vaddress"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:id="@+id/vname"/>-->
+        <!--<TextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:id="@+id/vaddress"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="horizontal">-->
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="10dp"-->
+        <!--android:gravity="center"-->
+
+        <!--android:id="@+id/notify"-->
+        <!--android:text="Notify"-->
+        <!--android:background="@color/Notify"-->
+        <!--/>-->
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="10dp"-->
+        <!--android:gravity="center"-->
+
+        <!--android:id="@+id/update"-->
+        <!--android:text="Update"-->
+        <!--android:background="@color/Update"-->
+        <!--/>-->
+
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/vname"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:text="name"-->
+        <!--android:layout_height="wrap_content"-->
+
+
+        <!--android:layout_toLeftOf="@+id/vaddress"-->
+        <!--android:layout_toStartOf="@+id/vaddress" />-->
+        <!--&lt;!&ndash;android:paddingLeft="@dimen/album_title_padding"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingRight="@dimen/album_title_padding"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingTop="@dimen/album_title_padding"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@color/album_title"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="@dimen/album_title"&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/vemail"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="email"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_below="@id/vname"&ndash;&gt;-->
+
+        <!--&lt;!&ndash;android:layout_alignRight="@+id/vname"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignEnd="@+id/vname" />&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingBottom="@dimen/songs_count_padding_bottom"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingLeft="@dimen/album_title_padding"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingRight="@dimen/album_title_padding"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="@dimen/songs_count"&ndash;&gt;-->
+
+
+        <!--<TextView-->
+        <!--android:text="TextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/vaddress" />-->
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
