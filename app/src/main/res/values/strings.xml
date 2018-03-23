@@ -24,4 +24,7 @@
 
     <!-- Strings related to register -->
     <string name="next">Complete login</string>
+
+    <string name="place_select">Select Place</string>
+    <string name="title_activity_maps">Maps</string>
 </resources>
