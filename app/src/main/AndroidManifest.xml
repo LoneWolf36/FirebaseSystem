@@ -33,5 +33,4 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CityPicker"></activity>
     </application>
-
 </manifest>

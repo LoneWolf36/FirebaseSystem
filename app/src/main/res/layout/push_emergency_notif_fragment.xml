@@ -68,5 +68,4 @@
             android:text="Submit Schedule" />
 
     </RelativeLayout>
-
 </android.support.constraint.ConstraintLayout>

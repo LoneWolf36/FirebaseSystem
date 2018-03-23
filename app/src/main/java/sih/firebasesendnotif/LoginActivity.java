@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, NavBarActivity.class));
             finish();
         }
-        else{
+        else {
 //            startActivity(new Intent(LoginActivity.this, NavBarActivity.class));
         }
     }
@@ -211,7 +211,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        Intent intent = new Intent(LoginActivity.this, CityPicker.class);
+           Intent intent = new Intent(LoginActivity.this, CityPicker.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }
