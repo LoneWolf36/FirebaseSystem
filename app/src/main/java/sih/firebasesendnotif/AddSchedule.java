@@ -22,14 +22,11 @@ import static android.content.Context.MODE_PRIVATE;
 public class AddSchedule extends Fragment {
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-<<<<<<< HEAD
     DatabaseReference ref = database.getReference("");
     //DatabaseReference ref = database.getReference("users");
-=======
 
 //    DatabaseReference ref = database.getReference("");
 
->>>>>>> e9ac506a2d1d89c7ae7998e2a24bd15bc376c05a
 
     private FirebaseAuth mAuth;
     Button btnDatePicker, btnTimePicker;
@@ -100,16 +97,13 @@ public class AddSchedule extends Fragment {
                 Log.d("Date",txtDate.getText().toString());
                 Log.d("Time",txtTime.getText().toString());
                 Log.d("Duration",txtDuration.getText().toString());
-<<<<<<< HEAD
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam;
                 mydam = ref.child(mAuth.getUid());
-=======
 
                 ScheduleData schedule = new ScheduleData(txtDate.getText().toString(),txtTime.getText().toString(),txtDuration.getText().toString());
                 ref.setValue(schedule);
 
->>>>>>> e9ac506a2d1d89c7ae7998e2a24bd15bc376c05a
                 String key=mydam.push().getKey();
                 mydam.child(key).setValue(txtDate.getText().toString());
             }
