@@ -52,7 +52,7 @@ public class AddSchedule extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        ref = database.getReference("pune");
+        //ref = database.getReference("pune");
         View v = inflater.inflate(R.layout.fragment_add_schedule, container, false);
         return v;
     }
@@ -95,7 +95,7 @@ public class AddSchedule extends Fragment {
                 DatabaseReference mydam;
                 mydam = ref.child(mAuth.getUid());
 
-                ScheduleData schedule = new ScheduleData(txtDate.getText().toString(),txtTime.getText().toString(),txtDuration.getText().toString());
+                ScheduleData schedule = new ScheduleData(txtDate.getText().toString(),txtTime.getText().toString(),txtDuration.getText().toString(),1);
                 //ref.setValue(schedule);
 
                 String key=mydam.push().getKey();

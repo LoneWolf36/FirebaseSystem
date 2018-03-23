@@ -3,6 +3,7 @@ package sih.firebasesendnotif;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -155,6 +156,9 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         // Emergency fragment
         else if (id == R.id.nav_emergency) {
             fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new EmergencyNotification());
+            ft.commit();
         }
         // Logout Activity
         else if (id == R.id.nav_logout) {
@@ -166,6 +170,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
+
+                    //        SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                      //      editor.putString("city_name", "");
+                        //    editor.apply();
+
                             mAuth.signOut();
                             startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();

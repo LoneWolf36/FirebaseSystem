@@ -13,12 +13,24 @@ public class ScheduleData {
     String date;
     String time;
     String duration;
+    int temp;
 
     public ScheduleData(){}
-    public ScheduleData(String date, String time, String duration) {
+
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
+    }
+
+    public ScheduleData(String date, String time, String duration, int temp) {
         this.date = date;
         this.time = time;
         this.duration = duration;
+        this.temp=temp;
+
     }
 
     public String getDate() {

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -55,22 +56,33 @@ public class ScheduleFragment extends Fragment {
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String city_name = prefs.getString("city_name", "");
+        list = new ArrayList<ScheduleData>();
 
         myRef = database.getReference(city_name).child(mAuth.getUid());
-        String k=myRef.push().getKey();
+       // String k=myRef.push().getKey();
         //myRef.child(k).setValue(new ScheduleData("ds","awed","vcv"));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //list.clear();
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                list = new ArrayList<ScheduleData>();
-                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+                // ScheduleData value = dataSnapshot.getValue(ScheduleData.class);
+                //list.add(value);
+                //Toast.makeText(getActivity(),value.getDate(),
+                   //     Toast.LENGTH_SHORT).show();
 
-                 //  ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
-                  // list.add(value);
 
-                }
+                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+                     ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
+
+
+
+
+
+
+                     list.add(value);
+                 }
 
             }
             @Override
@@ -87,13 +99,13 @@ public class ScheduleFragment extends Fragment {
 
 
 
-//                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
-//                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-//                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
-//                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-//                recycle.setLayoutManager(recyce);
-//                recycle.setItemAnimator( new DefaultItemAnimator());
-//                recycle.setAdapter(recyclerAdapter);
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
+                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
+                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+                recycle.setLayoutManager(recyce);
+                recycle.setItemAnimator( new DefaultItemAnimator());
+                recycle.setAdapter(recyclerAdapter);
 
 
 
