@@ -72,6 +72,9 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Log.d("ALI ", "SAYS YES");
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.toPopulate, new Add_schedule());
+                    ft.commit();
                 }
             });
 
@@ -155,6 +158,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
             ft.commit();
 
+<<<<<<< HEAD:app/src/main/java/sih/firebasesendnotif/NavbarActivity.java
         } else if (id == R.id.nav_slideshow) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -172,6 +176,18 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     })
                     .setNegativeButton("No", null)
                     .show();
+=======
+        } else if (id == R.id.add_schedule) {
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new Add_schedule());
+
+            ft.commit();
+        }else if (id == R.id.nav_slideshow) {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+>>>>>>> 5c00794ab0cf93e1a986f6429ddacd50842d6634:app/src/main/java/sih/firebasesendnotif/MainActivity.java
 
         } else if (id == R.id.nav_subscribe) {
             fab.setVisibility(View.INVISIBLE);
