@@ -20,9 +20,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import static android.content.Context.MODE_PRIVATE;
 
 public class AddSchedule extends Fragment {
+
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+<<<<<<< HEAD
     DatabaseReference ref = database.getReference("");
     //DatabaseReference ref = database.getReference("users");
+=======
+
+//    DatabaseReference ref = database.getReference("");
+
+>>>>>>> e9ac506a2d1d89c7ae7998e2a24bd15bc376c05a
 
     private FirebaseAuth mAuth;
     Button btnDatePicker, btnTimePicker;
@@ -53,6 +60,8 @@ public class AddSchedule extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        ref = database.getReference("pune");
         View v = inflater.inflate(R.layout.fragment_add_schedule, container, false);
         return v;
     }
@@ -73,9 +82,6 @@ public class AddSchedule extends Fragment {
             }
         });
         txtDate = (EditText) view.findViewById(R.id.in_date);
-
-
-
         btnTimePicker=(Button) view.findViewById(R.id.btn_time);
         btnTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,98 +93,33 @@ public class AddSchedule extends Fragment {
         txtTime = (EditText) view.findViewById(R.id.in_time);
         txtDuration = (EditText) view.findViewById(R.id.txtDuration);
         submitBtn = (Button) view.findViewById(R.id.submit);
+
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("Date",txtDate.getText().toString());
                 Log.d("Time",txtTime.getText().toString());
                 Log.d("Duration",txtDuration.getText().toString());
+<<<<<<< HEAD
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam;
                 mydam = ref.child(mAuth.getUid());
+=======
+
+                ScheduleData schedule = new ScheduleData(txtDate.getText().toString(),txtTime.getText().toString(),txtDuration.getText().toString());
+                ref.setValue(schedule);
+
+>>>>>>> e9ac506a2d1d89c7ae7998e2a24bd15bc376c05a
                 String key=mydam.push().getKey();
                 mydam.child(key).setValue(txtDate.getText().toString());
             }
         });
 
     }
-//    private void showDatePicker() {
-//        DateFragment date = new DateFragment();
-//        /**
-//         * Set Up Current Date Into dialog
-//         */
-//        Calendar calender = Calendar.getInstance();
-//        Bundle args = new Bundle();
-//        //calender.set(1900+mYear,mMonth,mDay);
-//        args.putInt("year", calender.get(Calendar.YEAR));
-//        args.putInt("month", calender.get(Calendar.MONTH));
-//        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
-//        date.setArguments(args);
-//        /**
-//         * Set Call back to capture selected date
-//         */
-//        date.setCallBack(ondate);
-//        date.show(getActivity().getFragmentManager(), "Date Picker");
-//    }
-//
-//    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-//
-//        public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                              int dayOfMonth) {
-//
-//
-//            SimpleDateFormat fdf = new SimpleDateFormat("yyyy-MM-dd");
-//
-//
-//
-//            Date date= new Date();
-//            date.setMonth(monthOfYear);
-//            date.setDate(dayOfMonth);
-//            date.setYear(year);
-//
-//
-//            //
-//            // Display a date in day, month, year format
-//            //
-//            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//            String today = formatter.format(date);
-//
-//
-//
-//
-//
-//
-//            //txtDate.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)+ "-" + String.valueOf(year));
-//            txtDate.setText(today+" "+ year);
-//        }
-//    };
-
-
-
-
-//    public void showTimePicker(){
-//        TimeDialogFragment tdf = new TimeDialogFragment();
-//        tdf.show(getFragmentManager().beginTransaction(), "TimePickerFragment");
-//    }
-//
-//    TimePickerDialog.OnTimeSetListener test = new TimePickerDialog.OnTimeSetListener(){
-//        @Override
-//        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//            time_finish.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
-//        }
-//    };
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override
@@ -187,16 +128,6 @@ public class AddSchedule extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
