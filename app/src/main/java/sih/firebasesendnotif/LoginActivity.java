@@ -90,12 +90,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        if (currentUser != null){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        if (currentUser != null) {
+            startActivity(new Intent(LoginActivity.this, NavbarActivity.class));
             finish();
-        }
-        else{
-//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
 
@@ -142,8 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
-        }
-        else {
+        } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
@@ -155,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isEmailValid(String email) {
         return (Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -207,15 +204,14 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            mAuth.signInWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    if (task.isSuccessful()) {
+                        Intent intent = new Intent(LoginActivity.this, CityPicker.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                    }
-                    else {
+                    } else {
                         Toast.makeText(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT).show();
                     }
                 }
