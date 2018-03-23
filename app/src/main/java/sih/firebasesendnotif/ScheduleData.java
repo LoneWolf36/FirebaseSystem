@@ -11,26 +11,12 @@ import java.util.Date;
 
 public class ScheduleData {
     String date;
-    String location;
+    String time;
     String duration;
 
-    public ScheduleData(String date, String location) {
+    public ScheduleData(String date, String time, String duration) {
         this.date = date;
-        this.location = location;
-    }
-
-    public ScheduleData(String date, String location, String duration) {
-        this.date = date;
-        this.location = location;
-        this.duration = duration;
-    }
-
-    public String getDuration() {
-
-        return duration;
-    }
-
-    public void setDuration(String duration) {
+        this.time = time;
         this.duration = duration;
     }
 
@@ -42,11 +28,19 @@ public class ScheduleData {
         this.date = date;
     }
 
-    public String getLocation() {
-        return location;
+    public String getTime() {
+        return time;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

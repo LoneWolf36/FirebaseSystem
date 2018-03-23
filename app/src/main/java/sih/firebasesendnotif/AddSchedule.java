@@ -102,10 +102,10 @@ public class AddSchedule extends Fragment {
                 mydam = ref.child(mAuth.getUid());
 
                 ScheduleData schedule = new ScheduleData(txtDate.getText().toString(),txtTime.getText().toString(),txtDuration.getText().toString());
-                ref.setValue(schedule);
+                //ref.setValue(schedule);
 
                 String key=mydam.push().getKey();
-                mydam.child(key).setValue(txtDate.getText().toString());
+                mydam.child(key).setValue(schedule);
             }
         });
 
