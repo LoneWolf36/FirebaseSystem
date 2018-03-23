@@ -1,5 +1,7 @@
 package sih.firebasesendnotif;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CityPicker extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -58,4 +63,24 @@ public class CityPicker extends AppCompatActivity implements AdapterView.OnItemS
             // Another interface callback
             Toast.makeText(this, "Please select something", Toast.LENGTH_SHORT).show();
         }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this activity?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
     }
+}

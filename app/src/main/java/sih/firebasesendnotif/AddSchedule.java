@@ -1,6 +1,5 @@
 package sih.firebasesendnotif;
 
-import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.net.Uri;
@@ -11,31 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Add_schedule.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Add_schedule#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Add_schedule extends Fragment {
+public class AddSchedule extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("users");
     Button btnDatePicker, btnTimePicker;
@@ -43,47 +23,19 @@ public class Add_schedule extends Fragment {
     EditText txtDate, txtTime,txtDuration;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
+    String city;
 
-    public Add_schedule() {
+    public AddSchedule() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Add_schedule.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Add_schedule newInstance(String param1, String param2) {
-        Add_schedule fragment = new Add_schedule();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            city = getArguments().getString("City");
         }
-
     }
 
     @Override
@@ -92,9 +44,6 @@ public class Add_schedule extends Fragment {
         View v = inflater.inflate(R.layout.fragment_add_schedule, container, false);
         return v;
     }
-
-
-
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

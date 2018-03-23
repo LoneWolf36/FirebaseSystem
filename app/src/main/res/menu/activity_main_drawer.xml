@@ -3,40 +3,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Schedule" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Emergency Notification" />
+            android:title="Check schedules" />
         <item
             android:id="@+id/add_schedule"
             android:icon="@mipmap/add_schedule"
-            android:title="Add Schedule">
-
+            android:title="Add a schedule">
         </item>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Log Out" />
+            android:id="@+id/nav_emergency"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Emergency Notification" />
         <item
             android:id="@+id/nav_subscribe"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Subscribe" />
-
+            android:title="Subscribe to topics" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="User options">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Log Out" />
         </menu>
     </item>
 

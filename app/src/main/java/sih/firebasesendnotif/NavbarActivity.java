@@ -16,8 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -78,7 +76,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Log.d("ALI ", "SAYS YES");
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.toPopulate, new Add_schedule());
+                    ft.replace(R.id.toPopulate, new AddSchedule());
                     ft.commit();
                 }
             });
@@ -126,7 +124,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Closing Activity")
-                    .setMessage("Are you sure you want to close this activity?")
+                    .setMessage("Are you sure you want to close the app?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                     {
                         @Override
@@ -146,27 +144,20 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        // Schedule fragment
+        if (id == R.id.nav_schedule) {
             //Fragment fragment = getFragmentManager().findFragmentById(R.id.fMtoDisplay);
             fab.setVisibility(View.VISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new ScheduleFragment());
-
             ft.commit();
-
-
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        }
+        // Emergency fragment
+        else if (id == R.id.nav_emergency) {
             fab.setVisibility(View.INVISIBLE);
-            Bundle bundle = new Bundle();
-            bundle.putString("City", city_name);
-            PushSchedule push = new PushSchedule();
-            push.setArguments(bundle);
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, push);
-            ft.commit();
-
-        } else if (id == R.id.nav_slideshow) {
+        }
+        // Logout Activity
+        else if (id == R.id.nav_logout) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Logout")
@@ -179,29 +170,27 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                             startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();
                         }
-
                     })
                     .setNegativeButton("No", null)
                     .show();
-        } else if (id == R.id.add_schedule) {
+        }
+        // Add schedule fragment
+        else if (id == R.id.add_schedule) {
             fab.setVisibility(View.INVISIBLE);
+            Bundle bundle = new Bundle();
+            bundle.putString("City", city_name);
+            AddSchedule add = new AddSchedule();
+            add.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, new Add_schedule());
-
+            ft.replace(R.id.toPopulate, add);
             ft.commit();
-        }else if (id == R.id.nav_slideshow) {
-            mAuth.signOut();
-            startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
-            finish();
-        } else if (id == R.id.nav_subscribe) {
+        }
+        // Subscribe fragment
+        else if (id == R.id.nav_subscribe) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new SubscribeFragment());
-
             ft.commit();
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
