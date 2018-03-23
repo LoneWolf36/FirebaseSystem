@@ -1,5 +1,4 @@
 package sih.firebasesendnotif;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -55,7 +54,7 @@ public class DateFragment extends DialogFragment implements DatePickerDialog.OnD
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new DatePickerDialog(getActivity(), this, year, (month), day);
     }
 
     @Override

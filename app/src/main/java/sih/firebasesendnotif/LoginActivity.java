@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
@@ -208,9 +209,19 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        SharedPreferences prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+                        mAuth = FirebaseAuth.getInstance();
+                        String city_name = prefs.getString("city_name", "unset");
+                        if(city_name.equals("unset")){
                         Intent intent = new Intent(LoginActivity.this, CityPicker.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        startActivity(intent);}
+                        else{
+                            Intent intent = new Intent(LoginActivity.this, NavbarActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT).show();
                     }

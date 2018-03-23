@@ -21,6 +21,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AddSchedule extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("");
     //DatabaseReference ref = database.getReference("users");
 
     private FirebaseAuth mAuth;
@@ -95,7 +96,6 @@ public class AddSchedule extends Fragment {
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam;
                 mydam = ref.child(mAuth.getUid());
-
                 String key=mydam.push().getKey();
                 mydam.child(key).setValue(txtDate.getText().toString());
             }
