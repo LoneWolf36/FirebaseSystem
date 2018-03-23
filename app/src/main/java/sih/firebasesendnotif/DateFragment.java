@@ -55,13 +55,13 @@ public class DateFragment extends DialogFragment implements DatePickerDialog.OnD
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new DatePickerDialog(getActivity(), this, year, (month), day);
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
         EditText date = (EditText) getActivity().findViewById(R.id.in_date);
-        date.setText(String.valueOf(i2)+"-"+String.valueOf(i1)+"-"+String.valueOf(i));
+        date.setText(String.valueOf(i2)+"-"+String.valueOf(i1+1)+"-"+String.valueOf(i));
 
     }
 }

@@ -37,7 +37,7 @@ import java.util.logging.Logger;
  */
 public class Add_schedule extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("users");
+    DatabaseReference ref = database.getReference("");
     Button btnDatePicker, btnTimePicker;
     Button submitBtn;
     EditText txtDate, txtTime,txtDuration;
