@@ -28,7 +28,8 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
-    String city_name = "Mumbai";
+
+    String city_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar(toolbar);
 
         // City picker intent and extract information from bundle
-        String s = getIntent().getStringExtra("City");
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        city_name = getIntent().getStringExtra("City");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -158,10 +158,14 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             fab.setVisibility(View.INVISIBLE);
+            Bundle bundle = new Bundle();
+            bundle.putString("City", city_name);
+            PushSchedule push = new PushSchedule();
+            push.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, new PushSchedule());
-
+            ft.replace(R.id.toPopulate, push);
             ft.commit();
+
         } else if (id == R.id.nav_slideshow) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
