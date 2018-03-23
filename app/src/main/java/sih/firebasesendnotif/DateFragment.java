@@ -1,5 +1,4 @@
 package sih.firebasesendnotif;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,32 +17,6 @@ import java.util.Calendar;
  * Created by root on 21/3/18.
  */
 
-//public class DateFragment extends DialogFragment  {
-//    DatePickerDialog.OnDateSetListener ondateSet;
-//    private int year, month, day;
-//
-//    public DateFragment() {}
-//
-//    public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
-//        ondateSet = ondate;
-//    }
-//
-//    @SuppressLint("NewApi")
-//    @Override
-//    public void setArguments(Bundle args) {
-//        super.setArguments(args);
-//        year = args.getInt("year");
-//        month = args.getInt("month");
-//        day = args.getInt("day");
-//    }
-//
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
-//    }
-//
-//
-//}
 public class DateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
     @Override
@@ -55,13 +28,12 @@ public class DateFragment extends DialogFragment implements DatePickerDialog.OnD
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new DatePickerDialog(getActivity(), this, year, (month), day);
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
         EditText date = (EditText) getActivity().findViewById(R.id.in_date);
-        date.setText(String.valueOf(i2)+"-"+String.valueOf(i1)+"-"+String.valueOf(i));
-
+        date.setText(String.valueOf(i2)+"-"+String.valueOf(i1+1)+"-"+String.valueOf(i));
     }
 }

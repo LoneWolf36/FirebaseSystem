@@ -2,6 +2,7 @@ package sih.firebasesendnotif;
 
 import android.location.Location;
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -9,27 +10,38 @@ import java.util.Date;
  */
 
 public class ScheduleData {
-    Date date;
-    Location location;
+    String date;
+    String time;
+    String duration;
 
-    public ScheduleData(Date date, Location location) {
+    public ScheduleData(){}
+    public ScheduleData(String date, String time, String duration) {
         this.date = date;
-        this.location = location;
+        this.time = time;
+        this.duration = duration;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getTime() {
+        return time;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

@@ -60,7 +60,7 @@
             <!--android:text="TextView" />-->
 
             <TextView
-                android:id="@+id/vname"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -68,13 +68,13 @@
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/vaddress"
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="131dp"
-                android:text="TextView"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_marginStart="84dp"
+                android:layout_toEndOf="@+id/date"
+                android:text="TextView" />
 
             <Button
                 android:id="@+id/button4"
@@ -93,8 +93,17 @@
                 android:text="Update"
                 android:background="@color/Update"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/vaddress"
+                android:layout_alignStart="@+id/time"
                 android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="33dp"
+                android:text="TextView" />
         </RelativeLayout>
         <!--<LinearLayout-->
         <!--android:layout_width="wrap_content"-->

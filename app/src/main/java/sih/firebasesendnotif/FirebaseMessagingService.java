@@ -17,7 +17,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     private static final String TAG = "FirebaseService";
     public FirebaseMessagingService(){
 
-
     }
 
     @Override
