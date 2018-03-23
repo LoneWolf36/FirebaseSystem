@@ -52,8 +52,6 @@ public class SubscribeFragment extends Fragment {
 
         c1=view.findViewById(R.id.checkBox4);
         c1.setChecked(chk4);
-        //return inflater.inflate(R.layout.frament_subscribe, container, false);
-
         return view;
     }
 
@@ -62,11 +60,7 @@ public class SubscribeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Subscribe ScheduleFragment");
-
-        // final CheckBox c1 = (CheckBox) this.getView().findViewById(R.id.checkBox1);
-
 
         c1 = (CheckBox) this.getView().findViewById(R.id.checkBox1);
         c2 = (CheckBox) this.getView().findViewById(R.id.checkBox2);
@@ -74,12 +68,6 @@ public class SubscribeFragment extends Fragment {
         c4 = (CheckBox) this.getView().findViewById(R.id.checkBox4);
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-        //editor.putBoolean("c1", "Elena");
-        //editor.putBoolean("c1", "Elena");
-        //editor.apply();
-//        final CheckBox c2 = (CheckBox) getView().findViewById(R.id.checkBox2);
-//        final CheckBox c3 = (CheckBox) getView().findViewById(R.id.checkBox3);
-//        final CheckBox c4 = (CheckBox) getView().findViewById(R.id.checkBox4);
 
 
         c1.setOnClickListener(new View.OnClickListener()
@@ -92,12 +80,10 @@ public class SubscribeFragment extends Fragment {
                     FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
                     editor.putBoolean("c1", true);
                     editor.apply();
-                    //Perform action when you touch on checkbox and it change to selected state
-                }
+                                    }
                 else
                 {
                     FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-                    //Perform action when you touch on checkbox and it change to unselected state
                     editor.putBoolean("c1", false);
                     editor.apply();
 
@@ -114,18 +100,12 @@ public class SubscribeFragment extends Fragment {
                     FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
                     editor.putBoolean("c2", true);
                     editor.apply();
-                    //Perform action when you touch on checkbox and it change to selected state
-
-                    //Perform action when you touch on checkbox and it change to selected state
                 }
                 else
                 {
                     FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-                    //Perform action when you touch on checkbox and it change to unselected state
                     editor.putBoolean("c2", false);
                     editor.apply();
-
-                    //Perform action when you touch on checkbox and it change to unselected state
                 }
             }
         });
@@ -136,21 +116,15 @@ public class SubscribeFragment extends Fragment {
             {
                 if (c3.isChecked())
                 {
-                    //Perform action when you touch on checkbox and it change to selected state
                     FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
                     editor.putBoolean("c3", true);
                     editor.apply();
-                    //Perform action when you touch on checkbox and it change to selected state
-
                 }
                 else
                 {
                     FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-                    //Perform action when you touch on checkbox and it change to unselected state
                     editor.putBoolean("c3", false);
                     editor.apply();
-
-                    //Perform action when you touch on checkbox and it change to unselected state
                 }
             }
         });
@@ -161,20 +135,15 @@ public class SubscribeFragment extends Fragment {
             {
                 if (c4.isChecked())
                 {
-                    //Perform action when you touch on checkbox and it change to selected state
                     FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
                     editor.putBoolean("c4", true);
                     editor.apply();
-                    //Perform action when you touch on checkbox and it change to selected state
-
                 }
                 else
                 {
                     FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-                    //Perform action when you touch on checkbox and it change to unselected state
                     editor.putBoolean("c4", false);
                     editor.apply();
-                    //Perform action when you touch on checkbox and it change to unselected state
                 }
             }
         });
