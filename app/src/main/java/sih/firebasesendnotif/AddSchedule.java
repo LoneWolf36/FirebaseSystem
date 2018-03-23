@@ -2,6 +2,7 @@ package sih.firebasesendnotif;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,17 +13,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class AddSchedule extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("users");
+    //DatabaseReference ref = database.getReference("users");
+
+    private FirebaseAuth mAuth;
     Button btnDatePicker, btnTimePicker;
     Button submitBtn;
     EditText txtDate, txtTime,txtDuration;
     private int mYear, mMonth, mDay, mHour, mMinute;
-
+    SharedPreferences prefs ;
+    String city_name;
+    DatabaseReference ref = database.getReference(city_name);
+    DatabaseReference mydam;
     private OnFragmentInteractionListener mListener;
     String city;
 
@@ -36,6 +45,10 @@ public class AddSchedule extends Fragment {
         if (getArguments() != null) {
             city = getArguments().getString("City");
         }
+        prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        mAuth = FirebaseAuth.getInstance();
+        city_name = prefs.getString("city_name", "");
+        mydam = ref.child(mAuth.getUid());
     }
 
     @Override
@@ -82,6 +95,9 @@ public class AddSchedule extends Fragment {
                 Log.d("Time",txtTime.getText().toString());
                 Log.d("Duration",txtDuration.getText().toString());
 
+
+                String key=mydam.push().getKey();
+                mydam.child(key).setValue(txtDate.getText().toString());
             }
         });
 
