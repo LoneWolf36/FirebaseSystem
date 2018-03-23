@@ -14,6 +14,7 @@ public class ScheduleData {
     String time;
     String duration;
 
+    public ScheduleData(){}
     public ScheduleData(String date, String time, String duration) {
         this.date = date;
         this.time = time;
