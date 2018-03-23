@@ -30,8 +30,6 @@ public class AddSchedule extends Fragment {
     private int mYear, mMonth, mDay, mHour, mMinute;
     SharedPreferences prefs ;
     String city_name;
-    DatabaseReference ref = database.getReference(city_name);
-    DatabaseReference mydam;
     private OnFragmentInteractionListener mListener;
     String city;
 
@@ -48,7 +46,7 @@ public class AddSchedule extends Fragment {
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
-        mydam = ref.child(mAuth.getUid());
+
     }
 
     @Override
@@ -94,7 +92,9 @@ public class AddSchedule extends Fragment {
                 Log.d("Date",txtDate.getText().toString());
                 Log.d("Time",txtTime.getText().toString());
                 Log.d("Duration",txtDuration.getText().toString());
-
+                DatabaseReference ref = database.getReference(city_name);
+                DatabaseReference mydam;
+                mydam = ref.child(mAuth.getUid());
 
                 String key=mydam.push().getKey();
                 mydam.child(key).setValue(txtDate.getText().toString());
