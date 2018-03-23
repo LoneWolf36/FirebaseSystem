@@ -33,6 +33,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             Log.d(TAG,"Title " + title);
             Log.d(TAG,"Body " + message);
             sendNotification(title,message);
+
         }
     }
 

@@ -22,9 +22,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class AddSchedule extends Fragment {
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 //    DatabaseReference ref = database.getReference("");
 
-    //DatabaseReference ref = database.getReference("users");
 
     private FirebaseAuth mAuth;
     Button btnDatePicker, btnTimePicker;

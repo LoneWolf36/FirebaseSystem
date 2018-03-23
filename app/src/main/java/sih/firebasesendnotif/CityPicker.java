@@ -3,6 +3,7 @@ package sih.firebasesendnotif;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,6 +58,10 @@ public class CityPicker extends AppCompatActivity implements AdapterView.OnItemS
             // An item was selected. You can retrieve the selected item using
             // parent.getItemAtPosition(pos)
             city_pick = parent.getItemAtPosition(pos).toString();
+            final SharedPreferences.Editor editor = this.getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+            editor.putString("city_name", city_pick);
+            editor.apply();
+
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
