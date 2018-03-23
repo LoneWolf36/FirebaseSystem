@@ -42,5 +42,27 @@
             android:layout_alignStart="@+id/btn_date"
             android:layout_below="@+id/btn_date"
             android:text="SELECT TIME" />
+
+        <EditText
+            android:id="@+id/txtDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/btn_time"
+            android:layout_alignStart="@+id/in_time"
+            android:layout_below="@+id/btn_time"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Enter Duration (in Hours)"
+            android:inputType="number|numberSigned|numberDecimal" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtDuration"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="86dp"
+            android:text="Submit Schedule" />
+
     </RelativeLayout>
 </FrameLayout>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,8 @@ public class Add_schedule extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("users");
     Button btnDatePicker, btnTimePicker;
-    EditText txtDate, txtTime;
+    Button submitBtn;
+    EditText txtDate, txtTime,txtDuration;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -96,7 +98,7 @@ public class Add_schedule extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        txtDate = (EditText) view.findViewById(R.id.in_date);
+
         btnDatePicker = (Button) view.findViewById(R.id.btn_date);
        // txtDate.setOnClickListener(new View.OnClickListener() {
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +111,8 @@ public class Add_schedule extends Fragment {
 
             }
         });
-        txtTime = (EditText) view.findViewById(R.id.in_time);
+        txtDate = (EditText) view.findViewById(R.id.in_date);
+
 
 
         btnTimePicker=(Button) view.findViewById(R.id.btn_time);
@@ -120,7 +123,18 @@ public class Add_schedule extends Fragment {
                 newFragment.show(getActivity().getFragmentManager(),"TimePicker");
             }
         });
+        txtTime = (EditText) view.findViewById(R.id.in_time);
+        txtDuration = (EditText) view.findViewById(R.id.txtDuration);
+        submitBtn = (Button) view.findViewById(R.id.submit);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Date",txtDate.getText().toString());
+                Log.d("Time",txtTime.getText().toString());
+                Log.d("Duration",txtDuration.getText().toString());
 
+            }
+        });
 
     }
 //    private void showDatePicker() {
