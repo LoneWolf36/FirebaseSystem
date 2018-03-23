@@ -14,10 +14,10 @@ import java.util.List;
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
-    List<FireModel> list;
+    List<ScheduleData> list;
     Context context;
 
-    public RecyclerAdapter(List<FireModel> list, Context context) {
+    public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -34,10 +34,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
-        FireModel mylist = list.get(position);
-        holder.name.setText(mylist.getName());
+        ScheduleData mylist = list.get(position);
+        holder.date.setText(mylist.getDate());
         //holder.email.setText(mylist.getEmail());
-        holder.id.setText(mylist.getId());
+        holder.time.setText(mylist.getTime());
+        holder.duration.setText(mylist.getDuration());
+
     }
     @Override
     public int getItemCount() {
@@ -67,14 +69,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     }
     class MyHoder extends RecyclerView.ViewHolder{
-        TextView name,id;
+        TextView date,time,duration;
 
 
         public MyHoder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.vname);
+            date = (TextView) itemView.findViewById(R.id.date);
 
-            id= (TextView) itemView.findViewById(R.id.vaddress);
+            time= (TextView) itemView.findViewById(R.id.time);
+            duration= (TextView) itemView.findViewById(R.id.duration);
 
         }
     }

@@ -1,6 +1,7 @@
 package sih.firebasesendnotif;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ScheduleFragment extends Fragment {
 
@@ -47,8 +51,14 @@ public class ScheduleFragment extends Fragment {
         view = (Button) v.findViewById(R.id.view);
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("users");
 
+        SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String city_name = prefs.getString("city_name", "");
+
+        myRef = database.getReference(city_name).child(mAuth.getUid());
+        String k=myRef.push().getKey();
+        //myRef.child(k).setValue(new ScheduleData("ds","awed","vcv"));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -57,13 +67,8 @@ public class ScheduleFragment extends Fragment {
                 list = new ArrayList<ScheduleData>();
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
-                    ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
-                    // FireModel fire = new FireModel();
-//                    String name = value.getName();
-//                    String id = value.getId();
-                    //String email = value.getEmail();
-
-                    list.add(value);
+                 //  ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
+                  // list.add(value);
 
                 }
 
