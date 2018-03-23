@@ -25,7 +25,7 @@ public class ScheduleFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference myRef ;
-    java.util.List<FireModel> list;
+    java.util.List<ScheduleData> list;
     RecyclerView recycle;
     Button view;
 
@@ -54,13 +54,13 @@ public class ScheduleFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                list = new ArrayList<FireModel>();
+                list = new ArrayList<ScheduleData>();
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
-                    FireModel value = dataSnapshot1.getValue(FireModel.class);
+                    ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                     // FireModel fire = new FireModel();
-                    String name = value.getName();
-                    String id = value.getId();
+//                    String name = value.getName();
+//                    String id = value.getId();
                     //String email = value.getEmail();
 
                     list.add(value);
@@ -82,13 +82,13 @@ public class ScheduleFragment extends Fragment {
 
 
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
-                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
-                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                recycle.setLayoutManager(recyce);
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
+//                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
+//                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+//                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
+//                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+//                recycle.setLayoutManager(recyce);
+//                recycle.setItemAnimator( new DefaultItemAnimator());
+//                recycle.setAdapter(recyclerAdapter);
 
 
 
