@@ -97,14 +97,21 @@ public class Add_schedule extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         txtDate = (EditText) view.findViewById(R.id.in_date);
-        txtDate.setOnClickListener(new View.OnClickListener() {
+        btnDatePicker = (Button) view.findViewById(R.id.btn_date);
+       // txtDate.setOnClickListener(new View.OnClickListener() {
+        btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                showDatePicker();
+               // showDatePicker();
+                DialogFragment newFragment = new DateFragment();
+                newFragment.show(getActivity().getFragmentManager(), "datePicker");
+
             }
         });
         txtTime = (EditText) view.findViewById(R.id.in_time);
+
+
         btnTimePicker=(Button) view.findViewById(R.id.btn_time);
         btnTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,56 +123,56 @@ public class Add_schedule extends Fragment {
 
 
     }
-    private void showDatePicker() {
-        DateFragment date = new DateFragment();
-        /**
-         * Set Up Current Date Into dialog
-         */
-        Calendar calender = Calendar.getInstance();
-        Bundle args = new Bundle();
-        //calender.set(1900+mYear,mMonth,mDay);
-        args.putInt("year", calender.get(Calendar.YEAR));
-        args.putInt("month", calender.get(Calendar.MONTH));
-        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
-        date.setArguments(args);
-        /**
-         * Set Call back to capture selected date
-         */
-        date.setCallBack(ondate);
-        date.show(getActivity().getFragmentManager(), "Date Picker");
-    }
-
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-
-            SimpleDateFormat fdf = new SimpleDateFormat("yyyy-MM-dd");
-
-
-
-            Date date= new Date();
-            date.setMonth(monthOfYear);
-            date.setDate(dayOfMonth);
-            date.setYear(year);
-
-
-            //
-            // Display a date in day, month, year format
-            //
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            String today = formatter.format(date);
-
-
-
-
-
-
-            //txtDate.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)+ "-" + String.valueOf(year));
-            txtDate.setText(today+" "+ year);
-        }
-    };
+//    private void showDatePicker() {
+//        DateFragment date = new DateFragment();
+//        /**
+//         * Set Up Current Date Into dialog
+//         */
+//        Calendar calender = Calendar.getInstance();
+//        Bundle args = new Bundle();
+//        //calender.set(1900+mYear,mMonth,mDay);
+//        args.putInt("year", calender.get(Calendar.YEAR));
+//        args.putInt("month", calender.get(Calendar.MONTH));
+//        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+//        date.setArguments(args);
+//        /**
+//         * Set Call back to capture selected date
+//         */
+//        date.setCallBack(ondate);
+//        date.show(getActivity().getFragmentManager(), "Date Picker");
+//    }
+//
+//    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+//
+//        public void onDateSet(DatePicker view, int year, int monthOfYear,
+//                              int dayOfMonth) {
+//
+//
+//            SimpleDateFormat fdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//
+//
+//            Date date= new Date();
+//            date.setMonth(monthOfYear);
+//            date.setDate(dayOfMonth);
+//            date.setYear(year);
+//
+//
+//            //
+//            // Display a date in day, month, year format
+//            //
+//            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//            String today = formatter.format(date);
+//
+//
+//
+//
+//
+//
+//            //txtDate.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)+ "-" + String.valueOf(year));
+//            txtDate.setText(today+" "+ year);
+//        }
+//    };
 
 
 

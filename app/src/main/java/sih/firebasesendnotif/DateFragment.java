@@ -10,35 +10,58 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.Calendar;
 
 /**
  * Created by root on 21/3/18.
  */
 
-public class DateFragment extends DialogFragment  {
-    DatePickerDialog.OnDateSetListener ondateSet;
-    private int year, month, day;
-
-    public DateFragment() {}
-
-    public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
-        ondateSet = ondate;
-    }
-
-    @SuppressLint("NewApi")
-    @Override
-    public void setArguments(Bundle args) {
-        super.setArguments(args);
-        year = args.getInt("year");
-        month = args.getInt("month");
-        day = args.getInt("day");
-    }
+//public class DateFragment extends DialogFragment  {
+//    DatePickerDialog.OnDateSetListener ondateSet;
+//    private int year, month, day;
+//
+//    public DateFragment() {}
+//
+//    public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
+//        ondateSet = ondate;
+//    }
+//
+//    @SuppressLint("NewApi")
+//    @Override
+//    public void setArguments(Bundle args) {
+//        super.setArguments(args);
+//        year = args.getInt("year");
+//        month = args.getInt("month");
+//        day = args.getInt("day");
+//    }
+//
+//    @Override
+//    public Dialog onCreateDialog(Bundle savedInstanceState) {
+//        return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+//    }
+//
+//
+//}
+public class DateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+        // Use the current date as the default date in the picker
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Create a new instance of DatePickerDialog and return it
+        return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        EditText date = (EditText) getActivity().findViewById(R.id.in_date);
+        date.setText(String.valueOf(i2)+"-"+String.valueOf(i1)+"-"+String.valueOf(i));
 
+    }
 }
