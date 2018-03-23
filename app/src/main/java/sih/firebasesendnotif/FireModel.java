@@ -1,13 +1,12 @@
 package sih.firebasesendnotif;
 
 /**
- * Created by ali on 20/3/18.
+ * Created by LoneWolf on 3/23/18.
  */
 
 public class FireModel {
     public String name;
     public String id;
-
 
     public String getName() {
         return name;
@@ -16,7 +15,6 @@ public class FireModel {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getId() {
         return id;

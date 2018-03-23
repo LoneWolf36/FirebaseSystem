@@ -21,16 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link List.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link List#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Schedule extends Fragment {
+public class ScheduleFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -47,7 +38,7 @@ public class Schedule extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Schedule() {
+    public ScheduleFragment() {
         // Required empty public constructor
     }
 
@@ -60,8 +51,8 @@ public class Schedule extends Fragment {
      * @return A new instance of fragment List.
      */
     // TODO: Rename and change types and number of parameters
-    public static Schedule newInstance(String param1, String param2) {
-        Schedule fragment = new Schedule();
+    public static ScheduleFragment newInstance(String param1, String param2) {
+        ScheduleFragment fragment = new ScheduleFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -122,7 +113,7 @@ public class Schedule extends Fragment {
 
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
                 RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(MainActivity.this);
+                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
                 // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                 recycle.setLayoutManager(recyce);
                 recycle.setItemAnimator( new DefaultItemAnimator());

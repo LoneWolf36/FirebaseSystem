@@ -63,7 +63,7 @@ public class SubscribeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Subscribe Schedule");
+        getActivity().setTitle("Subscribe ScheduleFragment");
 
         // final CheckBox c1 = (CheckBox) this.getView().findViewById(R.id.checkBox1);
 

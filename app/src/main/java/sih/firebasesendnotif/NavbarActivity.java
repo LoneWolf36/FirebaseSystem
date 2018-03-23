@@ -16,18 +16,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
 
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
+    String city_name = "Mumbai";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        FrameLayout fL = (FrameLayout) findViewById(R.id.fLFragments);
+//        FrameLayout fL = (FrameLayout) findViewById(R.id.fLFragments);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.toPopulate, new Schedule());
+        ft.add(R.id.toPopulate, new ScheduleFragment());
         //ft.replace(R.id.fMtoDisplay, new ButtonsFragment());
         ft.commit();
 
@@ -58,14 +58,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Firebase database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users/pune");
+        DatabaseReference myRef = database.getReference(mAuth.getUid());
+        myRef.child("city").setValue(city_name);
     }
 
 
     private View.OnClickListener addScheduleListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            AlertDialog.Builder alert = new AlertDialog.Builder(NavbarActivity.this);
             alert.setTitle("Do you want to create a new schedule?");
             alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                 @Override
@@ -114,11 +115,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            new android.support.v7.app.AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Closing Activity")
                     .setMessage("Are you sure you want to close this activity?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //Fragment fragment = getFragmentManager().findFragmentById(R.id.fMtoDisplay);
             fab.setVisibility(View.VISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, new Schedule());
+            ft.replace(R.id.toPopulate, new ScheduleFragment());
 
             ft.commit();
 
@@ -149,14 +151,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_gallery) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, new PushThemNotifications());
+            ft.replace(R.id.toPopulate, new PushSchedule());
 
             ft.commit();
 
         } else if (id == R.id.nav_slideshow) {
-            mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to Logout?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mAuth.signOut();
+                            startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
 
         } else if (id == R.id.nav_subscribe) {
             fab.setVisibility(View.INVISIBLE);

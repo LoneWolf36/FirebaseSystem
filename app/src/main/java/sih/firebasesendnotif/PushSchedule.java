@@ -1,10 +1,10 @@
 package sih.firebasesendnotif;
 
 import android.content.Context;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,25 +12,25 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PushThemNotifications.OnFragmentInteractionListener} interface
+ * {@link PushSchedule.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PushThemNotifications#newInstance} factory method to
+ * Use the {@link PushSchedule#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PushThemNotifications extends Fragment {
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("users");
-
+public class PushSchedule extends Fragment {
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,21 +43,17 @@ public class PushThemNotifications extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public PushThemNotifications() {
-        // Required empty public constructor
-    }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PushThemNotifications.
+     * @return A new instance of fragment PushSchedule.
      */
     // TODO: Rename and change types and number of parameters
-    public static PushThemNotifications newInstance(String param1, String param2) {
-        PushThemNotifications fragment = new PushThemNotifications();
+    public static PushSchedule newInstance(String param1, String param2) {
+        PushSchedule fragment = new PushSchedule();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,6 +69,7 @@ public class PushThemNotifications extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mAuth = FirebaseAuth.getInstance();
+        ref = database.getReference(mAuth.getUid());
     }
 
     @Override
@@ -82,25 +79,26 @@ public class PushThemNotifications extends Fragment {
         View v = inflater.inflate(R.layout.push_emergency_notif_fragment, container, false);
         final Button button=(Button) v.findViewById(R.id.push);
         final EditText e1=(EditText) v.findViewById(R.id.text1);
-        final EditText e2=(EditText) v.findViewById(R.id.text2);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String t1=e1.getText().toString();
-                //int t2=Integer.parseInt(e1.getText().toString());
-                //User u1= new User(ref.child("users").push().getKey(),t1);
+                Date date = new Date(2018,9,12,8,34);
+                Location location = new Location("");
+                //ScheduleData sd = new ScheduleData(date);
+//                String t1=e1.getText().toString();
+//
+//                User u1 = new User(ref.child(mAuth.getUid()).push().getKey(),t1);
+//                //note.setUid(database.child("notes").push().getKey());
+//
+//
+//
+//                ref.child(mAuth.getUid()).child(u1.getId()).setValue(u1);
 
-                FirebaseUser user = mAuth.getCurrentUser();
-
-                User u1 = new User(ref.child(user.getUid()).push().getKey(),t1);
-                //note.setUid(database.child("notes").push().getKey());
-
-                ref.child(user.getUid()).child(u1.getId()).setValue(u1);
                 // DatabaseReference pushedPostRef = ref.push();
                 //database.child("notes").child(note.getUid()).setValue(note);
-                e1.setText("");
-                e1.setText("");
+//                e1.setText("");
+//                e1.setText("");
 
                 //  int PLACE_PICKER_REQUEST = 1;
                 // PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
