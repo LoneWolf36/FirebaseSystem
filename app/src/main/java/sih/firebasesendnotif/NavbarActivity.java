@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,10 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // City picker intent and extract information from bundle
+        String s = getIntent().getStringExtra("City");
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -157,8 +162,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new PushSchedule());
 
             ft.commit();
-
-<<<<<<< HEAD:app/src/main/java/sih/firebasesendnotif/NavbarActivity.java
         } else if (id == R.id.nav_slideshow) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -176,7 +179,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     })
                     .setNegativeButton("No", null)
                     .show();
-=======
         } else if (id == R.id.add_schedule) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -185,10 +187,8 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.commit();
         }else if (id == R.id.nav_slideshow) {
             mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
             finish();
->>>>>>> 5c00794ab0cf93e1a986f6429ddacd50842d6634:app/src/main/java/sih/firebasesendnotif/MainActivity.java
-
         } else if (id == R.id.nav_subscribe) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

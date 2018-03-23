@@ -41,6 +41,7 @@ public class CityPicker extends AppCompatActivity implements AdapterView.OnItemS
                 }else{
                     Intent intent = new Intent(CityPicker.this, NavbarActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("City", city_pick);
                     startActivity(intent);
                 }
             }
