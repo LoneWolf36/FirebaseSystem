@@ -48,10 +48,11 @@ public class CityPicker extends AppCompatActivity implements AdapterView.OnItemS
                 // Is better to use a List, because you don't know the size
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
+                Log.i("lw", "onDataChange: I am here!");
                 final List<String> cities = new ArrayList<String>();
 
                 for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
-                    String cityName = citySnapshot.child("cityName").getValue(String.class);
+                    String cityName = citySnapshot.getValue(String.class);
                     cities.add(cityName);
                 }
 

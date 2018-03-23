@@ -3,7 +3,6 @@ package sih.firebasesendnotif;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class AddSchedule extends Fragment {
+public class AddScheduleFragment extends Fragment {
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("");
@@ -28,12 +27,11 @@ public class AddSchedule extends Fragment {
     Button btnDatePicker, btnTimePicker;
     Button submitBtn;
     EditText txtDate, txtTime,txtDuration;
-    private int mYear, mMonth, mDay, mHour, mMinute;
-    SharedPreferences prefs ;
+    SharedPreferences prefs;
     String city_name;
     String city;
 
-    public AddSchedule() {
+    public AddScheduleFragment() {
         // Required empty public constructor
     }
 

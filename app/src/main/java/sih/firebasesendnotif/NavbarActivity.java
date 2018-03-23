@@ -76,7 +76,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Log.d("ALI ", "SAYS YES");
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.toPopulate, new AddSchedule());
+                    ft.replace(R.id.toPopulate, new AddScheduleFragment());
                     ft.commit();
                 }
             });
@@ -179,7 +179,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             fab.setVisibility(View.INVISIBLE);
             Bundle bundle = new Bundle();
             bundle.putString("City", city_name);
-            AddSchedule add = new AddSchedule();
+            AddScheduleFragment add = new AddScheduleFragment();
             add.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, add);

@@ -212,15 +212,15 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
                         mAuth = FirebaseAuth.getInstance();
                         String city_name = prefs.getString("city_name", "unset");
-                        if(city_name.equals("unset")){
+                        //if(city_name.equals("unset")){
                         Intent intent = new Intent(LoginActivity.this, CityPicker.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);}
-                        else{
+                        startActivity(intent);//}
+                        /*else{
                             Intent intent = new Intent(LoginActivity.this, NavbarActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-                        }
+                        }*/
 
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT).show();
