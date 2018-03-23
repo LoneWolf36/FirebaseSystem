@@ -77,7 +77,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Log.d("ALI ", "SAYS YES");
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.toPopulate, new AddSchedule());
+                    ft.replace(R.id.toPopulate, new AddScheduleFragment());
                     ft.commit();
                 }
             });
@@ -184,12 +184,28 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .setNegativeButton("No", null)
                     .show();
         }
+
+        else if (id == R.id.activity_place_picker) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("PickPlace")
+                    .setMessage("Do you want set this position for warning?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(NavbarActivity.this, PlacePickerActivity.class));
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }
         // Add schedule fragment
         else if (id == R.id.add_schedule) {
             fab.setVisibility(View.INVISIBLE);
             Bundle bundle = new Bundle();
             bundle.putString("City", city_name);
-            AddSchedule add = new AddSchedule();
+            AddScheduleFragment add = new AddScheduleFragment();
             add.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, add);
