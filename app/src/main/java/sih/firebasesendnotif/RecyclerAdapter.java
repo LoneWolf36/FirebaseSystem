@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import sih.firebasesendnotif.Classes.ScheduleData;
+
 /**
  * Created by ali on 20/3/18.
  */

@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Fragments;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.time.Month;
 import java.time.Year;
 import java.util.Calendar;
+
+import sih.firebasesendnotif.R;
 
 /**
  * Created by root on 21/3/18.

@@ -213,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
                         mAuth = FirebaseAuth.getInstance();
                         String city_name = prefs.getString("city_name", "unset");
                         //if(city_name.equals("unset")){
-                        Intent intent = new Intent(LoginActivity.this, CityPicker.class);
+                        Intent intent = new Intent(LoginActivity.this, CityPickerActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);//}
                         /*else{

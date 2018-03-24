@@ -3,7 +3,6 @@ package sih.firebasesendnotif;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,6 +19,11 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import sih.firebasesendnotif.Fragments.AddScheduleFragment;
+import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
+import sih.firebasesendnotif.Fragments.ScheduleFragment;
+import sih.firebasesendnotif.Fragments.SubscribeFragment;
 
 public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -157,7 +161,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         else if (id == R.id.nav_emergency) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, new EmergencyNotification());
+            ft.replace(R.id.toPopulate, new EmergencyNotificationFragment());
             ft.commit();
         }
         // Logout Activity
@@ -194,7 +198,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(NavbarActivity.this, PlacePickerActivity.class));
+                            startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
                         }
                     })
                     .setNegativeButton("No", null)
