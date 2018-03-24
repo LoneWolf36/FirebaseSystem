@@ -103,11 +103,15 @@ public class EmergencyNotification extends Fragment {
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam,myalert;
                 mydam = ref.child(mAuth.getUid());
-                myalert = mydam.child("Alert");
-                String key=mydam.push().getKey();
+                //myalert = mydam.child("Alert");
+                myalert = ref.child("Alert");
+                String key=myalert.push().getKey();
+
+
                 myalert.child(key).setValue(text.getText().toString());
-
-
+                //myalert.child(key).setValue(text.getText().toString());
+                //myalert.child(key).setValue(text.getText().toString());
+                text.setText("");
             }
         });
     }
