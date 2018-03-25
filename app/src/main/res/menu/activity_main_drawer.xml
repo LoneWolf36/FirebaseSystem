@@ -4,24 +4,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_schedules"
             android:title="Check schedules" />
         <item
             android:id="@+id/add_schedule"
-            android:icon="@mipmap/add_schedule"
+            android:icon="@drawable/ic_add"
             android:title="Add a schedule">
         </item>
         <item
             android:id="@+id/nav_emergency"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_emergency"
             android:title="Emergency Notification" />
         <item
             android:id="@+id/nav_subscribe"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_subscribe"
             android:title="Subscribe to topics" />
         <item
-            android:id="@+id/activity_place_picker"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/activity_location_picker"
+            android:icon="@drawable/ic_location"
             android:title="Release water location" />
     </group>
 
@@ -29,7 +29,7 @@
         <menu>
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/ic_logout"
                 android:title="Log Out" />
         </menu>
     </item>
