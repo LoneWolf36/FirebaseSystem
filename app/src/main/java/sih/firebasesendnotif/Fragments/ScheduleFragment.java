@@ -85,12 +85,6 @@ public class ScheduleFragment extends Fragment {
                 //Toast.makeText(getActivity(),value.getDate(),
                    //     Toast.LENGTH_SHORT).show();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
-                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                recycle.setLayoutManager(recyce);
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
-
                  for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                      ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                      list.add(value);
