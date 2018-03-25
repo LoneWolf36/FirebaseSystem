@@ -30,7 +30,6 @@ public class ScheduleData {
         this.time = time;
         this.duration = duration;
         this.temp=temp;
-
     }
 
     public String getDate() {
