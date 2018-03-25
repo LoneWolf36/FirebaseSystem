@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private UserLoginTask mAuthTask = null;
     private static final int REQUEST_SIGNUP = 0;
+    ProgressDialog progress;
 
     @BindView(R.id.input_email)
     EditText mEmailView;
@@ -142,19 +141,16 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+            progress = new ProgressDialog(this,
                     R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Authenticating...");
-            progressDialog.show();
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            progress.setCanceledOnTouchOutside(false);
+            progress.setMessage("Authenticating...");
+            progress.show();
+            Toast.makeText(this, "Checking...", Toast.LENGTH_SHORT).show();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-            if (mAuthTask.onFailed()){
-                progressDialog.hide();
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-            }
         }
     }
 
@@ -202,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
                         }*/
 
                     } else {
-                        onFailed();
+                        progress.dismiss();
                         Toast.makeText(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -224,10 +220,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onCancelled() {
             mAuthTask = null;
-        }
-
-        private boolean onFailed(){
-            return true;
         }
     }
 }

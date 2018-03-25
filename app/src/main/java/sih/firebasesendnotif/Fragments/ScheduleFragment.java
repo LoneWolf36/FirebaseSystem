@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +36,7 @@ public class ScheduleFragment extends Fragment {
     DatabaseReference myRef ;
     java.util.List<ScheduleData> list;
     RecyclerView recycle;
-    Button view;
+    Button notify,update;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,12 +55,11 @@ public class ScheduleFragment extends Fragment {
 
 
         View v = inflater.inflate(R.layout.fragment_schedule,container,false);
-        view = (Button) v.findViewById(R.id.view);
+      //  view = (Button) v.findViewById(R.id.view);
+        notify = (Button) v.findViewById(R.id.notify);
+        update = (Button) v.findViewById(R.id.update);
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
-
-
-
 
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -72,18 +72,9 @@ public class ScheduleFragment extends Fragment {
 
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
                 RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
-                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                 recycle.setLayoutManager(recyce);
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
-                //list.clear();
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                // ScheduleData value = dataSnapshot.getValue(ScheduleData.class);
-                //list.add(value);
-                //Toast.makeText(getActivity(),value.getDate(),
-                   //     Toast.LENGTH_SHORT).show();
 
 
                  for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
@@ -101,6 +92,12 @@ public class ScheduleFragment extends Fragment {
 
         return v;
         // Inflate the layout for this fragment
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 

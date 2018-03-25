@@ -14,7 +14,7 @@
         android:layout_height="58dp"
         android:ems="10"
         android:hint="Type your Emergency message here"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         android:text=""
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -29,17 +29,15 @@
 
     <Button
         android:id="@+id/push"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Push"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="137dp"
+        android:layout_height="45dp"
         android:layout_marginTop="14dp"
+        android:text="Push"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
 </android.support.constraint.ConstraintLayout>
