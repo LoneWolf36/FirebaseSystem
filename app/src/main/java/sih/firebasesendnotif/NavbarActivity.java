@@ -19,11 +19,13 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.yhao.floatwindow.FloatWindow;
 
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
+import static com.yhao.floatwindow.FloatWindow.with;
 
 public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -60,6 +62,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(addScheduleListener);
+        FloatWindow.with(getApplicationContext()).setView(view).build();
 
         // Initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
