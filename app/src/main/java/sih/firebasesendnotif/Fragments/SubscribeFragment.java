@@ -110,7 +110,7 @@ public class SubscribeFragment extends Fragment {
 
                     cb.setChecked(chk1);
                     cb.setTextSize(22);
-                    cb.setTextColor(((int) R.color.colorAccent));
+                    cb.setTextColor(((int) R.color.primary));
                     citycb.add(cb);
 
                     cb.setText(cityName);
