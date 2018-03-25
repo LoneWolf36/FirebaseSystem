@@ -19,7 +19,7 @@
             android:layout_toStartOf="@+id/btn_date"
             android:textSize="20dp"
             android:textColor="@color/black"
-            android:hint="Date.."/>
+            android:hint="Date"/>
 
         <Button
             android:id="@+id/btn_date"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/in_date"
             android:layout_below="@+id/in_date"
-            android:hint="Time.."
+            android:hint="Time"
             android:textColor="@color/black"
             android:textSize="20dp"
             />
@@ -64,12 +64,20 @@
 
         <Button
             android:id="@+id/submit"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtDuration"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="86dp"
+            android:layout_alignBaseline="@+id/clear"
+            android:layout_alignBottom="@+id/clear"
+            android:layout_alignEnd="@+id/btn_date"
             android:text="@string/submitSchedule" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/txtDuration"
+            android:layout_centerVertical="true"
+            android:text="@string/clear" />
 
 
     </RelativeLayout>
