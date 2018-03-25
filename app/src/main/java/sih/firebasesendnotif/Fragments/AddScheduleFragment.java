@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Fragments;
 
 import android.app.DialogFragment;
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import sih.firebasesendnotif.R;
+import sih.firebasesendnotif.Classes.ScheduleData;
 
 import static android.content.Context.MODE_PRIVATE;
 
