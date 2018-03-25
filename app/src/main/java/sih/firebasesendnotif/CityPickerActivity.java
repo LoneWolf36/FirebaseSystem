@@ -32,7 +32,6 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
 
     // Instance of Firebase
     private DatabaseReference myRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
