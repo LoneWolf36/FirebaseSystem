@@ -23,6 +23,10 @@
             android:id="@+id/activity_location_picker"
             android:icon="@drawable/ic_location"
             android:title="Release water location" />
+        <item
+            android:id="@+id/nav_contact"
+            android:title="Contact dam authority"
+                />
     </group>
 
     <item android:title="User options">

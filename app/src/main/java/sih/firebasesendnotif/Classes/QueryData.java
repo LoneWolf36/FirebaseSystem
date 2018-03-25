@@ -5,4 +5,21 @@ package sih.firebasesendnotif.Classes;
  */
 
 public class QueryData {
+    //String city;
+    String question;
+
+    public QueryData(String question) {
+        //this.city = city;
+        this.question = question;
+    }
+
+
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
 }
