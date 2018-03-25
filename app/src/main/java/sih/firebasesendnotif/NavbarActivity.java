@@ -16,17 +16,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.yhao.floatwindow.FloatWindow;
 
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
-import static com.yhao.floatwindow.FloatWindow.with;
 
 public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
