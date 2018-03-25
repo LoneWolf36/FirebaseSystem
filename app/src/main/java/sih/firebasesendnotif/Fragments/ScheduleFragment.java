@@ -72,6 +72,21 @@ public class ScheduleFragment extends Fragment {
 
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
                 RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
+                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+                recycle.setLayoutManager(recyce);
+                recycle.setItemAnimator( new DefaultItemAnimator());
+                recycle.setAdapter(recyclerAdapter);
+                //list.clear();
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                // ScheduleData value = dataSnapshot.getValue(ScheduleData.class);
+                //list.add(value);
+                //Toast.makeText(getActivity(),value.getDate(),
+                   //     Toast.LENGTH_SHORT).show();
+
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
+                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
                 recycle.setLayoutManager(recyce);
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
@@ -87,6 +102,7 @@ public class ScheduleFragment extends Fragment {
                 Log.w("Hello", "Failed to read value.", error.toException());
             }
         });
+
 
         return v;
         // Inflate the layout for this fragment
