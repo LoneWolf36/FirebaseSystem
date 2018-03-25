@@ -51,42 +51,35 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View v = inflater.inflate(R.layout.fragment_schedule,container,false);
         view = (Button) v.findViewById(R.id.view);
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
 
+
+
+
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String city_name = prefs.getString("city_name", "");
         list = new ArrayList<ScheduleData>();
-
         myRef = database.getReference(city_name).child(mAuth.getUid());
-       // String k=myRef.push().getKey();
-        //myRef.child(k).setValue(new ScheduleData("ds","awed","vcv"));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //list.clear();
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                // ScheduleData value = dataSnapshot.getValue(ScheduleData.class);
-                //list.add(value);
-                //Toast.makeText(getActivity(),value.getDate(),
-                   //     Toast.LENGTH_SHORT).show();
 
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
+                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                recycle.setLayoutManager(recyce);
+                recycle.setItemAnimator( new DefaultItemAnimator());
+                recycle.setAdapter(recyclerAdapter);
 
                  for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                      ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
-
-
-
-
-
-
                      list.add(value);
                  }
-
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -94,28 +87,6 @@ public class ScheduleFragment extends Fragment {
                 Log.w("Hello", "Failed to read value.", error.toException());
             }
         });
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
-                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
-                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                recycle.setLayoutManager(recyce);
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
-
-
-
-
-            }
-        });
-
 
         return v;
         // Inflate the layout for this fragment

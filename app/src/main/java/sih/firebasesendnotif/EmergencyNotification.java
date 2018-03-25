@@ -93,7 +93,7 @@ public class EmergencyNotification extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+         super.onViewCreated(view, savedInstanceState);
         final EditText text = (EditText) view.findViewById(R.id.text1);
         submit=(Button) view.findViewById(R.id.push);
 
@@ -102,12 +102,11 @@ public class EmergencyNotification extends Fragment {
             public void onClick(View view) {
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam,myalert;
-                mydam = ref.child(mAuth.getUid());
-                //myalert = mydam.child("Alert");
                 myalert = ref.child("Alert");
+                //mydam = ref.child(mAuth.getUid());
+                //myalert = mydam.child("Alert");
+                //myalert = ref.child("Alert");
                 String key=myalert.push().getKey();
-
-
                 myalert.child(key).setValue(text.getText().toString());
                 //myalert.child(key).setValue(text.getText().toString());
                 //myalert.child(key).setValue(text.getText().toString());
