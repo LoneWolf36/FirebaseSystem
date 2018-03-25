@@ -9,15 +9,26 @@ package sih.firebasesendnotif.Fragments;
         import android.os.Bundle;
         import android.support.annotation.Nullable;
         import android.support.v4.app.Fragment;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.ArrayAdapter;
         import android.widget.CheckBox;
+        import android.widget.LinearLayout;
+        import android.widget.Spinner;
 
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
         import com.google.firebase.messaging.FirebaseMessaging;
 
         import java.util.ArrayList;
+        import java.util.List;
 
+        import sih.firebasesendnotif.CityPickerActivity;
         import sih.firebasesendnotif.R;
 
         import static android.content.Context.MODE_PRIVATE;
@@ -30,7 +41,12 @@ package sih.firebasesendnotif.Fragments;
 public class SubscribeFragment extends Fragment {
 
     //static ArrayList<Boolean> checkstate;
+    Spinner spinner;
     CheckBox c1,c2,c3,c4;
+    private DatabaseReference myRef;
+    LinearLayout ll;
+    List<String> cities;
+    List<CheckBox> citycb;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,8 +56,6 @@ public class SubscribeFragment extends Fragment {
         Boolean chk2 = prefs.getBoolean("c2", false);
         Boolean chk3 = prefs.getBoolean("c3", false);
         Boolean chk4 = prefs.getBoolean("c4", false);
-
-
         View view = inflater.inflate(R.layout.frament_subscribe, container, false);
         c1=view.findViewById(R.id.checkBox1);
         c1.setChecked(chk1);
@@ -54,6 +68,8 @@ public class SubscribeFragment extends Fragment {
 
         c1=view.findViewById(R.id.checkBox4);
         c1.setChecked(chk4);
+
+
         return view;
     }
 
@@ -71,6 +87,32 @@ public class SubscribeFragment extends Fragment {
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
 
+
+        ll=this.getView().findViewById(R.id.linlay);
+        myRef = FirebaseDatabase.getInstance().getReference();
+        myRef.child("cities").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Is better to use a List, because you don't know the size
+                // of the iterator returned by dataSnapshot.getChildren() to
+                // initialize the array
+                Log.i("lw", "onDataChange: I am here!");
+                cities = new ArrayList<String>();
+
+                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+                    String cityName = citySnapshot.getValue(String.class);
+                    cities.add(cityName);
+                    CheckBox cb = new CheckBox(getActivity());
+                    cb.setText(cityName);
+                    ll.addView(cb);
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         c1.setOnClickListener(new View.OnClickListener()
         {

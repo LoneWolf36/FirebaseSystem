@@ -6,15 +6,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -31,9 +41,11 @@ public class EmergencyNotification extends Fragment {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("");
     private FirebaseAuth mAuth;
+    private DatabaseReference myRef;
     SharedPreferences prefs ;
     String city_name;
     Button submit;
+    LinearLayout ll;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -77,16 +89,20 @@ public class EmergencyNotification extends Fragment {
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
+        Log.d("La", "Im HERE BABY1");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.d("La", "Im HERE BABY");
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         //ref = database.getReference("pune");
-
         View v = inflater.inflate(R.layout.fragment_emergency_notification, container, false);
+
         //Button submit=(Button) v.findViewById(R.id.push);
         return v;
         }
