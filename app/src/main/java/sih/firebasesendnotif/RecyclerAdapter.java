@@ -32,6 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
     List<ScheduleData> list;
+
     private Context context;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("");
@@ -51,18 +52,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         this.list = list;
         this.context = context;
     }
-
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-       // e.getString(city_name);
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
         MyHoder myHoder = new MyHoder(view);
-           mAuth = FirebaseAuth.getInstance();
-//        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
-//        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-//        city_name = prefs.getString("city_name", "");
-//        Log.d("city name",city_name);
+        mAuth = FirebaseAuth.getInstance();
         return myHoder;
 
 
@@ -116,30 +110,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //    }
     @Override
     public int getItemCount() {
-
         int arr = 0;
-
         try{
             if(list.size()==0){
-
                 arr = 0;
-
             }
             else{
 
                 arr=list.size();
             }
-
-
-
         }catch (Exception e){
-
-
-
         }
-
         return arr;
-
     }
 
     class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
