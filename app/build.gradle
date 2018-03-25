@@ -53,5 +53,7 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.stone.vega.library:VegaLayoutManager:1.0.6'
+    compile 'com.ramotion.garlandview:garland-view:0.3.2'
 }
 apply plugin: 'com.google.gms.google-services'
