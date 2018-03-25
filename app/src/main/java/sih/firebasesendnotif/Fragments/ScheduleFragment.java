@@ -61,9 +61,6 @@ public class ScheduleFragment extends Fragment {
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
 
-
-
-
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String city_name = prefs.getString("city_name", "");
