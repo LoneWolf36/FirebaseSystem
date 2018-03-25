@@ -189,7 +189,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .show();
         }
 
-        else if (id == R.id.activity_place_picker) {
+        else if (id == R.id.activity_location_picker) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("PickPlace")
