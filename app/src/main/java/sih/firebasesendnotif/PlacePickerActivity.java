@@ -37,14 +37,14 @@ public class PlacePickerActivity extends AppCompatActivity {
     }
 //    private void permission() {
 //        if (ContextCompat.checkSelfPermission(PlacePickerActivity.this, Manifest.permission.) != PackageManager.PERMISSION_GRANTED) {
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
 //                new AlertDialog.Builder(this)
 //                        .setTitle("Permission required")
 //                        .setMessage("This permission is needed for accessing images from the storage")
 //                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 //                            @Override
 //                            public void onClick(DialogInterface dialog, int which) {
-//                                ActivityCompat.requestPermissions(PlacePickerActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_FINE_LOCATION_CODE);
+//                                ActivityCompat.requestPermissions(PlacePickerActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_FINE_LOCATION_CODE);
 //                            }
 //                        })
 //                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -56,7 +56,7 @@ public class PlacePickerActivity extends AppCompatActivity {
 //                        .create()
 //                        .show();
 //            } else
-//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_REQUEST_CODE);
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_FINE_LOCATION_REQUEST_CODE);
 //        }
 //    }
     public void goPlacePicker(View view) {
