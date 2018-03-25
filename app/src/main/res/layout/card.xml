@@ -29,7 +29,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/test"
                 android:alpha="0.9"
                 android:scaleType="centerCrop"/>
 
