@@ -101,6 +101,10 @@ public class AddScheduleFragment extends Fragment {
 
                 String key=mydam.push().getKey();
                 mydam.child(key).setValue(schedule);
+                txtDate.setText("");
+                txtDuration.setText("");
+                txtTime.setText("");
+
             }
         });
     }

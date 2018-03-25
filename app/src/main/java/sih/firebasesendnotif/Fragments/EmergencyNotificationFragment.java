@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import sih.firebasesendnotif.Classes.EmergencyData;
 import sih.firebasesendnotif.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -61,12 +62,16 @@ public class EmergencyNotificationFragment extends Fragment {
             public void onClick(View view) {
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam,myalert;
-                mydam = ref.child(mAuth.getUid());
-                myalert = mydam.child("Alert");
-                String key=mydam.push().getKey();
-                myalert.child(key).setValue(text.getText().toString());
-
-
+                myalert = ref.child("Alert");
+                //mydam = ref.child(mAuth.getUid());
+                //myalert = mydam.child("Alert");
+                //myalert = ref.child("Alert");
+                String key=myalert.push().getKey();
+                EmergencyData emergencyData =new EmergencyData(text.getText().toString(),mAuth.getUid(),1,city_name);
+                myalert.child(key).setValue(emergencyData);
+                //myalert.child(key).setValue(text.getText().toString());
+                //myalert.child(key).setValue(text.getText().toString());
+                text.setText("");
             }
         });
     }

@@ -16,4 +16,8 @@
 
     <color name="Notify">#69F0AE</color>
     <color name="Update">#FF9800</color>
+
+    <color name="grey">#9E9E9E</color>
+    <color name="orange">#F6BD26</color>
+    <color name="violet">#7885CB</color>
 </resources>
