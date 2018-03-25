@@ -62,7 +62,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(addScheduleListener);
-        FloatWindow.with(getApplicationContext()).setView(view).build();
 
         // Initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();

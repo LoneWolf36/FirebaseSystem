@@ -4,15 +4,24 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import sih.firebasesendnotif.Classes.EmergencyData;
 import sih.firebasesendnotif.R;
@@ -45,8 +54,10 @@ public class EmergencyNotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         //ref = database.getReference("pune");
-
         View v = inflater.inflate(R.layout.fragment_emergency_notification, container, false);
+
+        Log.d("lw", "qwqwqwqwqwqw");
+
         //Button submit=(Button) v.findViewById(R.id.push);
         return v;
         }

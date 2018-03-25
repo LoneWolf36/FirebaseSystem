@@ -14,7 +14,7 @@
         android:layout_height="58dp"
         android:ems="10"
         android:hint="Type your Emergency message here"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         android:text=""
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
