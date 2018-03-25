@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
+import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
@@ -222,8 +223,15 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new SubscribeFragment());
             ft.commit();
         }
+        //emergency contacts
+        else if (id == R.id.emergency_contacts) {
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new EmergencyContacts());
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ft.commit();
+        }
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
