@@ -23,7 +23,6 @@ import sih.firebasesendnotif.Classes.ScheduleData;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
     List<ScheduleData> list;
     Context context;
-Date events;
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
         this.context = context;
@@ -39,16 +38,6 @@ Date events;
         return myHoder;
     }
 
-    @Override
-    public void onBindViewHolder(MyHoder holder, int position) {
-        ScheduleData mylist = list.get(position);
-        holder.date.setText("Water will be released on " + mylist.getDate());
-
-        //holder.email.setText(mylist.getEmail());
-        holder.time.setText("at " +mylist.getTime());
-        holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
-
-    }
     @Override
     public int getItemCount() {
 
@@ -74,6 +63,17 @@ Date events;
         }
 
         return arr;
+
+    }
+    @Override
+    public void onBindViewHolder(MyHoder holder, int position) {
+        ScheduleData mylist = list.get(position);
+        holder.date.setText("Water will be released on " + mylist.getDate());
+        String events= mylist.getDate();
+        //holder.email.setText(mylist.getEmail());
+        holder.time.setText("at " +mylist.getTime());
+        holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
+        holder.countDownStart(events);
 
     }
 
@@ -105,11 +105,11 @@ Date events;
             tvEventStart = (TextView) itemView.findViewById(R.id.tveventStart);
             time= (TextView) itemView.findViewById(R.id.time);
             duration= (TextView) itemView.findViewById(R.id.duration);
-            countDownStart();
+
 
         }
 
-        public void countDownStart() {
+        public void countDownStart(final String events) {
             handler = new Handler();
             runnable = new Runnable() {
                 @Override
@@ -118,7 +118,7 @@ Date events;
                     try {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                         // Please here set your event date//YYYY-MM-DD
-                        Date futureDate = dateFormat.parse("05-04-2018");
+                        Date futureDate = dateFormat.parse(String.valueOf(events));
                         Date currentDate = new Date();
                         if (!currentDate.after(futureDate)) {
                             long diff = futureDate.getTime() - currentDate.getTime();

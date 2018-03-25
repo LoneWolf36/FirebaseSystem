@@ -1,10 +1,5 @@
 package sih.firebasesendnotif.Classes;
 
-import android.location.Location;
-
-import java.sql.Time;
-import java.util.Date;
-
 /**
  * Created by groot on 21/3/18.
  */
