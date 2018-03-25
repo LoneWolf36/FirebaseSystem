@@ -80,7 +80,6 @@ public class ScheduleFragment extends Fragment {
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
 
-
                  for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                      ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                      list.add(value);
@@ -103,6 +102,15 @@ public class ScheduleFragment extends Fragment {
 //    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
 //
+<<<<<<< HEAD
+=======
+//        update.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+>>>>>>> b020159194ce375254f68ec9e2c22edf1fd7de6f
 //    }
 
     // TODO: Rename method, update argument and hook method into UI event

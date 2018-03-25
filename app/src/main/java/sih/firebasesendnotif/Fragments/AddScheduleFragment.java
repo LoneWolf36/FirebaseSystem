@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -28,8 +30,9 @@ public class AddScheduleFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     Button btnDatePicker, btnTimePicker;
-    Button submitBtn;
-    EditText txtDate, txtTime,txtDuration;
+    Button submitBtn,clearBtn;
+    EditText txtDuration;
+    TextView txtDate, txtTime;
     SharedPreferences prefs;
     String city_name;
     String city;
@@ -73,7 +76,7 @@ public class AddScheduleFragment extends Fragment {
 
             }
         });
-        txtDate = (EditText) view.findViewById(R.id.in_date);
+        txtDate = (TextView) view.findViewById(R.id.in_date);
         btnTimePicker=(Button) view.findViewById(R.id.btn_time);
         btnTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +85,7 @@ public class AddScheduleFragment extends Fragment {
                 newFragment.show(getActivity().getFragmentManager(),"TimePicker");
             }
         });
-        txtTime = (EditText) view.findViewById(R.id.in_time);
+        txtTime = (TextView) view.findViewById(R.id.in_time);
         txtDuration = (EditText) view.findViewById(R.id.txtDuration);
         submitBtn = (Button) view.findViewById(R.id.submit);
 
@@ -92,19 +95,47 @@ public class AddScheduleFragment extends Fragment {
                 Log.d("Date",txtDate.getText().toString());
                 Log.d("Time",txtTime.getText().toString());
                 Log.d("Duration",txtDuration.getText().toString());
-                DatabaseReference ref = database.getReference(city_name);
-                DatabaseReference mydam;
-                mydam = ref.child(mAuth.getUid());
+                String datetxt = txtDate.getText().toString();
+                String timetxt = txtTime.getText().toString();
+                String durationtxt = txtDuration.getText().toString();
 
-                ScheduleData schedule = new ScheduleData(txtDate.getText().toString(),txtTime.getText().toString(),txtDuration.getText().toString(),1);
-                //ref.setValue(schedule);
 
-                String key=mydam.push().getKey();
-                mydam.child(key).setValue(schedule);
+                if(datetxt.equals("") || timetxt.equals("") || durationtxt.equals("")) {
+                    Toast.makeText(getContext(),"Please Enter all the details",Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    try {
+                        int num = Integer.parseInt(durationtxt);
+                        Log.i("",num+" is a number");
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getContext(), "Please enter a Number for Duration!", Toast.LENGTH_SHORT).show();
+                        Log.i("",durationtxt+" is not a number");
+                    }
+                    DatabaseReference ref = database.getReference(city_name);
+                    DatabaseReference mydam;
+                    mydam = ref.child(mAuth.getUid());
+
+                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(), 1);
+                    //ref.setValue(schedule);
+
+                    String key = mydam.push().getKey();
+                    mydam.child(key).setValue(schedule);
+                    Toast.makeText(getContext(), "Schedule Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                    txtDate.setText("");
+                    txtDuration.setText("");
+                    txtTime.setText("");
+                }
+
+            }
+        });
+        clearBtn = (Button) view.findViewById(R.id.clear);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 txtDate.setText("");
                 txtDuration.setText("");
                 txtTime.setText("");
-
             }
         });
     }
