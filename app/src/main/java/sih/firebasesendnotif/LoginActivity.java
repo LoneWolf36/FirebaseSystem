@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -145,15 +143,15 @@ public class LoginActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setMessage("Authenticating...");
             progressDialog.show();
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            Toast.makeText(this, "Checking...", Toast.LENGTH_SHORT).show();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
             if (mAuthTask.onFailed()){
-                progressDialog.hide();
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                progressDialog.dismiss();
             }
         }
     }
