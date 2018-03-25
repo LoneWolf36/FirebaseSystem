@@ -27,4 +27,9 @@
 
     <string name="place_select">Select Place</string>
     <string name="title_activity_maps">Maps</string>
+    <string name="days">days</string>
+    <string name="hours">hrs</string>
+    <string name="minutes">mins</string>
+    <string name="seconds">secs</string>
+    <string name="worldcup_2k19">setdate</string>
 </resources>
