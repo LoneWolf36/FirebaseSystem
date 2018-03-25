@@ -3,15 +3,6 @@
     package="sih.firebasesendnotif">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -25,12 +16,10 @@
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".FirebaseMessagingService">
+        <service android:name=".Services.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -40,7 +29,7 @@
             android:name=".NavbarActivity"
             android:label="@string/main_activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CityPicker" />
+        <activity android:name=".CityPickerActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,15 +43,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".PlacePickerActivity"
+            android:name=".LocationPickerActivity"
             android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".MapsActivity"></activity>
     </application>
 
 </manifest>

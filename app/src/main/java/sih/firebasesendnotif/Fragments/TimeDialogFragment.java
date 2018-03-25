@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Fragments;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -14,6 +14,8 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.List;
+
+import sih.firebasesendnotif.R;
 
 /**
  * Created by root on 21/3/18.

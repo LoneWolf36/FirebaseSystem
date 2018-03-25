@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CityPicker extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class CityPickerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     String city_pick;
     Button button;
@@ -56,7 +56,7 @@ public class CityPicker extends AppCompatActivity implements AdapterView.OnItemS
                     cities.add(cityName);
                 }
 
-                ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(CityPicker.this, android.R.layout.simple_spinner_item, cities);
+                ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(CityPickerActivity.this, android.R.layout.simple_spinner_item, cities);
                 cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(cityAdapter);
             }
@@ -72,9 +72,9 @@ public class CityPicker extends AppCompatActivity implements AdapterView.OnItemS
             @Override
             public void onClick(View view) {
                 if (city_pick.equals("")){
-                    Toast.makeText(CityPicker.this, "Invalid information", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CityPickerActivity.this, "Invalid information", Toast.LENGTH_SHORT).show();
                 }else{
-                    Intent intent = new Intent(CityPicker.this, NavbarActivity.class);
+                    Intent intent = new Intent(CityPickerActivity.this, NavbarActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("City", city_pick);
                     startActivity(intent);

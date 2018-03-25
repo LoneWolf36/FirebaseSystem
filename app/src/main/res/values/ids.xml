@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="activity_place_picker" type="id">PlacePicker</item>
+    <item name="tvLat" type="id">Latitude</item>
+    <item name="tvLong" type="id">Longitude</item>
 </resources>

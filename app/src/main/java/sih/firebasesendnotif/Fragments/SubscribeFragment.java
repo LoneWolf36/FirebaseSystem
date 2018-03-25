@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Fragments;
 
 
 
@@ -17,6 +17,8 @@ package sih.firebasesendnotif;
         import com.google.firebase.messaging.FirebaseMessaging;
 
         import java.util.ArrayList;
+
+        import sih.firebasesendnotif.R;
 
         import static android.content.Context.MODE_PRIVATE;
 
