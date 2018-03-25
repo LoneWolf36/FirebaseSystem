@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="sih.firebasesendnotif.Fragments.EmergencyContacts">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/call_police"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="call police"
+        android:textSize="20dp" />
+    <Button
+        android:id="@+id/callfirebrigade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="call Fire Brigade"
+        android:textSize="20dp" />
+    <Button
+        android:id="@+id/calldis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="call Emergency Disaster Management"
+        android:textSize="20dp"/>
+</LinearLayout>
