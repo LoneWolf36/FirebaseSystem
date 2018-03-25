@@ -30,4 +30,20 @@
     <string name="post_button">Post query</string>
     <string name="choose_city">Pick your city:</string>
     <string name="post_query">Post your question</string>
+
+    <string name="days">days</string>
+    <string name="hours">hrs</string>
+    <string name="minutes">mins</string>
+    <string name="seconds">secs</string>
+    <string name="worldcup_2k19">setdate</string>
+
+    <string name="duration">Enter Duration (in hours)</string>
+    <string name="notify">Notify</string>
+    <string name="update">Update</string>
+    <string name="submitSchedule">Submit Schedule</string>
+    <string name="selectDate">Select Date</string>
+    <string name="selectTime">Select Time</string>
+    <string name="scheduleSubmitted">Schedule Successfully Submitted!</string>
+    <string name="clear">Clear</string>
+
 </resources>

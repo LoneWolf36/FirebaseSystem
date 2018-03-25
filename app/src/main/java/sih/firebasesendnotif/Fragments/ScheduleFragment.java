@@ -76,12 +76,6 @@ public class ScheduleFragment extends Fragment {
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
 
-
-                recycle.setLayoutManager(recyce);
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
-
-
                  for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                      ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                      list.add(value);
@@ -100,11 +94,17 @@ public class ScheduleFragment extends Fragment {
 
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//        update.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
