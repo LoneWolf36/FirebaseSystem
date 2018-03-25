@@ -11,7 +11,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">WRIS</string>
     <string name="hello_blank_fragment">Hello</string>
-
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -27,6 +26,17 @@
 
     <string name="place_select">Select Place</string>
     <string name="title_activity_maps">Maps</string>
+    <!-- Strings related to user questions -->
+    <string name="post_button">Post query</string>
+    <string name="choose_city">Pick your city:</string>
+    <string name="post_query">Post your question</string>
+
+    <string name="days">days</string>
+    <string name="hours">hrs</string>
+    <string name="minutes">mins</string>
+    <string name="seconds">secs</string>
+    <string name="worldcup_2k19">setdate</string>
+
     <string name="duration">Enter Duration (in hours)</string>
     <string name="notify">Notify</string>
     <string name="update">Update</string>
@@ -35,4 +45,5 @@
     <string name="selectTime">Select Time</string>
     <string name="scheduleSubmitted">Schedule Successfully Submitted!</string>
     <string name="clear">Clear</string>
+
 </resources>

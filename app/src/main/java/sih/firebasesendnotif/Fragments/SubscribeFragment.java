@@ -102,19 +102,22 @@ public class SubscribeFragment extends Fragment {
                 Log.i("lw", "onDataChange: I am here!");
 
                 for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+
+
                     String cityName = citySnapshot.getValue(String.class);
+
+                    //xif(cities.c)
                     cities.add(cityName);
                     Boolean chk1 = prefs.getBoolean(cityName, false);
-
                     CheckBox cb = new CheckBox(getActivity());
-
                     cb.setChecked(chk1);
                     cb.setTextSize(22);
                     cb.setTextColor(((int) R.color.primary));
                     citycb.add(cb);
-
                     cb.setText(cityName);
                     ll.addView(cb);
+
+
                 }
 
 

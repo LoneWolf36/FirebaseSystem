@@ -23,9 +23,15 @@
             android:icon="@drawable/ic_location"
             android:title="Release water location" />
         <item
+
+            android:id="@+id/nav_contact"
+            android:title="Contact dam authority"
+                />
+        <item
             android:id="@+id/emergency_contacts"
             android:icon="@drawable/ic_new_releases_black_24dp"
             android:title="Emergency Contacts" />
+
     </group>
 
     <item android:title="User options">
