@@ -8,7 +8,7 @@
             android:title="Check schedules" />
         <item
             android:id="@+id/add_schedule"
-            android:icon="@mipmap/add_schedule"
+            android:icon="@drawable/ic_add"
             android:title="Add a schedule">
         </item>
         <item

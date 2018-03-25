@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +36,7 @@ public class ScheduleFragment extends Fragment {
     DatabaseReference myRef ;
     java.util.List<ScheduleData> list;
     RecyclerView recycle;
-    Button view;
+    Button notify,update;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,7 +55,9 @@ public class ScheduleFragment extends Fragment {
 
 
         View v = inflater.inflate(R.layout.fragment_schedule,container,false);
-        view = (Button) v.findViewById(R.id.view);
+      //  view = (Button) v.findViewById(R.id.view);
+        notify = (Button) v.findViewById(R.id.notify);
+        update = (Button) v.findViewById(R.id.update);
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
 
@@ -92,6 +95,12 @@ public class ScheduleFragment extends Fragment {
 
         return v;
         // Inflate the layout for this fragment
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 
