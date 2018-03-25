@@ -76,12 +76,6 @@ public class ScheduleFragment extends Fragment {
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
 
-
-                recycle.setLayoutManager(recyce);
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
-
-
                  for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                      ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                      list.add(value);
