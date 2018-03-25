@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +30,8 @@ public class AddScheduleFragment extends Fragment {
     private FirebaseAuth mAuth;
     Button btnDatePicker, btnTimePicker;
     Button submitBtn;
-    EditText txtDate, txtTime,txtDuration;
+    EditText txtDuration;
+    TextView txtDate, txtTime;
     SharedPreferences prefs;
     String city_name;
     String city;
@@ -73,7 +75,7 @@ public class AddScheduleFragment extends Fragment {
 
             }
         });
-        txtDate = (EditText) view.findViewById(R.id.in_date);
+        txtDate = (TextView) view.findViewById(R.id.in_date);
         btnTimePicker=(Button) view.findViewById(R.id.btn_time);
         btnTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +84,7 @@ public class AddScheduleFragment extends Fragment {
                 newFragment.show(getActivity().getFragmentManager(),"TimePicker");
             }
         });
-        txtTime = (EditText) view.findViewById(R.id.in_time);
+        txtTime = (TextView) view.findViewById(R.id.in_time);
         txtDuration = (EditText) view.findViewById(R.id.txtDuration);
         submitBtn = (Button) view.findViewById(R.id.submit);
 

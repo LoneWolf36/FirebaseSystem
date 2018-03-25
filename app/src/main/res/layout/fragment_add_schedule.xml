@@ -9,14 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
+        <TextView
             android:id="@+id/in_date"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="13dp"
             android:layout_marginTop="86dp"
-            android:layout_toStartOf="@+id/btn_date" />
+            android:layout_toStartOf="@+id/btn_date"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:hint="Date.."/>
 
         <Button
             android:id="@+id/btn_date"
@@ -25,14 +28,18 @@
             android:layout_above="@+id/in_time"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="29dp"
-            android:text="SELECT DATE" />
+            android:text="@string/selectDate" />
 
-        <EditText
+        <TextView
             android:id="@+id/in_time"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/in_date"
-            android:layout_below="@+id/in_date" />
+            android:layout_below="@+id/in_date"
+            android:hint="Time.."
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            />
 
         <Button
             android:id="@+id/btn_time"
@@ -41,7 +48,7 @@
             android:layout_alignLeft="@+id/btn_date"
             android:layout_alignStart="@+id/btn_date"
             android:layout_below="@+id/btn_date"
-            android:text="SELECT TIME" />
+            android:text="@string/selectTime" />
 
         <EditText
             android:id="@+id/txtDuration"
@@ -62,7 +69,8 @@
             android:layout_below="@+id/txtDuration"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="86dp"
-            android:text="Submit Schedule" />
+            android:text="@string/submitSchedule" />
+
 
     </RelativeLayout>
 </FrameLayout>
