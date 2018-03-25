@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import sih.firebasesendnotif.R;
+import sih.firebasesendnotif.RecyclerAdapter;
+import sih.firebasesendnotif.Classes.ScheduleData;
 
 import static android.content.Context.MODE_PRIVATE;
 

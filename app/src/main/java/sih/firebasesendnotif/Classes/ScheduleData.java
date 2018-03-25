@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Classes;
 
 import android.location.Location;
 

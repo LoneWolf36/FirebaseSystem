@@ -1,4 +1,4 @@
-package sih.firebasesendnotif;
+package sih.firebasesendnotif.Services;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,6 +12,9 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.RemoteMessage;
+
+import sih.firebasesendnotif.LoginActivity;
+import sih.firebasesendnotif.R;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
     private static final String TAG = "FirebaseService";
