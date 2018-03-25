@@ -27,4 +27,12 @@
 
     <string name="place_select">Select Place</string>
     <string name="title_activity_maps">Maps</string>
+    <string name="duration">Enter Duration (in hours)</string>
+    <string name="notify">Notify</string>
+    <string name="update">Update</string>
+    <string name="submitSchedule">Submit Schedule</string>
+    <string name="selectDate">Select Date</string>
+    <string name="selectTime">Select Time</string>
+    <string name="scheduleSubmitted">Schedule Successfully Submitted!</string>
+    <string name="clear">Clear</string>
 </resources>
