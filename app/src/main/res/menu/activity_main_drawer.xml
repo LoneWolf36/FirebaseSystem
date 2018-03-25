@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
-            android:icon="@drawable/ic_schedule_black_24dp"
+            android:icon="@drawable/ic_schedules"
             android:title="Check schedules" />
         <item
             android:id="@+id/add_schedule"
@@ -13,15 +13,15 @@
         </item>
         <item
             android:id="@+id/nav_emergency"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_emergency"
             android:title="Emergency Notification" />
         <item
             android:id="@+id/nav_subscribe"
-            android:icon="@drawable/ic_subscriptions_black_24dp"
+            android:icon="@drawable/ic_subscribe"
             android:title="Subscribe to topics" />
         <item
-            android:id="@+id/activity_place_picker"
-            android:icon="@drawable/ic_location_on_black_24dp"
+            android:id="@+id/activity_location_picker"
+            android:icon="@drawable/ic_location"
             android:title="Release water location" />
         <item
             android:id="@+id/emergency_contacts"
@@ -33,7 +33,7 @@
         <menu>
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/ic_logout"
                 android:title="Log Out" />
         </menu>
     </item>
