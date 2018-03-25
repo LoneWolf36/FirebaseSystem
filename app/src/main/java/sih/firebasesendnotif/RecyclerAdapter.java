@@ -37,10 +37,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
         ScheduleData mylist = list.get(position);
-        holder.date.setText(mylist.getDate());
+        holder.date.setText("Water will be released on " + mylist.getDate());
         //holder.email.setText(mylist.getEmail());
-        holder.time.setText(mylist.getTime());
-        holder.duration.setText(mylist.getDuration());
+        holder.time.setText("at " +mylist.getTime());
+        holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
 
     }
     @Override

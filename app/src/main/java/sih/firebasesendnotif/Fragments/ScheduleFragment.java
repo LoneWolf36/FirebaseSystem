@@ -67,6 +67,13 @@ public class ScheduleFragment extends Fragment {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
+                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
+                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+                recycle.setLayoutManager(recyce);
+                recycle.setItemAnimator( new DefaultItemAnimator());
+                recycle.setAdapter(recyclerAdapter);
                 //list.clear();
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
@@ -92,27 +99,6 @@ public class ScheduleFragment extends Fragment {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Hello", "Failed to read value.", error.toException());
-            }
-        });
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
-                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(NavbarActivity.this);
-                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                recycle.setLayoutManager(recyce);
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
-
-
-
-
             }
         });
 
