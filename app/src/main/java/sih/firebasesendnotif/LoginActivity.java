@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         ButterKnife.bind(this);
 
         // Initialize FirebaseAuth instance
@@ -170,6 +169,19 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public Boolean isOnline() {
+        try {
+            Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
+            int returnVal = p1.waitFor();
+            boolean reachable = (returnVal==0);
+            return reachable;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
@@ -183,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             mAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
@@ -199,8 +212,14 @@ public class LoginActivity extends AppCompatActivity {
                         }*/
 
                     } else {
-                        progress.dismiss();
-                        Toasty.error(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT, true).show();
+                        if (!isOnline()){
+                            Toasty.info(LoginActivity.this, "You're not connected to the internet!", Toast.LENGTH_SHORT, true).show();
+                            progress.dismiss();
+                        }
+                        else {
+                            progress.dismiss();
+                            Toasty.error(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT, true).show();
+                        }
                     }
                 }
             });

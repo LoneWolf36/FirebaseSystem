@@ -14,7 +14,7 @@
             android:elevation="10dp"
             android:background="@color/cardview_light_background"
             android:layout_margin="9dp"
-            android:padding="5dp"
+            android:padding="15dp"
             app:roundRect_bottomLeftRadius="20dp"
             app:roundRect_bottomRightRadius="20dp"
             app:roundRect_topLeftRadius="20dp"

@@ -113,7 +113,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this,R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Exit")
                     .setMessage("Are you sure you want to close the app?")
@@ -153,7 +153,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
         // Logout Activity
         else if (id == R.id.nav_logout) {
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this,R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Logout")
                     .setMessage("Are you sure you want to Logout?")
@@ -178,7 +178,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         // Location picker fragment
         else if (id == R.id.activity_location_picker) {
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this,R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("PickPlace")
                     .setMessage("Do you want set this position for warning?")

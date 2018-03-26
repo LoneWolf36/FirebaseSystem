@@ -52,10 +52,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
         this.context = context;
-        prefs =context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-        //getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
-
     }
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -156,7 +154,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         return arr;
     }
 
-    class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
+    class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
