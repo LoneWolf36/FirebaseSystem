@@ -75,15 +75,18 @@ public class ScheduleFragment extends Fragment{
         cityRef.child("cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT 
+                //FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
                 Log.i("lw", "Making city array for user dispaly");
                 city_list.clear();
                 for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
                     String cityName = citySnapshot.getValue(String.class);
                     //xif(cities.c)
+                    //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
                     System.out.println(city_name.toString() +" d");
                     Boolean chk1 = prefs.getBoolean(cityName, false);
                     if(chk1){
+                        //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
                         Log.i("added",   city_name+" in list");
                         city_list.add(cityName);
                     }
