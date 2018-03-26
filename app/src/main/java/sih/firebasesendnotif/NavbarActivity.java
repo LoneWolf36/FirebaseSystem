@@ -233,13 +233,13 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.commit();
         }
         //emergency contacts
-        /*else if (id == R.id.emergency_contacts) {
+        else if (id == R.id.emergency_contacts) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new EmergencyContacts());
 
             ft.commit();
-        }*/
+        }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
