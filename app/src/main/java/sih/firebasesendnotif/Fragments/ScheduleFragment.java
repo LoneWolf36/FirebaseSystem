@@ -53,8 +53,6 @@ public class ScheduleFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         View v = inflater.inflate(R.layout.fragment_schedule,container,false);
       //  view = (Button) v.findViewById(R.id.view);
         notify = (Button) v.findViewById(R.id.notify);
@@ -62,36 +60,74 @@ public class ScheduleFragment extends Fragment{
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
         context=getContext();
-
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String city_name = prefs.getString("city_name", "");
         list = new ArrayList<ScheduleData>();
         notifyDataList=new ArrayList<>();
-        myRef = database.getReference(city_name).child(mAuth.getUid());
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,context);
-                RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                recycle.setLayoutManager(recyce);
-                recycle.setLayoutManager(new VegaLayoutManager());
-                recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
-
-                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-                     ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
-                     list.add(value);
-                 }
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Hello", "Failed to read value.", error.toException());
-            }
-        });
+        DatabaseReference myRef1 = database.getReference(city_name);
 
 
+
+        if(prefs.getBoolean("admin_login",false)){
+            myRef=myRef1.child("Dams").child(mAuth.getUid());
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                    recycle.setLayoutManager(recyce);
+                    recycle.setLayoutManager(new VegaLayoutManager());
+                    recycle.setItemAnimator(new DefaultItemAnimator());
+                    recycle.setAdapter(recyclerAdapter);
+
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
+                            list.add(value);
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("Hello", "Failed to read value.", error.toException());
+                }
+            });
+
+        }
+        else{
+            myRef=myRef1.child("Dams");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                    recycle.setLayoutManager(recyce);
+                    recycle.setLayoutManager(new VegaLayoutManager());
+                    recycle.setItemAnimator(new DefaultItemAnimator());
+                    recycle.setAdapter(recyclerAdapter);
+
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
+                            ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
+                            list.add(value);
+                        }
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("Hello", "Failed to read value.", error.toException());
+                }
+            });
+
+        }
         return v;
         // Inflate the layout for this fragment
 
@@ -100,6 +136,5 @@ public class ScheduleFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 }

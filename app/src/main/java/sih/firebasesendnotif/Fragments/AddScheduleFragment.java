@@ -113,8 +113,9 @@ public class AddScheduleFragment extends Fragment {
                         Log.i("",durationtxt+" is not a number");
                     }
                     DatabaseReference ref = database.getReference(city_name);
-                    DatabaseReference mydam;
-                    mydam = ref.child(mAuth.getUid());
+                    DatabaseReference mydam,temp;
+                    temp=ref.child("Dams");
+                    mydam = temp.child(mAuth.getUid());
 
 
                     String key = mydam.push().getKey();

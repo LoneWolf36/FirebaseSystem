@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
     private static final int REQUEST_SIGNUP = 0;
     ProgressDialog progress;
-
     @BindView(R.id.input_email)
     EditText mEmailView;
     @BindView(R.id.input_password)
@@ -201,6 +200,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         SharedPreferences prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
                         String city_name = prefs.getString("city_name", "unset");
+                        final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                        editor.putBoolean("admin_login",true);
+                        editor.apply();
+
+
                         //if(city_name.equals("unset")){
                         Intent intent = new Intent(LoginActivity.this, CityPickerActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

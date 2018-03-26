@@ -3,6 +3,7 @@ package sih.firebasesendnotif;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -43,11 +44,17 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        final SharedPreferences prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 
         // City picker intent and extract information from bundle
        // city_name = getIntent().getStringExtra("City");
@@ -71,9 +78,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
 //        FrameLayout fL = (FrameLayout) findViewById(R.id.fLFragments);
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.toPopulate, new ScheduleFragment());
-        ft.commit();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(addScheduleListener);
@@ -87,11 +91,41 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
       //  myRef.child("city").setValue(city_name);
 
 
-        Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.add_schedule).setVisible(false);
-        menu.findItem(R.id.nav_emergency).setVisible(false);
-     //   menu.findItem(R.id.activity_location_picker).setVisible(false);
-        menu.findItem(R.id.nav_logout).setVisible(false);
+        if(!prefs.getBoolean("admin_login",false))
+        {
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.add_schedule).setVisible(false);
+            menu.findItem(R.id.nav_emergency).setVisible(false);
+            menu.findItem(R.id.activity_location_picker).setVisible(false);
+            menu.findItem(R.id.nav_logout).setVisible(false);
+        }
+        else{
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.add_schedule).setVisible(true);
+            menu.findItem(R.id.nav_emergency).setVisible(true);
+            menu.findItem(R.id.activity_location_picker).setVisible(true);
+            menu.findItem(R.id.nav_logout).setVisible(true);
+            menu.findItem(R.id.nav_login).setVisible(false);
+        }
+
+
+        FragmentTransaction ft;
+
+        Boolean first_open = prefs.getBoolean("first_open", true);
+        if(first_open){
+            fab.setVisibility(View.INVISIBLE);
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new SubscribeFragment());
+            ft.commit();
+            editor.putBoolean("first_open", false);
+            editor.apply();
+        }
+        else {
+            fab.setVisibility(View.INVISIBLE);
+            ft=getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.toPopulate, new ScheduleFragment());
+            ft.commit();
+        }
 
     }
 
@@ -166,7 +200,11 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                       //      editor.putString("city_name", "");
                         //    editor.apply();
 
-                             mAuth.signOut();
+                            mAuth =FirebaseAuth.getInstance();
+                            final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                            editor.putBoolean("admin_login",false);
+                            editor.apply();
+                            mAuth.signOut();
                             startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();
                         }

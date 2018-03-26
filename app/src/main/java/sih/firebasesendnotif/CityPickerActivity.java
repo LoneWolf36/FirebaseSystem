@@ -109,6 +109,10 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                        editor.putBoolean("admin_login",false);
+                        editor.apply();
+
                         FirebaseAuth.getInstance().signOut();
                         finish();
                     }

@@ -86,7 +86,6 @@ public class SubscribeFragment extends Fragment {
 //        c4 = (CheckBox) this.getView().findViewById(R.id.checkBox4);
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         cities = new ArrayList<String>();
         citycb = new ArrayList<CheckBox>();
