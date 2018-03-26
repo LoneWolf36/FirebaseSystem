@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,20 +20,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.stone.vega.library.VegaLayoutManager;
 
 import java.util.ArrayList;
 
+import sih.firebasesendnotif.Classes.NotifyData;
 import sih.firebasesendnotif.R;
 import sih.firebasesendnotif.RecyclerAdapter;
 import sih.firebasesendnotif.Classes.ScheduleData;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment{
 
     FirebaseDatabase database;
     DatabaseReference myRef ;
     java.util.List<ScheduleData> list;
+    java.util.List<NotifyData> notifyDataList;
     RecyclerView recycle;
     Button notify,update;
 
@@ -65,14 +67,15 @@ public class ScheduleFragment extends Fragment {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String city_name = prefs.getString("city_name", "");
         list = new ArrayList<ScheduleData>();
+        notifyDataList=new ArrayList<>();
         myRef = database.getReference(city_name).child(mAuth.getUid());
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
                 RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
                 recycle.setLayoutManager(recyce);
+                recycle.setLayoutManager(new VegaLayoutManager());
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
 
@@ -98,13 +101,6 @@ public class ScheduleFragment extends Fragment {
 //    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
 //
-//        update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
