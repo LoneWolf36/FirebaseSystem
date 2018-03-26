@@ -115,8 +115,6 @@ public class SubscribeFragment extends Fragment {
                     citycb.add(cb);
                     cb.setText(cityName);
                     ll.addView(cb);
-
-
                 }
 
 

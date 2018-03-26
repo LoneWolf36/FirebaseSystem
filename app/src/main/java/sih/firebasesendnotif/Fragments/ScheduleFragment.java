@@ -37,6 +37,8 @@ public class ScheduleFragment extends Fragment{
     DatabaseReference myRef ;
     java.util.List<ScheduleData> list;
     java.util.List<NotifyData> notifyDataList;
+    java.util.List<String> city_list;
+    DatabaseReference cityRef;
     RecyclerView recycle;
     Button notify,update;
     Context context;
@@ -60,16 +62,45 @@ public class ScheduleFragment extends Fragment{
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
         context=getContext();
-        SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String city_name = prefs.getString("city_name", "");
+        final String city_name = prefs.getString("city_name", "");
         list = new ArrayList<ScheduleData>();
+        city_list = new ArrayList<String>();
+
         notifyDataList=new ArrayList<>();
         DatabaseReference myRef1 = database.getReference(city_name);
+
+        cityRef = FirebaseDatabase.getInstance().getReference();
+        cityRef.child("cities").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT 
+                Log.i("lw", "Making city array for user dispaly");
+                city_list.clear();
+                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+                    String cityName = citySnapshot.getValue(String.class);
+                    //xif(cities.c)
+                    System.out.println(city_name.toString() +" d");
+                    Boolean chk1 = prefs.getBoolean(cityName, false);
+                    if(chk1){
+                        Log.i("added",   city_name+" in list");
+                        city_list.add(cityName);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
 
 
 
         if(prefs.getBoolean("admin_login",false)){
+            //Admin Login view only auth dam
+
             myRef=myRef1.child("Dams").child(mAuth.getUid());
 
             myRef.addValueEventListener(new ValueEventListener() {
@@ -90,6 +121,7 @@ public class ScheduleFragment extends Fragment{
                 }
 
 
+
                 @Override
                 public void onCancelled(DatabaseError error) {
                     // Failed to read value
@@ -98,34 +130,41 @@ public class ScheduleFragment extends Fragment{
             });
 
         }
-        else{
-            myRef=myRef1.child("Dams");
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+        else{ //User Login view all dams of city
 
-                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                    recycle.setLayoutManager(recyce);
-                    recycle.setLayoutManager(new VegaLayoutManager());
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(recyclerAdapter);
+            for(String user_subscribed_city:city_list){
 
-                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
-                            ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
-                            list.add(value);
+                DatabaseReference myRefuser = database.getReference(user_subscribed_city);
+
+                myRef=myRefuser.child("Dams");
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                        RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                        recycle.setLayoutManager(recyce);
+                        recycle.setLayoutManager(new VegaLayoutManager());
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(recyclerAdapter);
+
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
+                                ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
+                                list.add(value);
+                            }
                         }
                     }
-                }
 
 
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w("Hello", "Failed to read value.", error.toException());
-                }
-            });
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        Log.w("Hello", "Failed to read value.", error.toException());
+                    }
+                });
+            }
+
 
         }
         return v;
