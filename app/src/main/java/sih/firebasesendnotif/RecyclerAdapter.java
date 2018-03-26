@@ -33,7 +33,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
     List<ScheduleData> list;
-
     private Context context;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("");
@@ -49,6 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         this.context =context;
 
     }
+
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
         this.context = context;
@@ -78,6 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     public void onBindViewHolder(MyHoder holder, int position) {
         final ScheduleData mylist = list.get(position);
         holder.date.setText("Water will be released on " + mylist.getDate());
+        holder.status.setText(mylist.getStatus());
         String events= mylist.getDate();
         //holder.email.setText(mylist.getEmail());
         holder.time.setText("at " +mylist.getTime());
@@ -86,7 +87,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             @Override
             public void onClick(View view) {
                 Log.d("city name in database",city_name);
-
                 DatabaseReference ref = database.getReference(city_name);
                 DatabaseReference mydam;
                 mydam = ref.child("Notify");
@@ -157,7 +157,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
 
     class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
-        TextView date,time,duration;
+        TextView date,time,duration,status;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
@@ -189,7 +189,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             tvEventStart = (TextView) itemView.findViewById(R.id.tveventStart);
             time= (TextView) itemView.findViewById(R.id.time);
             duration= (TextView) itemView.findViewById(R.id.duration);
-
+            status =(TextView) itemView.findViewById(R.id.status);
         }
 
         public void countDownStart(final String events) {
