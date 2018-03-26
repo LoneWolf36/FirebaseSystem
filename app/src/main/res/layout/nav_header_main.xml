@@ -15,7 +15,7 @@
     <TextView
 
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="WRIS"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -26,7 +26,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/logo" />
 

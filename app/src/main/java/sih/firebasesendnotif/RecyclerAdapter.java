@@ -40,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     String city_name;
     private FirebaseAuth mAuth;
     EditText txtDate, txtTime,txtDuration;
+
     //    prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    city_name = prefs.getString("city_name", "");
@@ -155,7 +156,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         return arr;
     }
 
-    class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
+      class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration,status;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
