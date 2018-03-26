@@ -27,7 +27,7 @@ import sih.firebasesendnotif.Classes.ScheduleData;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by chota ali and bada karle on 20/3/18.
+ * Created by bada ali and chhota karle on 20/3/18.
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
