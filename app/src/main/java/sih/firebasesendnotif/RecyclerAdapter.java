@@ -156,7 +156,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         return arr;
     }
 
-    class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
+    class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
