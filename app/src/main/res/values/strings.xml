@@ -24,7 +24,7 @@
     <!-- Strings related to register -->
     <string name="next">Complete login</string>
 
-    <string name="place_select">Select Place</string>
+    <string name="place_select">Pick Dam location</string>
     <string name="title_activity_maps">Maps</string>
     <!-- Strings related to user questions -->
     <string name="post_button">Post query</string>
