@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
-<<<<<<< HEAD
 
 import sih.firebasesendnotif.Classes.NotifyData;
 import android.os.Bundle;
@@ -43,8 +42,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     String city_name;
     private FirebaseAuth mAuth;
     EditText txtDate, txtTime,txtDuration;
-
-//    prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+  //    prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    city_name = prefs.getString("city_name", "");
 
@@ -75,7 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
-        ScheduleData mylist = list.get(position);
+        final ScheduleData mylist = list.get(position);
         holder.date.setText("Water will be released on " + mylist.getDate());
         String events= mylist.getDate();
         //holder.email.setText(mylist.getEmail());
@@ -155,6 +153,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
         TextView date,time,duration;
+        Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
         private Handler handler;

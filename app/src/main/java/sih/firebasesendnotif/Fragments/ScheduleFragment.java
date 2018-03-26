@@ -102,16 +102,6 @@ public class ScheduleFragment extends Fragment {
 //    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
 //
-<<<<<<< HEAD
-=======
-//        update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
->>>>>>> b020159194ce375254f68ec9e2c22edf1fd7de6f
-//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

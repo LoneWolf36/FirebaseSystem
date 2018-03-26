@@ -8,17 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        >
-
-
-
-        <RelativeLayout
         <android.support.v7.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
@@ -28,14 +17,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:src="@color/black"
-                android:alpha="0.9"
-                android:scaleType="centerCrop"/>
-
+                android:layout_height="150dp">
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
@@ -47,72 +29,6 @@
                 android:textColor="#FFF"
                 android:textSize="23dp" />
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/date"
-                android:layout_marginTop="16dp"
-                android:text="TextView"
-                android:textColor="#FFF"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/time"
-                android:text="TextView"
-                android:textColor="#FFF"
-                android:textSize="15dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/city"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/time"
-                android:text="TextView"
-                android:textColor="#FFF"
-                android:textSize="15dp"/>
-
-        </RelativeLayout>
-
-
-
-    </android.support.v7.widget.CardView>
-
-        <Button
-            android:id="@+id/notify"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_alignStart="@+id/card_view"
-            android:layout_alignTop="@+id/update"
-            android:layout_gravity="center"
-            android:elevation="15dp"
-            android:text="Notify" />
-
-        <Button
-            android:id="@+id/update"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_alignEnd="@+id/card_view"
-            android:layout_alignTop="@+id/card_view"
-            android:layout_gravity="center"
-            android:layout_marginTop="155dp"
-            android:elevation="15dp"
-            android:text="Update" />
-<!--                android:layout_height="match_parent">
--->
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="TextView"
-                    android:textSize="23dp" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout"
@@ -269,7 +185,7 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <TextView
+                    <TextView
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -286,38 +202,26 @@
                     android:layout_below="@+id/time"
                     android:text="TextView"
                     android:textSize="15dp" />
+                <Button
+                android:id="@+id/notify"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@+id/update"
+                android:layout_gravity="center"
+                android:elevation="15dp"
+                android:text="Notify" />
 
                 <Button
-                    android:id="@+id/notify"
-                    android:layout_width="160dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="18dp"
-                    android:elevation="15dp"
-                    android:text="Notify" />
+                android:id="@+id/update"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="155dp"
+                android:elevation="15dp"
+                android:text="Update" />
 
-                <Button
-                    android:id="@+id/update"
-                    android:layout_width="160dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center"
-                    android:layout_toEndOf="@+id/notify"
-                    android:elevation="15dp"
-                    android:text="Update" />
-
-            </RelativeLayout>
+          </RelativeLayout>
         </android.support.v7.widget.CardView>
-
-                <!--android:layout_height="150dp"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:src="@color/orange"-->
-                <!--android:alpha="0.9"-->
-                <!--android:scaleType="centerCrop"/>-->
 
     </RelativeLayout>
 
