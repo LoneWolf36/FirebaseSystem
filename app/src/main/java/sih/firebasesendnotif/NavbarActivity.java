@@ -39,7 +39,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
 
-    String city_name;
+    //String city_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar(toolbar);
 
         // City picker intent and extract information from bundle
-        city_name = getIntent().getStringExtra("City");
+       // city_name = getIntent().getStringExtra("City");
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         AwesomeBar bar = findViewById(R.id.bar);
@@ -79,12 +79,19 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         fab.setOnClickListener(addScheduleListener);
 
         // Initialize FirebaseAuth instance
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
         // Firebase database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(mAuth.getUid());
-        myRef.child("city").setValue(city_name);
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference(mAuth.getUid());
+      //  myRef.child("city").setValue(city_name);
+
+
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.add_schedule).setVisible(false);
+        menu.findItem(R.id.nav_emergency).setVisible(false);
+     //   menu.findItem(R.id.activity_location_picker).setVisible(false);
+        menu.findItem(R.id.nav_logout).setVisible(false);
     }
 
 
@@ -158,7 +165,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                       //      editor.putString("city_name", "");
                         //    editor.apply();
 
-                            mAuth.signOut();
+                             mAuth.signOut();
                             startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();
                         }
@@ -186,10 +193,10 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         // Add schedule fragment
         else if (id == R.id.add_schedule) {
             fab.setVisibility(View.INVISIBLE);
-            Bundle bundle = new Bundle();
-            bundle.putString("City", city_name);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("City", city_name);
             AddScheduleFragment add = new AddScheduleFragment();
-            add.setArguments(bundle);
+   //         add.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, add);
             ft.commit();
@@ -214,6 +221,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new EmergencyContacts());
 
             ft.commit();
+        }
+        else if (id == R.id.nav_login) {
+            Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
+            // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            this.finish();
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

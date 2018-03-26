@@ -35,7 +35,7 @@ public class AddScheduleFragment extends Fragment {
     TextView txtDate, txtTime;
     SharedPreferences prefs;
     String city_name;
-    String city;
+    //String city;
 
     public AddScheduleFragment() {
         // Required empty public constructor
@@ -44,9 +44,9 @@ public class AddScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            city = getArguments().getString("City");
-        }
+//        if (getArguments() != null) {
+//            city = getArguments().getString("City");
+//        }
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
