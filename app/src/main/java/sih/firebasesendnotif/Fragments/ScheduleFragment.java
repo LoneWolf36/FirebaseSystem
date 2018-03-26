@@ -39,6 +39,7 @@ public class ScheduleFragment extends Fragment{
     java.util.List<NotifyData> notifyDataList;
     RecyclerView recycle;
     Button notify,update;
+    Context context;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,6 +63,7 @@ public class ScheduleFragment extends Fragment{
         update = (Button) v.findViewById(R.id.update);
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
+        context=getContext();
 
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -72,8 +74,8 @@ public class ScheduleFragment extends Fragment{
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
-                RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,context);
+                RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
                 recycle.setLayoutManager(recyce);
                 recycle.setLayoutManager(new VegaLayoutManager());
                 recycle.setItemAnimator( new DefaultItemAnimator());
