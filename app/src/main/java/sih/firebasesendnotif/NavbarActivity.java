@@ -58,15 +58,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        bar.addAction(R.drawable.awsb_ic_edit_animated, "Compose");
-
-        bar.setActionItemClickListener(new AwesomeBar.ActionItemClickListener() {
-            @Override
-            public void onActionItemClicked(int position, ActionItem actionItem) {
-                Toast.makeText(getBaseContext(), actionItem.getText()+" clicked", Toast.LENGTH_LONG).show();
-            }
-        });
-
         bar.setOnMenuClickedListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
