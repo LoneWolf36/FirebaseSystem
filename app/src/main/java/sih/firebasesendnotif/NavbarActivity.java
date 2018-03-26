@@ -41,9 +41,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     private FirebaseAuth mAuth;
 
     String city_name;
+    //NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar);
         ButterKnife.bind(this);
@@ -95,6 +98,18 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(mAuth.getUid());
         myRef.child("city").setValue(city_name);
+
+        //navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        Menu nav_Menu = navigationView.getMenu();
+//        nav_Menu.findItem(R.id.nav_schedule).setVisible(false);
+        //navigationView.getMenu().findItem(R.id.add_schedule).setVisible(false);
+
+        //NavigationView  navigationView1
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.add_schedule).setVisible(false);
+        menu.findItem(R.id.nav_emergency).setVisible(false);
+        menu.findItem(R.id.activity_location_picker).setVisible(false);
+        menu.findItem(R.id.nav_logout).setVisible(false);
     }
 
 
@@ -213,12 +228,20 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
             ft.commit();
         }
+<<<<<<< HEAD
         else if(id==R.id.nav_view_query){
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new QueryDataFragment());
 
             ft.commit();
+=======
+        else if (id == R.id.nav_login) {
+            Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
+           // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            this.finish();
+>>>>>>> a4bbd53a1ce6d7cefcead36fb4cf22a3bc8ee0f1
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

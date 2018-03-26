@@ -4,6 +4,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_schedules"
+            android:title="Check schedules List" />
             android:icon="@drawable/ic_schedule_white_24dp"
             android:title="Check schedules" />
         <item
@@ -36,11 +38,21 @@
             android:id="@+id/nav_view_query"
             android:title="View questions"
             />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_logout"
-            android:title="Log Out" />
-
 
     </group>
+
+    <item android:title="Admin options">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Log Out" />
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_logout"
+                android:title="Admin Login" />
+        </menu>
+
+    </item>
+
 </menu>
