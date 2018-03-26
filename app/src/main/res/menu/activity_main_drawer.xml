@@ -33,9 +33,14 @@
             android:icon="@drawable/ic_new_releases_black_24dp"
             android:title="Emergency Contacts" />
         <item
+            android:id="@+id/nav_view_query"
+            android:title="View questions"
+            />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
             android:title="Log Out" />
+
 
     </group>
 </menu>

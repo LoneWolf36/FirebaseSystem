@@ -1,54 +1,61 @@
-package sih.firebasesendnotif.Fragments;
+package sih.firebasesendnotif;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import sih.firebasesendnotif.Fragments.QueryDataFragment.OnListFragmentInteractionListener;
-import sih.firebasesendnotif.Fragments.dummy.DummyContent.DummyItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
+import sih.firebasesendnotif.Classes.QueryData;
+
+import static android.content.Context.MODE_PRIVATE;
+
 public class MyQueryDataRecyclerViewAdapter extends RecyclerView.Adapter<MyQueryDataRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<String> mValues;
+    private Context context;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("");
+    SharedPreferences prefs;
+    String city_name;
+    private FirebaseAuth mAuth;
+    EditText txtDate, txtTime,txtDuration;
 
-    public MyQueryDataRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyQueryDataRecyclerViewAdapter(List<String> items, Context context) {
         mValues = items;
-        mListener = listener;
+        this.context=context;
+        prefs =context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        //getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        city_name = prefs.getString("city_name", "");
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_querydata, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_querydata_list, parent, false);
+        ViewHolder viewHolder=new ViewHolder(view);
+        mAuth = FirebaseAuth.getInstance();
+        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
+        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        city_name = prefs.getString("city_name", "");
+        Log.d("city name",city_name);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+        final String pick_q=mValues.get(position);
+        holder.question.setText(pick_q);
     }
 
     @Override
@@ -56,22 +63,12 @@ public class MyQueryDataRecyclerViewAdapter extends RecyclerView.Adapter<MyQuery
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView question;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
+            question=(TextView)view.findViewById(R.id.question);
+                    }
     }
 }

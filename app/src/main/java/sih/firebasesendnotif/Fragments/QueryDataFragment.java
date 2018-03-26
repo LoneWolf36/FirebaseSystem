@@ -1,77 +1,92 @@
 package sih.firebasesendnotif.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.DefaultItemAnimator;
+//import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+//import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.stone.vega.library.VegaLayoutManager;
+
+//import sih.firebasesendnotif.Classes.NotifyData;
+import sih.firebasesendnotif.Classes.QueryData;
+import sih.firebasesendnotif.MyQueryDataRecyclerViewAdapter;
 import sih.firebasesendnotif.R;
-import sih.firebasesendnotif.Fragments.dummy.DummyContent;
-import sih.firebasesendnotif.Fragments.dummy.DummyContent.DummyItem;
+//import sih.firebasesendnotif.RecyclerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
+import static android.content.Context.MODE_PRIVATE;
+
+
 public class QueryDataFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    FirebaseDatabase database;
+    DatabaseReference myRef ;
+    java.util.List<String> queryDataList;
+    RecyclerView qrecycle;
+    Context context;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public QueryDataFragment() {
-    }
-
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static QueryDataFragment newInstance(int columnCount) {
-        QueryDataFragment fragment = new QueryDataFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_querydata_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_querydata, container, false);
+        qrecycle=(RecyclerView)view.findViewById(R.id.qrecycle);
+        database = FirebaseDatabase.getInstance();
+        context=getContext();
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String city_name = prefs.getString("city_name", "");
+        queryDataList = new ArrayList<>();
+        myRef = database.getReference(city_name).child("Queries");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                MyQueryDataRecyclerViewAdapter recyclerAdapter = new MyQueryDataRecyclerViewAdapter(queryDataList,context);
+                RecyclerView.LayoutManager qrecyce = new LinearLayoutManager(context);
+//                qrecycle.setLayoutManager(qrecyce);
+                qrecycle.setLayoutManager(new VegaLayoutManager());
+                qrecycle.setItemAnimator( new DefaultItemAnimator());
+                qrecycle.setAdapter(recyclerAdapter);
+
+                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+                   // QueryData value = dataSnapshot1.getValue(QueryData.class);
+                    String value=dataSnapshot1.getValue().toString();
+                    queryDataList.add(value);
+                }
             }
-            recyclerView.setAdapter(new MyQueryDataRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-        }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Hello", "Failed to read value.", error.toException());
+            }
+        });
+
         return view;
     }
 
@@ -79,32 +94,11 @@ public class QueryDataFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
     }
 }
