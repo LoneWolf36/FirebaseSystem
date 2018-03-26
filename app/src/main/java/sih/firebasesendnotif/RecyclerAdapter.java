@@ -46,7 +46,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     public RecyclerAdapter(Context context){
         this.context =context;
-
     }
 
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
