@@ -92,6 +92,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         menu.findItem(R.id.nav_emergency).setVisible(false);
      //   menu.findItem(R.id.activity_location_picker).setVisible(false);
         menu.findItem(R.id.nav_logout).setVisible(false);
+
     }
 
 
