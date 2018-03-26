@@ -55,5 +55,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.stone.vega.library:VegaLayoutManager:1.0.6'
     compile 'com.ramotion.garlandview:garland-view:0.3.2'
+    compile ('com.github.thekhaeng:recycler-margin:1.2.1') {
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
 }
 apply plugin: 'com.google.gms.google-services'
