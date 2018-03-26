@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 /**
  * A login screen that offers login via email/password.
@@ -199,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     } else {
                         progress.dismiss();
-                        Toast.makeText(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT).show();
+                        Toasty.error(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT, true).show();
                     }
                 }
             });

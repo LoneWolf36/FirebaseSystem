@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.stone.vega.library.VegaLayoutManager;
-import com.thekhaeng.recyclerviewmargin.LayoutMarginDecoration;
 
 import java.util.ArrayList;
 
@@ -71,7 +70,6 @@ public class ScheduleFragment extends Fragment{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,getContext());
                 recycle.setLayoutManager(new VegaLayoutManager());
-                recycle.addItemDecoration( new LayoutMarginDecoration( 1, 5 ) );
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
 

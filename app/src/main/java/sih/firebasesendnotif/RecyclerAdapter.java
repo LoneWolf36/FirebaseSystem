@@ -54,7 +54,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
-        SharedPreferences.Editor e = prefs.edit();
+        //SharedPreferences.Editor e = prefs.edit();
         // e.getString(city_name);
         View view = LayoutInflater.from(context).inflate(R.layout.card, parent, false);
         MyHoder myHoder = new MyHoder(view);
@@ -74,24 +74,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         //holder.email.setText(mylist.getEmail());
         holder.time.setText("at " + mylist.getTime());
         holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
-        holder.notify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("city name in database", city_name);
-
-                DatabaseReference ref = database.getReference(city_name);
-                DatabaseReference mydam;
-                mydam = ref.child(mAuth.getUid());
-                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(), mylist.getTime().toString(), mylist.getDuration().toString(), 1);
-                ref.setValue(schedule);
-
-                String key = mydam.push().getKey();
-                mydam.child(key).setValue(schedule);
-                txtDate.setText("");
-                txtDuration.setText("");
-                txtTime.setText("");
-            }
-        });
+//        holder.notify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("city name in database", city_name);
+//
+//                DatabaseReference ref = database.getReference(city_name);
+//                DatabaseReference mydam;
+//                mydam = ref.child(mAuth.getUid());
+//                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(), mylist.getTime().toString(), mylist.getDuration().toString(), 1);
+//                ref.setValue(schedule);
+//
+//                String key = mydam.push().getKey();
+//                mydam.child(key).setValue(schedule);
+//                txtDate.setText("");
+//                txtDuration.setText("");
+//                txtTime.setText("");
+//            }
+//        });
         holder.countDownStart(events);
 
     }
