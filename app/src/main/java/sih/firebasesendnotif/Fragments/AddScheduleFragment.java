@@ -115,12 +115,13 @@ public class AddScheduleFragment extends Fragment {
                     DatabaseReference ref = database.getReference(city_name);
                     DatabaseReference mydam;
                     mydam = ref.child(mAuth.getUid());
-
-                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(), 1);
-                    //ref.setValue(schedule);
+                     //ref.setValue(schedule);
 
                     String key = mydam.push().getKey();
+                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(), 1,"Active",key);
+
                     mydam.child(key).setValue(schedule);
+
                     Toast.makeText(getContext(), "Schedule Submitted Successfully!", Toast.LENGTH_SHORT).show();
                     txtDate.setText("");
                     txtDuration.setText("");

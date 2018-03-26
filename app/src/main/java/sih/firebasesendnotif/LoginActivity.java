@@ -58,6 +58,13 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
 
+        if(BuildConfig.FLAVOR.equals("vanilla")) {
+            Toast.makeText(this, "Build vanilla skipping login", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, CityPickerActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);//}
+        }
+
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
