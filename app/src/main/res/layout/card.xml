@@ -230,13 +230,13 @@
             </RelativeLayout>
         </com.github.florent37.shapeofview.shapes.RoundRectView>
 
-                <!--android:layout_height="150dp"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:src="@color/orange"-->
-                <!--android:alpha="0.9"-->
-                <!--android:scaleType="centerCrop"/>-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:src="@color/orange"-->
+        <!--android:alpha="0.9"-->
+        <!--android:scaleType="centerCrop"/>-->
 
     </RelativeLayout>
 
