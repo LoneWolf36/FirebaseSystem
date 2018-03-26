@@ -2,7 +2,6 @@ package sih.firebasesendnotif;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
+
+import sih.firebasesendnotif.Classes.NotifyData;
 import android.os.Bundle;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,35 +41,66 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     String city_name;
     private FirebaseAuth mAuth;
     EditText txtDate, txtTime,txtDuration;
-
-//    prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+    //    prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    city_name = prefs.getString("city_name", "");
 
     public RecyclerAdapter(Context context){
-            this.context =context;
+        this.context =context;
+
     }
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
         this.context = context;
+        prefs =context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        //getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        city_name = prefs.getString("city_name", "");
+
     }
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //SharedPreferences.Editor e= prefs.edit();
+        // e.getString(city_name);
+        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
+        //Log.d("city name",city_name);
+        SharedPreferences.Editor e= prefs.edit();
+        // e.getString(city_name);
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
         MyHoder myHoder = new MyHoder(view);
         mAuth = FirebaseAuth.getInstance();
+        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
+        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        city_name = prefs.getString("city_name", "");
+        Log.d("city name",city_name);
         return myHoder;
-
-
     }
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
-        ScheduleData mylist = list.get(position);
+        final ScheduleData mylist = list.get(position);
         holder.date.setText("Water will be released on " + mylist.getDate());
         String events= mylist.getDate();
         //holder.email.setText(mylist.getEmail());
         holder.time.setText("at " +mylist.getTime());
         holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
+        holder.notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("city name in database",city_name);
+
+                DatabaseReference ref = database.getReference(city_name);
+                DatabaseReference mydam;
+                mydam = ref.child("Notify");
+                NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+                String key=mydam.push().getKey();
+                mydam.child(key).setValue(schedule);
+                //               mydam = ref.child(mAuth.getUid());
+//                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
+//                ref.setValue(schedule);
+//
+//                String key=mydam.push().getKey();
+//                mydam.child(key).setValue(schedule);
+            }
+        });
         holder.countDownStart(events);
 
     }
@@ -107,7 +139,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            }
 //        });
 
-//    }
+    //    }
     @Override
     public int getItemCount() {
         int arr = 0;
@@ -126,11 +158,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     class MyHoder extends RecyclerView.ViewHolder implements sih.firebasesendnotif.MyHoder {
         TextView date,time,duration;
+        Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
         private Handler handler;
         private Runnable runnable;
-//
+        //
 //        @Override
         protected void onCreate(Bundle savedInstanceState) {
 //           super.onCreate(savedInstanceState);
@@ -138,7 +171,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //
 
         }
-//     public static class MyHoder extends RecyclerView.ViewHolder{
+        //     public static class MyHoder extends RecyclerView.ViewHolder{
 //        TextView date,time,duration;
 //        Button notify;
 //
@@ -147,6 +180,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
             date = (TextView) itemView.findViewById(R.id.date);
+            notify =(Button) itemView.findViewById(R.id.notify);
             Log.e("date",date.getText().toString());
             txtDay = (TextView) itemView.findViewById(R.id.txtDay);
             txtHour = (TextView) itemView.findViewById(R.id.txtHour);
