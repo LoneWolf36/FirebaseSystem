@@ -64,12 +64,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
        // e.getString(city_name);
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
         //Log.d("city name",city_name);
+        SharedPreferences.Editor e= prefs.edit();
+       // e.getString(city_name);
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
         MyHoder myHoder = new MyHoder(view);
         mAuth = FirebaseAuth.getInstance();
+        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
+        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        city_name = prefs.getString("city_name", "");
+        Log.d("city name",city_name);
         return myHoder;
-
-
     }
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
@@ -94,7 +98,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
                 String key=mydam.push().getKey();
                 mydam.child(key).setValue(schedule);
-            }
+ //               mydam = ref.child(mAuth.getUid());
+//                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
+//                ref.setValue(schedule);
+//
+//                String key=mydam.push().getKey();
+//                mydam.child(key).setValue(schedule);
+               }
         });
         holder.countDownStart(events);
 

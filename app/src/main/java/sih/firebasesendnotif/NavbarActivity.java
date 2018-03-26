@@ -12,14 +12,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.yhao.floatwindow.FloatWindow;
 
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
@@ -27,7 +26,6 @@ import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
-import static com.yhao.floatwindow.FloatWindow.with;
 
 public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -78,27 +76,10 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     private View.OnClickListener addScheduleListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(NavbarActivity.this);
-            alert.setTitle("Do you want to create a new schedule?");
-            alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Log.d("ALI ", "SAYS YES");
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.toPopulate, new AddScheduleFragment());
-                    ft.commit();
-                }
-            });
-
-            alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Log.d("ALI ", "SAYS NO");
-                }
-            });
-            AlertDialog dialog = alert.create();
-            dialog.show();
-
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new AddScheduleFragment());
+            ft.commit();
+            fab.setVisibility(View.INVISIBLE);
         }
     };
 
@@ -193,6 +174,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .show();
         }
 
+        // Location picker fragment
         else if (id == R.id.activity_location_picker) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
