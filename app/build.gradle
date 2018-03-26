@@ -57,5 +57,7 @@ dependencies {
     compile 'com.ramotion.garlandview:garland-view:0.3.2'
     compile 'com.github.florent37:shapeofview:1.0.6'
     compile 'com.github.GrenderG:Toasty:1.2.8'
+    compile 'com.github.florent37:awesomebar:1.0.3'
+    compile 'com.rom4ek:arcnavigationview:1.0.3'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -12,14 +12,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.github.florent37.awesomebar.ActionItem;
+import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import butterknife.ButterKnife;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
 import sih.firebasesendnotif.Fragments.EmergencyContacts;
@@ -39,17 +44,39 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_navbar);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // City picker intent and extract information from bundle
         city_name = getIntent().getStringExtra("City");
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        AwesomeBar bar = findViewById(R.id.bar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+
+        bar.addAction(R.drawable.awsb_ic_edit_animated, "Schedule");
+
+        bar.setActionItemClickListener(new AwesomeBar.ActionItemClickListener() {
+            @Override
+            public void onActionItemClicked(int position, ActionItem actionItem) {
+                Toast.makeText(getBaseContext(), actionItem.getText()+" clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        bar.setOnMenuClickedListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.START);
+            }
+        });
+
+        bar.displayHomeAsUpEnabled(false);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -57,7 +84,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.toPopulate, new ScheduleFragment());
-        //ft.replace(R.id.fMtoDisplay, new ButtonsFragment());
         ft.commit();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -84,28 +110,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -113,7 +117,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         } else {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Closing Activity")
+                    .setTitle("Exit")
                     .setMessage("Are you sure you want to close the app?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                     {

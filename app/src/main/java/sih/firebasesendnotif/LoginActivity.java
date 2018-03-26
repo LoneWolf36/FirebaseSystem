@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
             progress.setCanceledOnTouchOutside(false);
             progress.setMessage("Authenticating...");
             progress.show();
-            Toast.makeText(this, "Checking...", Toast.LENGTH_SHORT).show();
+            Toasty.warning(this, "Checking....", Toast.LENGTH_SHORT, true).show();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
