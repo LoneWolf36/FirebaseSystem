@@ -84,10 +84,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         holder.time.setText("at " +mylist.getTime());
         holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
         holder.notify.setOnClickListener(new View.OnClickListener() {
-
-
-
-
             @Override
             public void onClick(View view) {
                 Log.d("city name in database",city_name);
