@@ -8,17 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_view"
+        <com.github.florent37.shapeofview.shapes.RoundRectView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp">
+            android:elevation="10dp"
+            android:background="@color/violet"
+            android:layout_margin="9dp"
+            android:padding="5dp"
+            app:roundRect_bottomLeftRadius="20dp"
+            app:roundRect_bottomRightRadius="20dp"
+            app:roundRect_topLeftRadius="20dp"
+            app:roundRect_topRightRadius="20dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/violet">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/date"
@@ -230,7 +234,7 @@
                     android:text="Update" />
 
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
 
         <!--android:layout_height="150dp"-->
         <!--android:layout_alignParentEnd="true"-->
