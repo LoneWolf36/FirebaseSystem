@@ -9,23 +9,9 @@ public class ScheduleData {
     String time;
     String duration;
     int temp;
-
+    String status;
+    String uid;
     public ScheduleData(){}
-
-    public int getTemp() {
-        return temp;
-    }
-
-    public void setTemp(int temp) {
-        this.temp = temp;
-    }
-
-    public ScheduleData(String date, String time, String duration, int temp) {
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.temp=temp;
-    }
 
     public String getDate() {
         return date;
@@ -49,5 +35,39 @@ public class ScheduleData {
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public ScheduleData(String date, String time, String duration, int temp, String status, String uid) {
+
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.temp = temp;
+        this.status = status;
+        this.uid = uid;
     }
 }
