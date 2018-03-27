@@ -40,6 +40,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
     SharedPreferences prefs;
+    SharedPreferences.Editor editor;
     NavigationView navigationView;
 
     //String city_name;
@@ -55,7 +56,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar(toolbar);
 
 
-        final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
         prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 
         // City picker intent and extract information from bundle
@@ -124,6 +125,8 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
         else if(!first_open && prefs.getBoolean("admin_login",false)) {
             fab.setVisibility(View.VISIBLE);
+            editor.clear();
+            editor.apply();
             ft=getSupportFragmentManager().beginTransaction();
             ft.add(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
