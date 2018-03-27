@@ -49,7 +49,6 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
                 // initialize the array
                 Log.i("lw", "onDataChange: I am here!");
                 final List<String> cities = new ArrayList<String>();
-
                 for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
                     String cityName = citySnapshot.getValue(String.class);
                     cities.add(cityName);
