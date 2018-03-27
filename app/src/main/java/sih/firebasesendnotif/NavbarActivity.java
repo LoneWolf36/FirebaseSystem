@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import butterknife.ButterKnife;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
+import sih.firebasesendnotif.Fragments.DamLocationPicker;
 import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
@@ -40,9 +41,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     private FirebaseAuth mAuth;
 
     String city_name;
+    //NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar);
         ButterKnife.bind(this);
@@ -94,6 +98,18 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(mAuth.getUid());
         myRef.child("city").setValue(city_name);
+
+        //navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        Menu nav_Menu = navigationView.getMenu();
+//        nav_Menu.findItem(R.id.nav_schedule).setVisible(false);
+        //navigationView.getMenu().findItem(R.id.add_schedule).setVisible(false);
+
+        //NavigationView  navigationView1
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.add_schedule).setVisible(false);
+        menu.findItem(R.id.nav_emergency).setVisible(false);
+       // menu.findItem(R.id.activity_location_picker).setVisible(false);
+        menu.findItem(R.id.nav_logout).setVisible(false);
     }
 
 
@@ -178,7 +194,11 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         // Location picker fragment
         else if (id == R.id.activity_location_picker) {
-            startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+            //startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new DamLocationPicker());
+            ft.commit();
         }
         // Add schedule fragment
         else if (id == R.id.add_schedule) {
@@ -211,6 +231,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new EmergencyContacts());
 
             ft.commit();
+        }
+        else if (id == R.id.nav_login) {
+            Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
+           // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            this.finish();
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
