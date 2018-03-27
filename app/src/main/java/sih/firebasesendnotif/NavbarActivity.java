@@ -39,6 +39,8 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
+    SharedPreferences prefs;
+    NavigationView navigationView;
 
     //String city_name;
 
@@ -54,7 +56,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
 
         final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-        final SharedPreferences prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 
         // City picker intent and extract information from bundle
        // city_name = getIntent().getStringExtra("City");
@@ -74,7 +76,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         bar.displayHomeAsUpEnabled(false);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 //        FrameLayout fL = (FrameLayout) findViewById(R.id.fLFragments);
 
@@ -120,13 +122,18 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             editor.putBoolean("first_open", false);
             editor.apply();
         }
-        else {
+        else if(!first_open && prefs.getBoolean("admin_login",false)) {
+            fab.setVisibility(View.VISIBLE);
+            ft=getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.toPopulate, new ScheduleFragment());
+            ft.commit();
+        }
+        else{
             fab.setVisibility(View.INVISIBLE);
             ft=getSupportFragmentManager().beginTransaction();
             ft.add(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
         }
-
     }
 
 
@@ -171,11 +178,15 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         // Schedule fragment
         if (id == R.id.nav_schedule) {
-            //Fragment fragment = getFragmentManager().findFragmentById(R.id.fMtoDisplay);
-            fab.setVisibility(View.VISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
+            if(!prefs.getBoolean("admin_login",false)) {
+                fab.setVisibility(View.INVISIBLE);
+            }
+            else {
+                fab.setVisibility(View.VISIBLE);
+            }
         }
         // Emergency fragment
         else if (id == R.id.nav_emergency) {
@@ -258,7 +269,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new EmergencyContacts());
-
             ft.commit();
         }
         else if (id == R.id.nav_login) {
@@ -267,7 +277,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             startActivity(intent);
             this.finish();
         }
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
