@@ -219,7 +219,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                             editor.putBoolean("admin_login",false);
                             editor.apply();
                             mAuth.signOut();
-                            startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
+                         //   startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();
                         }
                     })

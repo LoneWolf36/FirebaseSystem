@@ -233,6 +233,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             itemView.findViewById(R.id.LinearLayout3).setVisibility(View.GONE);
             itemView.findViewById(R.id.LinearLayout4).setVisibility(View.GONE);
         }
+
+
     }
+
 
 }
