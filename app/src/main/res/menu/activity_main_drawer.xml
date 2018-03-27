@@ -4,47 +4,52 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
-            android:icon="@drawable/ic_schedule_white_24dp"
-            android:title="Check schedules" />
+            android:icon="@drawable/ic_schedules"
+            android:title="@string/nav_schedule" />
         <item
             android:id="@+id/add_schedule"
             android:icon="@drawable/ic_add_schedule"
-            android:title="Add a schedule" />
+            android:title="@string/add_schedule" />
         <item
             android:id="@+id/nav_emergency"
             android:icon="@drawable/ic_emergency"
-            android:title="Send Emergency Notification"
+            android:title="@string/nav_emergency"
             />
         <item
             android:id="@+id/nav_subscribe"
             android:icon="@drawable/ic_subscribe"
-            android:title="Get Notifiations From" />
+            android:title="@string/nav_subscribe" />
         <item
             android:id="@+id/activity_location_picker"
             android:icon="@drawable/ic_location"
-            android:title="Release water location" />
+            android:title="@string/location_picker" />
         <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_contact_query"
-            android:title="Contact dam authority"
+            android:title="@string/nav_contact"
                 />
         <item
             android:id="@+id/emergency_contacts"
             android:icon="@drawable/ic_new_releases_black_24dp"
-            android:title="Emergency Contacts" />
+            android:title="@string/emergency" />
         <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_logout"
-            android:title="Log Out" />
+            android:id="@+id/nav_view_query"
+            android:title="@string/nav_view_query"
+            />
 
     </group>
-    <group >
-
-        <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/ic_logout"
-            android:title="Log in" />
-
+    <group android:checkableBehavior="single">
+        <item android:title="@string/admin_options">
+            <menu>
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/logout" />
+                <item
+                    android:id="@+id/nav_login"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/login" />
+            </menu>
+        </item>
     </group>
-
 </menu>

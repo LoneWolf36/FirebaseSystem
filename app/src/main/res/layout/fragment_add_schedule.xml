@@ -19,7 +19,7 @@
             android:layout_toStartOf="@+id/btn_date"
             android:textSize="20dp"
             android:textColor="@color/black"
-            android:hint="Date"/>
+            android:hint="@string/in_date"/>
 
         <Button
             android:id="@+id/btn_date"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/in_date"
             android:layout_below="@+id/in_date"
-            android:hint="Time"
+            android:hint="@string/in_time"
             android:textColor="@color/black"
             android:textSize="20dp"
             />
@@ -59,7 +59,7 @@
             android:layout_below="@+id/btn_time"
             android:layout_marginTop="12dp"
             android:ems="10"
-            android:hint="Enter Duration (in Hours)"
+            android:hint="@string/duration"
             android:inputType="number|numberSigned|numberDecimal" />
 
         <Button

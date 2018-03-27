@@ -17,33 +17,39 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.github.florent37.awesomebar.ActionItem;
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.ButterKnife;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
+import sih.firebasesendnotif.Fragments.DamLocationPicker;
 import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
+import sih.firebasesendnotif.Fragments.QueryDataFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
 
 public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
-
-    // Instance of FirebaseAuth
-    private FirebaseAuth mAuth;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     NavigationView navigationView;
+    // Instance of FirebaseAuth
+    private FirebaseAuth mAuth;
 
     //String city_name;
+    private View.OnClickListener addScheduleListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new AddScheduleFragment());
+            ft.commit();
+            fab.setVisibility(View.INVISIBLE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +66,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 
         // City picker intent and extract information from bundle
-       // city_name = getIntent().getStringExtra("City");
+        // city_name = getIntent().getStringExtra("City");
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         AwesomeBar bar = findViewById(R.id.bar);
@@ -91,18 +97,16 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         // Firebase database
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference(mAuth.getUid());
-      //  myRef.child("city").setValue(city_name);
+        //  myRef.child("city").setValue(city_name);
 
 
-        if(!prefs.getBoolean("admin_login",false))
-        {
+        if (!prefs.getBoolean("admin_login", false)) {
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.add_schedule).setVisible(false);
             menu.findItem(R.id.nav_emergency).setVisible(false);
             menu.findItem(R.id.activity_location_picker).setVisible(false);
             menu.findItem(R.id.nav_logout).setVisible(false);
-        }
-        else{
+        } else {
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.add_schedule).setVisible(true);
             menu.findItem(R.id.nav_emergency).setVisible(true);
@@ -115,38 +119,25 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         FragmentTransaction ft;
 
         Boolean first_open = prefs.getBoolean("first_open", true);
-        if(first_open){
+        if (first_open) {
             fab.setVisibility(View.INVISIBLE);
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new SubscribeFragment());
             ft.commit();
             editor.putBoolean("first_open", false);
             editor.apply();
-        }
-        else if(!first_open && prefs.getBoolean("admin_login",false)) {
+        } else if (!first_open && prefs.getBoolean("admin_login", false)) {
             fab.setVisibility(View.VISIBLE);
-            ft=getSupportFragmentManager().beginTransaction();
+            ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
-        }
-        else{
+        } else {
             fab.setVisibility(View.INVISIBLE);
-            ft=getSupportFragmentManager().beginTransaction();
+            ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
         }
     }
-
-
-    private View.OnClickListener addScheduleListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.toPopulate, new AddScheduleFragment());
-            ft.commit();
-            fab.setVisibility(View.INVISIBLE);
-        }
-    };
 
     @Override
     public void onBackPressed() {
@@ -154,17 +145,15 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            new AlertDialog.Builder(this,R.style.AppTheme_Dark_Dialog)
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Exit")
                     .setMessage("Are you sure you want to close the app?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
                         }
-
                     })
                     .setNegativeButton("No", null)
                     .show();
@@ -182,10 +171,9 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
-            if(!prefs.getBoolean("admin_login",false)) {
+            if (!prefs.getBoolean("admin_login", false)) {
                 fab.setVisibility(View.INVISIBLE);
-            }
-            else {
+            } else {
                 fab.setVisibility(View.VISIBLE);
             }
         }
@@ -198,26 +186,25 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
         // Logout Activity
         else if (id == R.id.nav_logout) {
-            new AlertDialog.Builder(this,R.style.AppTheme_Dark_Dialog)
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Logout")
                     .setMessage("Are you sure you want to Logout?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
 
-                    //        SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-                      //      editor.putString("city_name", "");
-                        //    editor.apply();
+                            //        SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                            //      editor.putString("city_name", "");
+                            //    editor.apply();
 
-                            mAuth =FirebaseAuth.getInstance();
+                            mAuth = FirebaseAuth.getInstance();
                             final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-                            editor.putBoolean("admin_login",false);
+                            editor.putBoolean("admin_login", false);
                             editor.apply();
                             mAuth.signOut();
-                         //   startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
+                            //   startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();
                         }
                     })
@@ -227,12 +214,11 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         // Location picker fragment
         else if (id == R.id.activity_location_picker) {
-            new AlertDialog.Builder(this,R.style.AppTheme_Dark_Dialog)
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("PickPlace")
                     .setMessage("Do you want set this position for warning?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
@@ -240,6 +226,11 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     })
                     .setNegativeButton("No", null)
                     .show();
+            //startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new DamLocationPicker());
+            ft.commit();
         }
         // Add schedule fragment
         else if (id == R.id.add_schedule) {
@@ -247,7 +238,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 //            Bundle bundle = new Bundle();
 //            bundle.putString("City", city_name);
             AddScheduleFragment add = new AddScheduleFragment();
-   //         add.setArguments(bundle);
+            //         add.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, add);
             ft.commit();
@@ -258,8 +249,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new SubscribeFragment());
             ft.commit();
-        }
-        else if(id== R.id.nav_contact){
+        } else if (id == R.id.nav_contact) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new ContactAuthority());
@@ -271,8 +261,13 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new EmergencyContacts());
             ft.commit();
-        }
-        else if (id == R.id.nav_login) {
+        } else if (id == R.id.nav_view_query) {
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new QueryDataFragment());
+
+            ft.commit();
+        } else if (id == R.id.nav_login) {
             Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
             // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
