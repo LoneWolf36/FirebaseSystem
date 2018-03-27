@@ -38,7 +38,7 @@ public class QueryDataFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference myRef ;
-    java.util.List<String> queryDataList;
+    java.util.List<QueryData> queryDataList;
     RecyclerView qrecycle;
     Context context;
 
@@ -76,7 +76,7 @@ public class QueryDataFragment extends Fragment {
 
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                    // QueryData value = dataSnapshot1.getValue(QueryData.class);
-                    String value=dataSnapshot1.getValue().toString();
+                    QueryData value=dataSnapshot1.getValue(QueryData.class);
                     queryDataList.add(value);
                 }
             }

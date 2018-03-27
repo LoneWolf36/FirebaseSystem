@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Water Release</string>
+    <string name="app_name" translatable="false">Water Release</string>
     <string name="main_activity">Schedules</string>
     <string name="enter_your_data">Enter your data</string>
     <string name="push_data">Push data</string>
-    <string name="title_activity_nav">navActivity</string>
+    <string name="title_activity_nav" translatable="false">navActivity</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">WRIS</string>
+    <string name="title_activity_login" translatable="false">WRIS</string>
     <string name="hello_blank_fragment">Select Language</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -20,6 +20,14 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="user_options">User options</string>
+
+    <!--Strings related to sign up-->
+    <string name="name_hint">Name</string>
+    <string name="address_hint">Address</string>
+    <string name="mob_hint">Mobile Number</string>
+    <string name="reenter_pwd">Re-enter password</string>
+    <string name="create">Create Account</string>
+    <string name="go_to_login">Already a member? Login</string>
 
     <!-- Strings related to register -->
     <string name="next">Complete login</string>
@@ -40,10 +48,56 @@
     <string name="duration">Enter Duration (in hours)</string>
     <string name="notify">Notify</string>
     <string name="update">Update</string>
+    <string name="stat">Status :</string>
     <string name="submitSchedule">Submit Schedule</string>
     <string name="selectDate">Select Date</string>
     <string name="selectTime">Select Time</string>
     <string name="scheduleSubmitted">Schedule Successfully Submitted!</string>
     <string name="clear">Clear</string>
+
+    <!--Strings related to card xml-->
+    <string name="txtDay" translatable="false">12D</string>
+    <string name="txtHour" translatable="false">12H</string>
+    <string name="txtMin" translatable="false">12M</string>
+    <string name="txtSec" translatable="false">12S</string>
+    <string name="textView" translatable="false">TextView</string>
+    <string name="status">Active</string>
+
+    <!--Strings related to add schedule fragment xml-->
+    <string name="in_time">Time</string>
+    <string name="in_date">Date</string>
+    <string name="dam_hint">Enter Dam Name</string>
+    <string name="lat">Latitude</string>
+    <string name="longi">Longitude</string>
+
+    <!--Strings related to emergency calls-->
+    <string name="call_police">call police</string>
+    <string name="firebrigade">call Fire Brigade</string>
+    <string name="emergency_dis">call Emergency Disaster Management</string>
+
+    <!--Strings related to emergency notif-->
+    <string name="em_not">Type your Emergency message here</string>
+    <string name="push_message">Push</string>
+    <string name="register">No account?Create one</string>
+
+    <!--Strings related to nav drawer-->
+    <string name="nav_schedule">Check schedules List</string>
+    <string name="add_schedule">Add a schedule</string>
+    <string name="nav_emergency">Send Emergency Notification</string>
+    <string name="nav_subscribe">Get Notifiations From</string>
+    <string name="location_picker">Change Dam Location</string>
+    <string name="nav_contact">Contact dam authority</string>
+    <string name="emergency">Emergency Contacts</string>
+    <string name="nav_view_query">View questions</string>
+    <string name="admin_options">Admin options</string>
+    <string name="logout">Log Out</string>
+    <string name="login">Admin Login</string>
+
+    <!--Strings related to recycle adapter-->
+    <string name="water_rel">Water will be released on</string>
+    <string name="at">at</string>
+    <string name="for_duration">for a duration of</string>
+    <string name="hourss">hours</string>
+
 
 </resources>

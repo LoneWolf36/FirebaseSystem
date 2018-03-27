@@ -79,7 +79,7 @@
                             android:textColor="#4a0000"
                             android:textSize="25sp"
                             android:textStyle="bold"
-                            android:text="12D"/>
+                            android:text="@string/txtDay"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -101,7 +101,7 @@
                             android:textColor="#4a0000"
                             android:textSize="25sp"
                             android:textStyle="bold"
-                            android:text="12H"/>
+                            android:text="@string/txtHour"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -123,7 +123,7 @@
                             android:textColor="#4a0000"
                             android:textSize="25sp"
                             android:textStyle="bold"
-                            android:text="12M"/>
+                            android:text="@string/txtMin"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -145,7 +145,7 @@
                             android:textColor="#4a0000"
                             android:textSize="25sp"
                             android:textStyle="bold"
-                            android:text="12S"/>
+                            android:text="@string/txtSec"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="TextView"
+                    android:text="@string/textView"
                     android:textSize="23dp"
 
                     android:textStyle="bold"/>
@@ -178,7 +178,7 @@
                     android:layout_toEndOf="@+id/textView3"
                     android:textSize="14sp"
                     android:textAlignment="textStart"
-                    android:text="Active"/>
+                    android:text="@string/status"/>
 
                 <TextView
                     android:id="@+id/time"
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/date"
-                    android:text="TextView"
+                    android:text="@string/textView"
                     android:textSize="15dp"
                     
                     android:textStyle="bold"/>
@@ -197,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/time"
-                    android:text="TextView"
+                    android:text="@string/textView"
                     android:textSize="15dp"
                     
                     android:textStyle="bold"/>
@@ -211,7 +211,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="18dp"
                     android:elevation="15dp"
-                    android:text="Notify" />
+                    android:text="@string/notify" />
 
                 <Button
                     android:id="@+id/update"
@@ -221,7 +221,7 @@
                     android:layout_gravity="center"
                     android:layout_toEndOf="@+id/notify"
                     android:elevation="15dp"
-                    android:text="Update" />
+                    android:text="@string/update" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/notify"
                     android:layout_alignParentStart="true"
-                    android:text="Status : " />
+                    android:text="@string/stat" />
 
             </RelativeLayout>
     </LinearLayout>

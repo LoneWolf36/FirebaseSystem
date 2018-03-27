@@ -25,6 +25,7 @@ import java.util.Date;
 import android.view.View;
 import android.widget.TextView;
 import sih.firebasesendnotif.Classes.ScheduleData;
+import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -78,7 +79,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
         final ScheduleData mylist = list.get(position);
-        holder.date.setText("Water will be released on " + mylist.getDate());
+        holder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         holder.status.setText(mylist.getStatus());
         //code to make the Active green. It doesnt seem to work, do look into it
         if(holder.status.getText().toString().equals("Accept")){
@@ -89,8 +90,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         //code segment ends here
         String events= mylist.getDate();
         //holder.email.setText(mylist.getEmail());
-        holder.time.setText("at " +mylist.getTime());
-        holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
+        holder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
+        holder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
         holder.notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
