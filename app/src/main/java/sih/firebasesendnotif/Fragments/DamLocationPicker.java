@@ -1,10 +1,13 @@
 package sih.firebasesendnotif.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,12 +50,8 @@ import static android.content.Context.MODE_PRIVATE;
  * Use the {@link DamLocationPicker#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DamLocationPicker extends Fragment {
+public class DamLocationPicker extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -64,15 +64,138 @@ public class DamLocationPicker extends Fragment {
     TextView tvLong;
     Button button1;
     Spinner spinner;
-    String city_pick;
+    String city_name;
     Button button;
-    private DatabaseReference myRef;
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
- //   private OnFragmentInteractionListener mListener;
+    DatabaseReference myRef;
 
-    public DamLocationPicker() {
-        // Required empty public constructor
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        spinner = view.findViewById(R.id.spinner);
+        myRef = FirebaseDatabase.getInstance().getReference();
+        myRef.child("cities").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final List<String> cities = new ArrayList<String>();
+                for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
+                    String cityName = citySnapshot.getValue(String.class);
+                    cities.add(cityName);
+                }
+                ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, cities);
+                cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(cityAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                city_name = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(getActivity(), "Please select something", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+//    SharedPreferences prefs;
+//    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+// //   private OnFragmentInteractionListener mListener;
+//    // Instance of Firebase
+//    private DatabaseReference myRef;
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        //setContentView(R.layout.activity_city_picker);
+//
+//        myRef = FirebaseDatabase.getInstance().getReference();
+//        myRef.child("cities").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Is better to use a List, because you don't know the size
+//                // of the iterator returned by dataSnapshot.getChildren() to
+//                // initialize the array
+//                Log.i("lw", "onDataChange: I am here!");
+//                final List<String> cities = new ArrayList<String>();
+//
+//                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+//                    String cityName = citySnapshot.getValue(String.class);
+//                    cities.add(cityName);
+//                }
+//
+//                ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, cities);
+//                cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                spinner.setAdapter(cityAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//        spinner.setOnItemSelectedListener(this);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (city_pick.equals("")){
+//                    //Toast.makeText(getActivity(), "Invalid information", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Intent intent = new Intent(getActivity(), NavbarActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.putExtra("City", city_pick);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//    }
+//
+//
+//
+//    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//        // An item was selected. You can retrieve the selected item using
+//        // parent.getItemAtPosition(pos)
+//        city_pick = parent.getItemAtPosition(pos).toString();
+//        //final SharedPreferences.Editor editor = view.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+//        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+//        city_pick = prefs.getString("city_name", "");
+//        //editor.putString("city_name", city_pick);
+//        //editor.apply();
+//
+//    }
+//
+//    public void onNothingSelected(AdapterView<?> parent) {
+//        // Another interface callback
+//        //Toast.makeText(parent.getContext(),"Please select something", Toast.LENGTH_SHORT).show();
+//    }
+
+//    @Override
+//    public void onBackPressed() {
+//        new AlertDialog.Builder(this)
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setTitle("Closing Activity")
+//                .setMessage("Are you sure you want to close this activity?")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        FirebaseAuth.getInstance().signOut();
+//                        finish();
+//                    }
+//
+//                })
+//                .setNegativeButton("No", null)
+//                .show();
+//
+//    }
+//}
 
     /*
      * Use this factory method to create a new instance of
@@ -91,76 +214,6 @@ public class DamLocationPicker extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-//    myRef = FirebaseDatabase.getInstance().getReference();
-//        myRef.child("cities").addValueEventListener(new ValueEventListener() {
-//        @Override
-//        public void onDataChange(DataSnapshot dataSnapshot) {
-//            // Is better to use a List, because you don't know the size
-//            // of the iterator returned by dataSnapshot.getChildren() to
-//            // initialize the array
-//            Log.i("lw", "onDataChange: I am here!");
-//            final List<String> cities = new ArrayList<String>();
-//
-//            for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
-//                String cityName = citySnapshot.getValue(String.class);
-//                cities.add(cityName);
-//            }
-//
-//            ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getActivity().this, android.R.layout.simple_spinner_item, cities);
-//            cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//            spinner.setAdapter(cityAdapter);
-//        }
-//
-//        @Override
-//        public void onCancelled(DatabaseError databaseError) {
-//
-//        }
-//    });
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//            spinner.setOnItemSelectedListener(this);
-//            button.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if (city_pick.equals("")){
-//                        //Toast.makeText(getActivity().this, "Invalid information", Toast.LENGTH_SHORT).show();
-//                    }else{
-//                        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-//                        try {
-//                        Intent intent = builder.build(getActivity());
-//                        //Intent intent = new Intent(getActivity().this, NavbarActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        intent.putExtra("City", city_pick);
-//                        startActivity(intent);
-//                        }catch (GooglePlayServicesNotAvailableException | GooglePlayServicesRepairableException e){
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            });
-//        }
-//    }
-
-//    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-//        // An item was selected. You can retrieve the selected item using
-//        // parent.getItemAtPosition(pos)
-//        city_pick = parent.getItemAtPosition(pos).toString();
-//        final SharedPreferences.Editor editor = this.getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-//        editor.putString("city_name", city_pick);
-//        editor.apply();
-//    }
-
-//    public void onNothingSelected(AdapterView<?> parent) {
-//        // Another interface callback
-//        Toast.makeText(this, "Please select something", ""Toast.LENGTH_SHORT).show();
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -170,6 +223,8 @@ public class DamLocationPicker extends Fragment {
         tvLong= (TextView)v.findViewById(R.id.tvLong);
         button1 = (Button) v.findViewById(R.id.button1);
         //button = v.findViewById(R.id.complete_login);
+        spinner = v.findViewById(R.id.city_picker);
+        button = v.findViewById(R.id.complete_login);
         spinner = v.findViewById(R.id.city_picker);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,17 +264,6 @@ public class DamLocationPicker extends Fragment {
 
     }
 
-
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -231,7 +275,7 @@ public class DamLocationPicker extends Fragment {
         super.onDetach();
   //      mListener = null;
     }
-
+}
 //    @Override
 //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //
@@ -239,8 +283,7 @@ public class DamLocationPicker extends Fragment {
 
   //  @Override
  //   public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+//  }
 
     /**
      * This interface must be implemented by activities that contain this

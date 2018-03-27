@@ -23,22 +23,135 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:id="@+id/rLNotch"
-            android:background="@color/black">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12d 12h 24m 7s"
-                android:textColor="@color/white"
-                android:textAllCaps="true"
-                android:textSize="20sp"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="5dp"-->
+            <!--android:id="@+id/rLNotch"-->
+            <!--android:background="@color/black">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="12d 12h 24m 7s"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textAllCaps="true"-->
+                <!--android:textSize="20sp"-->
+                <!--android:layout_centerHorizontal="true" />-->
+            <RelativeLayout
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:id="@+id/rLNotch"
+                android:background="@color/black">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                
+                    <TextView
+                        android:id="@+id/tveventStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/worldcup_2k19"
+                        android:visibility="gone"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/LinearLayout1"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/txtDay"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:text="12D"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtHour"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:text="12H"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/LinearLayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtMinute"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:text="12M"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/LinearLayout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSecond"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:text="12S"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+            
+        <!--</RelativeLayout>-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -58,169 +171,14 @@
 
                 <TextView
                     android:id="@+id/status"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100sp"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/duration"
-                    android:layout_alignEnd="@+id/update"
-                    android:layout_marginEnd="33dp"
-                    android:textSize="14sp" />
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_above="@+id/notify"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/duration"
-                    android:layout_centerHorizontal="true">
-
-                    <LinearLayout
-                        android:id="@+id/LinearLayout"
-                        android:layout_width="300dp"
-                        android:layout_height="70dp"
-                        android:layout_alignParentEnd="true"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tveventStart"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="50sp"
-                            android:singleLine="true"
-                            android:text="@string/worldcup_2k19"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
-
-                        <LinearLayout
-                            android:id="@+id/LinearLayout1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/counter"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtDay"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="3"
-                                android:gravity="center"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#4a0000"
-                                android:textSize="35sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_Day"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="@string/days"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/LinearLayout2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/counter"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtHour"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignTop="@+id/relativeLayout"
-                                android:layout_toEndOf="@+id/duration"
-                                android:layout_weight="3"
-                                android:gravity="center"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#4a0000"
-                                android:textSize="35sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_Hour"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="@string/hours"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/LinearLayout3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/counter"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtMinute"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="3"
-                                android:gravity="center"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#4a0000"
-                                android:textSize="35sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_Minute"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="@string/minutes"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/LinearLayout4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/counter"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtSecond"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="3"
-                                android:gravity="center"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#4a0000"
-                                android:textSize="35sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_Second"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="@string/seconds"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
+                    android:layout_alignBaseline="@+id/textView3"
+                    android:layout_alignBottom="@+id/textView3"
+                    android:layout_toEndOf="@+id/textView3"
+                    android:textSize="14sp"
+                    android:textAlignment="textStart"
+                    android:text="Active"/>
 
                 <TextView
                     android:id="@+id/time"
@@ -264,6 +222,14 @@
                     android:layout_toEndOf="@+id/notify"
                     android:elevation="15dp"
                     android:text="Update" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/notify"
+                    android:layout_alignParentStart="true"
+                    android:text="Status : " />
 
             </RelativeLayout>
     </LinearLayout>
