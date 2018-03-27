@@ -2,6 +2,7 @@ package sih.firebasesendnotif;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ import sih.firebasesendnotif.Classes.ScheduleData;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by chota ali and bada karle on 20/3/18.
+ * Created by bada ali and chhota karle on 20/3/18.
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
@@ -79,6 +80,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         holder.date.setText("Water will be released on " + mylist.getDate());
         holder.status.setText(mylist.getStatus());
+        //code to make the Active green. It doesnt seem to work, do look into it
+        if(holder.status.getText().toString().equals("Accept")){
+            String status = holder.status.getText().toString();
+            Log.e("status",""+status);
+            holder.status.setTextColor(Color.parseColor("#00FF00"));
+        }
+        //code segment ends here
         String events= mylist.getDate();
         //holder.email.setText(mylist.getEmail());
         holder.time.setText("at " +mylist.getTime());
@@ -169,7 +177,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         protected void onCreate(Bundle savedInstanceState) {
 //           super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
-//
+//99
 
         }
         //     public static class MyHoder extends RecyclerView.ViewHolder{
