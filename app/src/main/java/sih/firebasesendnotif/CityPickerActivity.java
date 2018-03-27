@@ -1,6 +1,7 @@
 package sih.firebasesendnotif;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,7 +91,6 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
             final SharedPreferences.Editor editor = this.getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
             editor.putString("city_name", city_pick);
             editor.apply();
-
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
