@@ -7,9 +7,14 @@
     tools:context="sih.firebasesendnotif.LocationPickerActivity"
     android:orientation="vertical">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:onClick="goPlacePicker"
             android:text="@string/place_select" />
 
@@ -17,16 +22,17 @@
             android:id="@+id/tvPlace"
             android:layout_width="match_parent"
             android:layout_height="86dp"
+            android:layout_gravity="bottom"
             android:layout_marginTop="20dp" />
-        <!--<TextView-->
-            <!--android:id="@+id/tvLat"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="86dp"-->
-            <!--android:layout_marginTop="20dp" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/tvLong"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="86dp"-->
-            <!--android:layout_marginTop="20dp" />-->
+        <TextView
+            android:id="@+id/tvLat"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_marginTop="20dp" />
+        <TextView
+            android:id="@+id/tvLong"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_marginTop="20dp" />
 
 </LinearLayout>

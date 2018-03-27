@@ -10,7 +10,7 @@
 
         <com.github.florent37.shapeofview.shapes.RoundRectView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
             android:elevation="10dp"
             android:background="@color/cardview_light_background"
             android:layout_margin="9dp"
@@ -19,10 +19,31 @@
             app:roundRect_bottomRightRadius="20dp"
             app:roundRect_topLeftRadius="20dp"
             app:roundRect_topRightRadius="20dp">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:id="@+id/rLNotch"
+            android:background="@color/black">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12d 12h 24m 7s"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                
+
 
                 <TextView
                     android:id="@+id/date"
@@ -31,7 +52,18 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:text="TextView"
-                    android:textSize="23dp" />
+                    android:textSize="23dp"
+
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/duration"
+                    android:layout_alignEnd="@+id/update"
+                    android:layout_marginEnd="33dp"
+                    android:textSize="14sp" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout"
@@ -87,7 +119,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="left"
+                                android:gravity="center"
                                 android:text="@string/days"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:textStyle="bold" />
@@ -106,6 +138,8 @@
                                 android:id="@+id/txtHour"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/relativeLayout"
+                                android:layout_toEndOf="@+id/duration"
                                 android:layout_weight="3"
                                 android:gravity="center"
                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -195,7 +229,9 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/date"
                     android:text="TextView"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/duration"
@@ -204,7 +240,9 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/time"
                     android:text="TextView"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    
+                    android:textStyle="bold"/>
 
                 <Button
                     android:id="@+id/notify"
@@ -228,6 +266,7 @@
                     android:text="Update" />
 
             </RelativeLayout>
+    </LinearLayout>
         </com.github.florent37.shapeofview.shapes.RoundRectView>
 
         <!--android:layout_height="150dp"-->

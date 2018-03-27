@@ -5,6 +5,8 @@
         <item
             android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_schedules"
+            android:title="Check schedules List" />
+            android:icon="@drawable/ic_schedule_white_24dp"
             android:title="Check schedules" />
         <item
             android:id="@+id/add_schedule"
@@ -13,34 +15,44 @@
         <item
             android:id="@+id/nav_emergency"
             android:icon="@drawable/ic_emergency"
-            android:title="Emergency Notification" />
+            android:title="Send Emergency Notification"
+            />
         <item
             android:id="@+id/nav_subscribe"
             android:icon="@drawable/ic_subscribe"
-            android:title="Subscribe to topics" />
+            android:title="Get Notifiations From" />
         <item
             android:id="@+id/activity_location_picker"
             android:icon="@drawable/ic_location"
-            android:title="Release water location" />
+            android:title="Change Dam Location" />
         <item
-
             android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_contact_query"
             android:title="Contact dam authority"
                 />
         <item
             android:id="@+id/emergency_contacts"
             android:icon="@drawable/ic_new_releases_black_24dp"
             android:title="Emergency Contacts" />
+        <item
+            android:id="@+id/nav_view_query"
+            android:title="View questions"
+            />
 
     </group>
 
-    <item android:title="User options">
+    <item android:title="Admin options">
         <menu>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout"
                 android:title="Log Out" />
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_logout"
+                android:title="Admin Login" />
         </menu>
+
     </item>
 
 </menu>
