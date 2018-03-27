@@ -125,8 +125,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
         else if(!first_open && prefs.getBoolean("admin_login",false)) {
             fab.setVisibility(View.VISIBLE);
-            editor.clear();
-            editor.apply();
             ft=getSupportFragmentManager().beginTransaction();
             ft.add(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
