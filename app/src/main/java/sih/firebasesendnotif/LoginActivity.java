@@ -203,6 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                         final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
                         editor.putBoolean("admin_login",true);
                         editor.apply();
+                        Toasty.success(LoginActivity.this, "Success!", Toast.LENGTH_SHORT, true).show();
 
 
                         //if(city_name.equals("unset")){
