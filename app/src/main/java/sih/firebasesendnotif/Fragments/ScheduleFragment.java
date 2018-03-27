@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,7 +52,40 @@ public class ScheduleFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        cityRef = FirebaseDatabase.getInstance().getReference();
+        cityRef.child("cities").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
+                Log.i("lw", "Making city array for user dispaly");
+                //city_list.clear();
+
+                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+                    String cityName = citySnapshot.getValue(String.class);
+                    //xif(cities.c)
+                    //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
+                    //System.out.println(cityName.toString() +" d");
+                    Boolean chk1 = prefs.getBoolean(cityName, false);
+                    if(chk1){
+                        //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
+                        Log.i("added",   cityName+" in list");
+                        city_list.add(cityName);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
     }
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,45 +102,13 @@ public class ScheduleFragment extends Fragment{
         final String city_name = prefs.getString("city_name", "");
         list = new ArrayList<ScheduleData>();
         city_list = new ArrayList<String>();
-
         notifyDataList=new ArrayList<>();
         DatabaseReference myRef1 = database.getReference(city_name);
-
-        cityRef = FirebaseDatabase.getInstance().getReference();
-        cityRef.child("cities").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
-                Log.i("lw", "Making city array for user dispaly");
-                city_list.clear();
-                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
-                    String cityName = citySnapshot.getValue(String.class);
-                    //xif(cities.c)
-                    //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
-                    System.out.println(city_name.toString() +" d");
-                    Boolean chk1 = prefs.getBoolean(cityName, false);
-                    if(chk1){
-                        //UNABLE TO GET CITY NAME TO LOG OR PRINT AND UNABLE TO LOOKUP DB USING IT
-                        Log.i("added",   city_name+" in list");
-                        city_list.add(cityName);
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
-
-
-
         if(prefs.getBoolean("admin_login",false)){
             //Admin Login view only auth dam
-
+            Log.i("Admin view ","display");
+            //DatabaseReference myRef1 = database.getReference(city_name);
             myRef=myRef1.child("Dams").child(mAuth.getUid());
-
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -116,10 +119,9 @@ public class ScheduleFragment extends Fragment{
                     recycle.setLayoutManager(new VegaLayoutManager());
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
-
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
-                            list.add(value);
+                        ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
+                        list.add(value);
                     }
                 }
 
@@ -133,12 +135,13 @@ public class ScheduleFragment extends Fragment{
             });
 
         }
-        else{ //User Login view all dams of city
 
+        else{
+            //User Login view all dams of city
+            Log.i("User view ","display");
             for(String user_subscribed_city:city_list){
-
+                Log.i("City List user view ",   user_subscribed_city+" in user list");
                 DatabaseReference myRefuser = database.getReference(user_subscribed_city);
-
                 myRef=myRefuser.child("Dams");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -170,13 +173,27 @@ public class ScheduleFragment extends Fragment{
 
 
         }
-        return v;
+
+
+
+                return v;
         // Inflate the layout for this fragment
 
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
+
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final String city_name = prefs.getString("city_name", "");
     }
 }
