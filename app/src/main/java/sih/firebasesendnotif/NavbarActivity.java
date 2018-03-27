@@ -30,6 +30,7 @@ import sih.firebasesendnotif.Fragments.ContactAuthority;
 import sih.firebasesendnotif.Fragments.DamLocationPicker;
 import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
+import sih.firebasesendnotif.Fragments.QueryDataFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
 
@@ -67,7 +68,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         bar.setActionItemClickListener(new AwesomeBar.ActionItemClickListener() {
             @Override
             public void onActionItemClicked(int position, ActionItem actionItem) {
-                Toast.makeText(getBaseContext(), actionItem.getText()+" clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), actionItem.getText() + " clicked", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -108,7 +109,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.add_schedule).setVisible(false);
         menu.findItem(R.id.nav_emergency).setVisible(false);
-       // menu.findItem(R.id.activity_location_picker).setVisible(false);
+        // menu.findItem(R.id.activity_location_picker).setVisible(false);
         menu.findItem(R.id.nav_logout).setVisible(false);
     }
 
@@ -133,8 +134,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Exit")
                     .setMessage("Are you sure you want to close the app?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
@@ -173,15 +173,14 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Logout")
                     .setMessage("Are you sure you want to Logout?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
 
-                    //        SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-                      //      editor.putString("city_name", "");
-                        //    editor.apply();
+                            //        SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                            //      editor.putString("city_name", "");
+                            //    editor.apply();
 
                             mAuth.signOut();
                             startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
@@ -217,8 +216,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new SubscribeFragment());
             ft.commit();
-        }
-        else if(id== R.id.nav_contact){
+        } else if (id == R.id.nav_contact) {
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new ContactAuthority());
@@ -231,15 +229,20 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new EmergencyContacts());
 
             ft.commit();
-        }
-        else if (id == R.id.nav_login) {
-            Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
-           // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            this.finish();
-        }
+        } else if (id == R.id.nav_view_query) {
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new QueryDataFragment());
+
+            ft.commit();
+        }else if (id == R.id.nav_login) {
+                Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
+                // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                this.finish();
+            }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
     }
-}

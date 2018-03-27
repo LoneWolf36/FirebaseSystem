@@ -8,12 +8,13 @@ public class QueryData {
     //String city;
     String question;
 
+    public QueryData() {
+    }
+
     public QueryData(String question) {
         //this.city = city;
         this.question = question;
     }
-
-
 
     public String getQuestion() {
         return question;

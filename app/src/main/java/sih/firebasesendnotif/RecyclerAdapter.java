@@ -45,6 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    city_name = prefs.getString("city_name", "");
 
+
     public RecyclerAdapter(Context context){
         this.context =context;
     }
@@ -63,7 +64,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         // e.getString(city_name);
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
         //Log.d("city name",city_name);
-        SharedPreferences.Editor e= prefs.edit();
         // e.getString(city_name);
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
         MyHoder myHoder = new MyHoder(view);
@@ -164,7 +164,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         private Handler handler;
         private Runnable runnable;
         //
-//        @Override
+
+          //        @Override
         protected void onCreate(Bundle savedInstanceState) {
 //           super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
