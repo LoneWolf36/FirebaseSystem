@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:bar_primaryColor="@color/red"
-            android:elevation="8dp" />
+            android:elevation="6dp" />
     </LinearLayout>
 
     <com.rom4ek.arcnavigationview.ArcNavigationView
@@ -40,5 +40,5 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
         app:arc_cropDirection="inside"
-        app:arc_width="96dp"/>
+        app:arc_width="0dp"/>
 </android.support.v4.widget.DrawerLayout>

@@ -87,28 +87,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         }
         //code segment ends here
         String events= mylist.getDate();
-        //holder.email.setText(mylist.getEmail());
         holder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
         holder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
-        holder.notify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("city name in database",city_name);
-                DatabaseReference ref = database.getReference(city_name);
-                DatabaseReference mydam;
-                mydam = ref.child("Notify");
-                NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
-                String key=mydam.push().getKey();
-                mydam.child(key).setValue(schedule);
-                //               mydam = ref.child(mAuth.getUid());
+        holder.countDownStart(events);
+
+        // LOGIC FOR HIDING BUTTONS ON CARDS
+        if (!prefs.getBoolean("admin_login", false)) {
+            holder.notify.setVisibility(View.INVISIBLE);
+        } else {
+            holder.notify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("city name in database",city_name);
+                    DatabaseReference ref = database.getReference(city_name);
+                    DatabaseReference mydam;
+                    mydam = ref.child("Notify");
+                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+                    String key=mydam.push().getKey();
+                    mydam.child(key).setValue(schedule);
+                    //               mydam = ref.child(mAuth.getUid());
 //                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
 //                ref.setValue(schedule);
 //
 //                String key=mydam.push().getKey();
 //                mydam.child(key).setValue(schedule);
-            }
-        });
-        holder.countDownStart(events);
+                }
+            });
+        }
+
+
 
     }
 
@@ -163,7 +170,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         return arr;
     }
 
-      class MyHoder extends RecyclerView.ViewHolder{
+    class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration,status;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
@@ -172,7 +179,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         private Runnable runnable;
         //
 
-          //        @Override
+        //        @Override
         protected void onCreate(Bundle savedInstanceState) {
 //           super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);

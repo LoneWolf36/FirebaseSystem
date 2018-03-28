@@ -61,7 +61,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
         prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 
@@ -112,7 +111,9 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             menu.findItem(R.id.nav_emergency).setVisible(true);
             menu.findItem(R.id.activity_location_picker).setVisible(true);
             menu.findItem(R.id.nav_logout).setVisible(true);
+            menu.findItem(R.id.nav_subscribe).setVisible(false);
             menu.findItem(R.id.nav_login).setVisible(false);
+            menu.findItem(R.id.nav_contact).setVisible(false);
         }
 
 

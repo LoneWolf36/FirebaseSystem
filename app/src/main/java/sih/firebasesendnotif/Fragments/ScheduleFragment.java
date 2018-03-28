@@ -2,7 +2,6 @@ package sih.firebasesendnotif.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,13 +24,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.stone.vega.library.VegaLayoutManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import sih.firebasesendnotif.Classes.NotifyData;
+import sih.firebasesendnotif.Classes.ScheduleData;
 import sih.firebasesendnotif.R;
 import sih.firebasesendnotif.RecyclerAdapter;
-import sih.firebasesendnotif.Classes.ScheduleData;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -45,21 +42,23 @@ public class ScheduleFragment extends Fragment {
     java.util.List<String> city_list;
     DatabaseReference cityRef;
     RecyclerView recycle;
-    Button notify, update;
+    //    Button notify, update;
     Context context;
     Boolean flagger;
-    RecyclerAdapter recyclerAdapter;
-
-    RecyclerView.LayoutManager recyce;
+    Boolean setLayoutFlag;
+    SharedPreferences prefs;
 
     public ScheduleFragment() {
         // Required empty public constructor
         flagger = false;
+        setLayoutFlag = true;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //prefs = getSharedPreferences("JaisPrefrence", Context.MODE_PRIVATE);
+        prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -67,9 +66,24 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_schedule, container, false);
-        //  view = (Button) v.findViewById(R.id.view);
-        notify = (Button) v.findViewById(R.id.notify);
-        update = (Button) v.findViewById(R.id.update);
+//        notify = (Button) v.findViewById(R.id.notify);
+//        update = (Button) v.findViewById(R.id.update);
+
+//        EasyFlipView easyFlipView = (EasyFlipView) v.findViewById(R.id.flip_view);
+//        easyFlipView.onTouchEvent()
+//        easyFlipView.flipTheView();
+//        easyFlipView.setOnFlipListener(new EasyFlipView.OnFlipAnimationListener() {
+//            @Override
+//            public void onViewFlipCompleted(EasyFlipView flipView, EasyFlipView.FlipState newCurrentSide)
+//            {
+//
+//                // ...
+//                // Your code goes here
+//                // ...
+//
+//            }
+//        });
+
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
         context = getContext();
@@ -210,10 +224,9 @@ public class ScheduleFragment extends Fragment {
 //
 //    }
 
-                return v;
+        return v;
 
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -234,26 +247,27 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-      //  populate_my_list();
+        //  populate_my_list();
     }
 
-    public void populate_my_list(){
+    public void populate_my_list() {
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         final String city_name = prefs.getString("city_name", "");
-        if(prefs.getBoolean("admin_login",false)){
+        if (prefs.getBoolean("admin_login", false)) {
             //Admin Login view only auth dam
-        Log.i("Admin view ","display");
+            Log.i("Admin view ", "display");
             DatabaseReference myRef1 = database.getReference(city_name);
-            myRef=myRef1.child("Dams").child(mAuth.getUid());
+            myRef = myRef1.child("Dams").child(mAuth.getUid());
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                    recycle.setLayoutManager(recyce);
-                    //recycle.setLayoutManager(new VegaLayoutManager());
+                    if (setLayoutFlag) {
+                        recycle.setLayoutManager(new VegaLayoutManager());
+                        setLayoutFlag = false;
+                    }
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
@@ -263,7 +277,6 @@ public class ScheduleFragment extends Fragment {
                 }
 
 
-
                 @Override
                 public void onCancelled(DatabaseError error) {
                     // Failed to read value
@@ -271,25 +284,23 @@ public class ScheduleFragment extends Fragment {
                 }
             });
 
-        }
-
-        else{
+        } else {
             //User Login view all dams of city
-            Log.i("UserSSS","display here baby Array contents: "+String.valueOf(city_list.toArray()));
-            for(String user_subscribed_city:city_list){
-                Log.i("City List user view ",   user_subscribed_city+" in user list");
+            Log.i("UserSSS", "display here baby Array contents: " + String.valueOf(city_list.toArray()));
+            for (String user_subscribed_city : city_list) {
+                Log.i("City List user view ", user_subscribed_city + " in user list");
                 DatabaseReference myRefuser = database.getReference(user_subscribed_city);
-                myRef=myRefuser.child("Dams");
+                myRef = myRefuser.child("Dams");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
                         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                        RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                        recycle.setLayoutManager(recyce);
-                        //recycle.setLayoutManager(new VegaLayoutManager());
                         recycle.setItemAnimator(new DefaultItemAnimator());
                         recycle.setAdapter(recyclerAdapter);
+                        if (setLayoutFlag) {
+                            recycle.setLayoutManager(new VegaLayoutManager());
+                            setLayoutFlag = false;
+                        }
 
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
@@ -298,6 +309,7 @@ public class ScheduleFragment extends Fragment {
                             }
                         }
                     }
+
                     @Override
                     public void onCancelled(DatabaseError error) {
                         // Failed to read value
