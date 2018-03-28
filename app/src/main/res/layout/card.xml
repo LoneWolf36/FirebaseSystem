@@ -45,7 +45,7 @@
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/rLNotch"
-                android:background="@color/black">
+                android:background="@color/white">
 
 
                 <LinearLayout
@@ -76,7 +76,7 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#4a0000"
+                            android:textColor="@color/black"
                             android:textSize="25sp"
                             android:textStyle="bold"
                             android:text="12D"/>
@@ -98,7 +98,7 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#4a0000"
+                            android:textColor="@color/black"
                             android:textSize="25sp"
                             android:textStyle="bold"
                             android:text="12H"/>
@@ -120,7 +120,7 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#4a0000"
+                            android:textColor="@color/black"
                             android:textSize="25sp"
                             android:textStyle="bold"
                             android:text="12M"/>
@@ -142,7 +142,7 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#4a0000"
+                            android:textColor="@color/black"
                             android:textSize="25sp"
                             android:textStyle="bold"
                             android:text="12S"/>
@@ -227,8 +227,8 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/notify"
                     android:layout_alignParentStart="true"
+                    android:layout_below="@+id/duration"
                     android:text="Status : " />
 
             </RelativeLayout>

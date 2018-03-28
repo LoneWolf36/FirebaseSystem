@@ -36,7 +36,13 @@
             android:title="Emergency Contacts" />
         <item
             android:id="@+id/nav_view_query"
+            android:icon="@drawable/ic_question_answer_black_24dp"
             android:title="View questions"
+            />
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="Language"
             />
 
     </group>

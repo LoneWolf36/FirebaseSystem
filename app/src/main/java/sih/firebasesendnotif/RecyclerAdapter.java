@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,15 +48,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //    city_name = prefs.getString("city_name", "");
 
 
-    public RecyclerAdapter(Context context){
-        this.context =context;
-    }
+//    public RecyclerAdapter(Context context){
+//        this.context =context;
+//    }
 
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
         this.context = context;
         prefs =context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-        //getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
 
     }
@@ -67,6 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         //Log.d("city name",city_name);
         // e.getString(city_name);
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
+        //getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         MyHoder myHoder = new MyHoder(view);
         mAuth = FirebaseAuth.getInstance();
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
@@ -86,7 +87,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             Log.e("status",""+status);
             holder.status.setTextColor(Color.parseColor("#00FF00"));
         }
+
         //code segment ends here
+//        RecyclerView.ItemAnimator animator =getItemAnimator();
+//        if (animator instanceof SimpleItemAnimator) {
+//            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+//        }
+        //setHasStableIds(true);
         String events= mylist.getDate();
         //holder.email.setText(mylist.getEmail());
         holder.time.setText("at " +mylist.getTime());
@@ -110,6 +117,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             }
         });
         holder.countDownStart(events);
+
 
     }
 
@@ -236,6 +244,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 }
             };
             handler.postDelayed(runnable, 1 * 1000);
+
         }
 
         public void textViewGone() {

@@ -30,6 +30,7 @@ import sih.firebasesendnotif.Fragments.ContactAuthority;
 import sih.firebasesendnotif.Fragments.DamLocationPicker;
 import sih.firebasesendnotif.Fragments.EmergencyContacts;
 import sih.firebasesendnotif.Fragments.EmergencyNotificationFragment;
+import sih.firebasesendnotif.Fragments.Language;
 import sih.firebasesendnotif.Fragments.QueryDataFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 import sih.firebasesendnotif.Fragments.SubscribeFragment;
@@ -233,6 +234,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new QueryDataFragment());
+
+            ft.commit();
+        }else if (id == R.id.nav_language) {
+            fab.setVisibility(View.INVISIBLE);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new Language());
 
             ft.commit();
         }else if (id == R.id.nav_login) {
