@@ -105,8 +105,10 @@ public class ContactAuthority extends Fragment {
                 Log.d("city",city_name);
                 Log.d("query",queryContent.getText().toString());
                 ref=database.getReference(city_name);
+                String key;
                 QueryData qdata=new QueryData(queryContent.getText().toString());
-                ref.child("Queries").setValue(qdata);
+                key=ref.child("Queries").push().getKey();
+                ref.child("Queries").child(key).setValue(qdata);
                 queryContent.setText("");
             }
         });
