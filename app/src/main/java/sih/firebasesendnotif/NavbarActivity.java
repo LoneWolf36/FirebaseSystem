@@ -148,15 +148,15 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         } else {
             new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Exit")
-                    .setMessage("Are you sure you want to close the app?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setTitle(getApplicationContext().getResources().getString(R.string.exit))
+                    .setMessage(getApplicationContext().getResources().getString(R.string.confirm_exit))
+                    .setPositiveButton(getApplicationContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
                         }
                     })
-                    .setNegativeButton("No", null)
+                    .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
                     .show();
         }
     }
@@ -189,9 +189,9 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         else if (id == R.id.nav_logout) {
             new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Logout")
-                    .setMessage("Are you sure you want to Logout?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setTitle(getApplicationContext().getResources().getString(R.string.logout))
+                    .setMessage(getApplicationContext().getResources().getString(R.string.confirm_logout))
+                    .setPositiveButton(getApplicationContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -209,12 +209,28 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                             finish();
                         }
                     })
-                    .setNegativeButton("No", null)
+                    .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
                     .show();
         }
-
-        // Location picker fragment
+//
+//        // Location picker fragme
+//        else if (id == R.id.fragment_dam_location_picker) {
+//            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setTitle(getApplicationContext().getResources().getString(R.string.place))
+//                    .setMessage(getApplicationContext().getResources().getString(R.string.confirm_place))
+//                    .setPositiveButton(getApplicationContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+//                        }
+//                    })
+//                    .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
+//                    .show();
+//        }
+            //startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
         else if (id == R.id.fragment_dam_location_picker) {
+
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new DamLocationPicker());

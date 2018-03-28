@@ -99,5 +99,26 @@
     <string name="for_duration">for a duration of</string>
     <string name="hourss">hours</string>
 
+    <!--Strings related to add schedule fragment-->
+    <string name="toast_fill_details">Please Enter all the details</string>
+    <string name="toast_fill_dur">Please enter a Number for Duration!</string>
+    <string name="toast_success">Schedule Submitted Successfully!</string>
 
+    <!--Strings related to contact authority-->
+    <string name="blank">Please select something</string>
+
+    <!--Strings related to emergency contacts-->
+    <string name="fire_brig_connect">Connecting to Fire Brigade</string>
+    <string name="confirm_call">Are you sure you want to make call?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="emerg_connect">Connecting to Emergency Disaster Management</string>
+    <string name="police_connect">Connecting to Police</string>
+
+    <!--Strings related to navbar actions-->
+    <string name="confirm_logout">Are you sure you want to logout?</string>
+    <string name="place">PickPlace</string>
+    <string name="confirm_place">Do you want set this position for warning?</string>
+    <string name="exit"></string>
+    <string name="confirm_exit"></string>
 </resources>

@@ -113,7 +113,7 @@ public class AddScheduleFragment extends Fragment {
                 String durationtxt = txtDuration.getText().toString();
 
                 if(datetxt.equals("") || timetxt.equals("") || durationtxt.equals("")) {
-                    Toast.makeText(getContext(),"Please Enter all the details",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getContext().getResources().getString(R.string.toast_fill_details),Toast.LENGTH_SHORT).show();
 
                 }
                 else{
@@ -121,7 +121,7 @@ public class AddScheduleFragment extends Fragment {
                         int num = Integer.parseInt(durationtxt);
                         Log.i("",num+" is a number");
                     } catch (NumberFormatException e) {
-                        Toast.makeText(getContext(), "Please enter a Number for Duration!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getContext().getResources().getString(R.string.toast_fill_dur), Toast.LENGTH_SHORT).show();
                         Log.i("",durationtxt+" is not a number");
                     }
                     DatabaseReference ref = database.getReference(city_name);
@@ -154,7 +154,7 @@ public class AddScheduleFragment extends Fragment {
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key, dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
                     mydam.child(key).setValue(schedule);
-                    Toast.makeText(getContext(), "Schedule Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getContext().getResources().getString(R.string.toast_success), Toast.LENGTH_SHORT).show();
                     txtDate.setText("");
                     txtDuration.setText("");
                     txtTime.setText("");
