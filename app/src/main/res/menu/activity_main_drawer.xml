@@ -20,7 +20,7 @@
             android:icon="@drawable/ic_subscribe"
             android:title="@string/nav_subscribe" />
         <item
-            android:id="@+id/activity_location_picker"
+            android:id="@+id/fragment_dam_location_picker"
             android:icon="@drawable/ic_location"
             android:title="@string/location_picker" />
         <item
@@ -34,6 +34,7 @@
             android:title="@string/emergency" />
         <item
             android:id="@+id/nav_view_query"
+            android:icon="@drawable/ic_question_answer_black_24dp"
             android:title="@string/nav_view_query"
             />
 

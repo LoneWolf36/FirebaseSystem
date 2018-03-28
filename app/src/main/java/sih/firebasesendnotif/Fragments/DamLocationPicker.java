@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sih.firebasesendnotif.CityPickerActivity;
+import sih.firebasesendnotif.Classes.ScheduleData;
 import sih.firebasesendnotif.LocationPickerActivity;
 import sih.firebasesendnotif.NavbarActivity;
 import sih.firebasesendnotif.R;
@@ -51,6 +52,11 @@ import static android.content.Context.MODE_PRIVATE;
  * create an instance of this fragment.
  */
 public class DamLocationPicker extends Fragment{
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("");
+
+    private FirebaseAuth mAuth;
+
     // TODO: Rename parameter arguments, choose names that match
 
     // TODO: Rename and change types of parameters
@@ -61,8 +67,9 @@ public class DamLocationPicker extends Fragment{
     double Long;
     TextView tvPlace;
     TextView tvLat;
-    TextView tvLong;
+    TextView tvLong,tvDam;
     Button button1;
+    Button submit_loc;
     Spinner spinner;
     String city_name;
     Button button;
@@ -73,6 +80,9 @@ public class DamLocationPicker extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         spinner = view.findViewById(R.id.spinner);
         myRef = FirebaseDatabase.getInstance().getReference();
+        final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        submit_loc = (Button) view.findViewById(R.id.submit_loc);
         myRef.child("cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -101,6 +111,19 @@ public class DamLocationPicker extends Fragment{
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 Toast.makeText(getActivity(), getContext().getResources().getString(R.string.blank), Toast.LENGTH_SHORT).show();
+            }
+        });
+        submit_loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putString("Latitude",String.valueOf(Lat));
+                editor.putString("Longitude",String.valueOf(Long));
+                editor.putString("Dam_Name",tvDam.getText().toString());
+                editor.putString("Place",tvPlace.getText().toString());
+                editor.apply();
+                Log.d("lat", String.valueOf(Lat)  + "   " + String.valueOf(Long) + "   " +tvDam.getText().toString() + "     " + tvPlace.getText().toString());
+
+                Toast.makeText(getContext(), "Location Submitted Successfully!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -226,6 +249,7 @@ public class DamLocationPicker extends Fragment{
         spinner = v.findViewById(R.id.city_picker);
         button = v.findViewById(R.id.complete_login);
         spinner = v.findViewById(R.id.city_picker);
+        tvDam = v.findViewById(R.id.tvDam);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

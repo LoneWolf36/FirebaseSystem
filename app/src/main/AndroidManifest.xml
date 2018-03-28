@@ -27,7 +27,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -54,8 +53,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCCRElMW3fARzWKpf-q5EIVO2E3dH2E9Wc"/>
-
-
         <activity
             android:name=".LocationPickerActivity"
             android:label="@string/title_activity_maps" />

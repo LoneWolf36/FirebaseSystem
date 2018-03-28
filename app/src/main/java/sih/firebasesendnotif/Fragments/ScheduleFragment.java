@@ -304,11 +304,11 @@ public class ScheduleFragment extends Fragment {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                    recycle.setLayoutManager(recyce);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(recyclerAdapter);
+                        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                        RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                        recycle.setLayoutManager(recyce);
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(recyclerAdapter);
                         //if (setLayoutFlag) {
                         //    recycle.setLayoutManager(new VegaLayoutManager());
                         //    setLayoutFlag = false;

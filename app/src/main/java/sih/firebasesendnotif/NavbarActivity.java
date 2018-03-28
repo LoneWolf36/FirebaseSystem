@@ -103,13 +103,13 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.add_schedule).setVisible(false);
             menu.findItem(R.id.nav_emergency).setVisible(false);
-            menu.findItem(R.id.activity_location_picker).setVisible(false);
+            menu.findItem(R.id.fragment_dam_location_picker).setVisible(false);
             menu.findItem(R.id.nav_logout).setVisible(false);
         } else {
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.add_schedule).setVisible(true);
             menu.findItem(R.id.nav_emergency).setVisible(true);
-            menu.findItem(R.id.activity_location_picker).setVisible(true);
+            menu.findItem(R.id.fragment_dam_location_picker).setVisible(true);
             menu.findItem(R.id.nav_logout).setVisible(true);
             menu.findItem(R.id.nav_subscribe).setVisible(false);
             menu.findItem(R.id.nav_login).setVisible(false);
@@ -213,7 +213,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .show();
         }
 
-        // Location picker fragment
+        // Location picker fragme
         else if (id == R.id.activity_location_picker) {
             new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -227,7 +227,10 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     })
                     .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
                     .show();
+        }
             //startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+        else if (id == R.id.fragment_dam_location_picker) {
+
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new DamLocationPicker());
@@ -268,7 +271,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new QueryDataFragment());
 
             ft.commit();
-        } else if (id == R.id.nav_login) {
+        }else if (id == R.id.nav_login) {
             Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
             // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
