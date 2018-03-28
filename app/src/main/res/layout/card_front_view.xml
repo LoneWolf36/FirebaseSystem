@@ -43,7 +43,7 @@
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:padding="5dp">
 
 
@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:text="@string/worldcup_2k19"
+                        android:text="@+string/worldcup_2k19"
                         android:visibility="gone" />
 
                     <LinearLayout
@@ -76,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="@string/txtDay"
+                            android:text="txtDay"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -98,7 +98,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="@string/txtHour"
+                            android:text="txtHour"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -121,7 +121,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="@string/txtMin"
+                            android:text="txtMin"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -144,7 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="@string/txtSec"
+                            android:text="txtSec"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -164,11 +164,12 @@
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/textView"
-                    android:textSize="23dp"
+                    android:layout_alignEnd="@+id/status"
+                    android:layout_below="@+id/status"
 
+                    android:layout_marginTop="15dp"
+                    android:text="@+string/textView"
+                    android:textSize="23dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -177,8 +178,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/textView3"
                     android:layout_alignBottom="@+id/textView3"
-                    android:layout_toEndOf="@+id/textView3"
-                    android:text="@string/status"
+                    android:layout_toEndOf="@+id/duration"
+                    android:text="status"
                     android:textAlignment="textStart"
                     android:textSize="14sp" />
 
@@ -188,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/date"
-                    android:text="@string/textView"
+                    android:text="@+string/textView"
                     android:textSize="15dp"
 
                     android:textStyle="bold" />
@@ -199,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/time"
-                    android:text="@string/textView"
+                    android:text="textView"
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
@@ -209,7 +210,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@string/stat" />
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="12dp"
+                    android:text="status" />
 
             </RelativeLayout>
         </LinearLayout>
