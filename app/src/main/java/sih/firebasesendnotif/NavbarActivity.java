@@ -214,7 +214,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
 
         // Location picker fragme
-        else if (id == R.id.activity_location_picker) {
+        else if (id == R.layout.activity_location_picker) {
             new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle(getApplicationContext().getResources().getString(R.string.place))

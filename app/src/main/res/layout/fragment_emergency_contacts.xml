@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="sih.firebasesendnotif.Fragments.EmergencyContacts">
+    tools:context="sih.firebasesendnotif.Fragments.EmergencyContacts"
+    android:gravity="center_vertical"
+    android:padding="20dp">
 
         <!-- TODO: Update blank fragment layout -->
     <Button
@@ -11,17 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/call_police"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:background="@drawable/mybutton"
+        android:textColor="@color/white"
+        android:layout_marginBottom="30dp"/>
     <Button
         android:id="@+id/callfirebrigade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/firebrigade"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:background="@drawable/mybutton"
+        android:textColor="@color/white"
+
+        android:layout_marginBottom="30dp"/>
     <Button
         android:id="@+id/calldis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/emergency_dis"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:background="@drawable/mybutton"
+        android:textColor="@color/white"
+        />
 </LinearLayout>
