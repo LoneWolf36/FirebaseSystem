@@ -18,6 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import sih.firebasesendnotif.R;
 import sih.firebasesendnotif.Classes.ScheduleData;
 
@@ -35,6 +39,9 @@ public class AddScheduleFragment extends Fragment {
     TextView txtDate, txtTime;
     SharedPreferences prefs;
     String city_name;
+    SimpleDateFormat sdf;
+    String datetime;
+    Date date_in_mili;
     //String city;
 
     public AddScheduleFragment() {
@@ -50,6 +57,7 @@ public class AddScheduleFragment extends Fragment {
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
+        sdf=new SimpleDateFormat("dd-m-yyyy hh:mm");
     }
 
     @Override
@@ -65,6 +73,8 @@ public class AddScheduleFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         btnDatePicker = (Button) view.findViewById(R.id.btn_date);
+        final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
        // txtDate.setOnClickListener(new View.OnClickListener() {
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,13 +105,14 @@ public class AddScheduleFragment extends Fragment {
                 Log.d("Date",txtDate.getText().toString());
                 Log.d("Time",txtTime.getText().toString());
                 Log.d("Duration",txtDuration.getText().toString());
+               // Log.d("lat", String.valueOf(Lat)  + "   " + String.valueOf(Lng) + "   " + place + "     " + dam_name);
+
                 String datetxt = txtDate.getText().toString();
                 String timetxt = txtTime.getText().toString();
                 String durationtxt = txtDuration.getText().toString();
 
-
                 if(datetxt.equals("") || timetxt.equals("") || durationtxt.equals("")) {
-                    Toast.makeText(getContext(),"Please Enter all the details",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getContext().getResources().getString(R.string.toast_fill_details),Toast.LENGTH_SHORT).show();
 
                 }
                 else{
@@ -109,21 +120,37 @@ public class AddScheduleFragment extends Fragment {
                         int num = Integer.parseInt(durationtxt);
                         Log.i("",num+" is a number");
                     } catch (NumberFormatException e) {
-                        Toast.makeText(getContext(), "Please enter a Number for Duration!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getContext().getResources().getString(R.string.toast_fill_dur), Toast.LENGTH_SHORT).show();
                         Log.i("",durationtxt+" is not a number");
                     }
                     DatabaseReference ref = database.getReference(city_name);
                     DatabaseReference mydam,temp;
                     temp=ref.child("Dams");
                     mydam = temp.child(mAuth.getUid());
-
-
+                    datetime=datetxt+" "+timetxt;
+                    Log.d("dT",datetime);
+                    try {
+                        date_in_mili=sdf.parse(datetime);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    //Log.d("dT",date_in_mili.getTime());
                     String key = mydam.push().getKey();
-
-                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(), 1,"Active",key);
+                    long dim;
+                    String Lat = prefs.getString("Latitude", "" );
+                    String Lng = prefs.getString("Longitude", "" );
+                    String place = prefs.getString("Place", "" );
+                    String dam_name = prefs.getString("Dam_Name", "" );
+//                    Log.d("karle",Lat);
+//                    Log.d("karle",Lng);
+//                    Log.d("karle",place);
+//                    Log.d("karle",dam_name);
+                    dim=date_in_mili.getTime();
+                    System.out.println(dim);
+                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key, dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
                     mydam.child(key).setValue(schedule);
-                    Toast.makeText(getContext(), "Schedule Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getContext().getResources().getString(R.string.toast_success), Toast.LENGTH_SHORT).show();
                     txtDate.setText("");
                     txtDuration.setText("");
                     txtTime.setText("");
