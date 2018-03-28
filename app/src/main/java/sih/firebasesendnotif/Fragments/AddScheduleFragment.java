@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import sih.firebasesendnotif.R;
@@ -129,6 +130,7 @@ public class AddScheduleFragment extends Fragment {
                     mydam = temp.child(mAuth.getUid());
                     datetime=datetxt+" "+timetxt;
                     Log.d("dT",datetime);
+                    Calendar c=Calendar.getInstance();
                     try {
                         date_in_mili=sdf.parse(datetime);
                     } catch (ParseException e) {
@@ -146,7 +148,9 @@ public class AddScheduleFragment extends Fragment {
 //                    Log.d("karle",place);
 //                    Log.d("karle",dam_name);
                     dim=date_in_mili.getTime();
+                    c.setTime(date_in_mili);
                     System.out.println(dim);
+                    System.out.println(c.getTimeInMillis());
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key, dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
                     mydam.child(key).setValue(schedule);
