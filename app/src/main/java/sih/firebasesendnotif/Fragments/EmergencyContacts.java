@@ -88,16 +88,16 @@ public class EmergencyContacts extends DialogFragment {
 
                 new android.support.v7.app.AlertDialog.Builder(getActivity())
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Connecting to Fire Brigade")
-                        .setMessage("Are you sure you want to make call?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getContext().getResources().getString(R.string.fire_brig_connect))
+                        .setMessage(getContext().getResources().getString(R.string.confirm_call))
+                        .setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(getContext().getResources().getString(R.string.no), null)
                         .show();
                 /*
                 String number = "100";
@@ -119,16 +119,16 @@ public class EmergencyContacts extends DialogFragment {
 
                 new android.support.v7.app.AlertDialog.Builder(getActivity())
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Connecting to Fire Brigade")
-                        .setMessage("Are you sure you want to make call?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getContext().getResources().getString(R.string.emerg_connect))
+                        .setMessage(getContext().getResources().getString(R.string.confirm_call))
+                        .setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(getContext().getResources().getString(R.string.no), null)
                         .show();
                 /*
                 String number = "100";
@@ -150,16 +150,16 @@ public class EmergencyContacts extends DialogFragment {
 
                 new android.support.v7.app.AlertDialog.Builder(getActivity())
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Connecting to Fire Brigade")
-                        .setMessage("Are you sure you want to make call?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getContext().getResources().getString(R.string.police_connect))
+                        .setMessage(getContext().getResources().getString(R.string.confirm_call))
+                        .setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(getContext().getResources().getString(R.string.no), null)
                         .show();
                 /*
                 String number = "100";
