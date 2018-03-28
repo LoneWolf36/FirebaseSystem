@@ -6,7 +6,6 @@
             android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_schedules"
             android:title="@string/nav_schedule" />
-             />
         <item
             android:id="@+id/add_schedule"
             android:icon="@drawable/ic_add_schedule"
@@ -39,19 +38,18 @@
             />
 
     </group>
-
-    <item android:title="@string/admin_options">
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_logout"
-                android:title="@string/logout" />
-            <item
-                android:id="@+id/nav_login"
-                android:icon="@drawable/ic_logout"
-                android:title="@string/login" />
-        </menu>
-
-    </item>
-
+    <group android:checkableBehavior="single">
+        <item android:title="@string/admin_options">
+            <menu>
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/logout" />
+                <item
+                    android:id="@+id/nav_login"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/login" />
+            </menu>
+        </item>
+    </group>
 </menu>

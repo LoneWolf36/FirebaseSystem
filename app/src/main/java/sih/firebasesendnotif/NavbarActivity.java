@@ -3,6 +3,7 @@ package sih.firebasesendnotif;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,13 +17,9 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.github.florent37.awesomebar.ActionItem;
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.ButterKnife;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
@@ -37,83 +34,13 @@ import sih.firebasesendnotif.Fragments.SubscribeFragment;
 public class NavbarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
-
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    NavigationView navigationView;
     // Instance of FirebaseAuth
     private FirebaseAuth mAuth;
 
-    String city_name;
-    //NavigationView navigationView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navbar);
-        ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        // City picker intent and extract information from bundle
-        city_name = getIntent().getStringExtra("City");
-
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        AwesomeBar bar = findViewById(R.id.bar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        bar.addAction(R.drawable.awsb_ic_edit_animated, "Compose");
-
-        bar.setActionItemClickListener(new AwesomeBar.ActionItemClickListener() {
-            @Override
-            public void onActionItemClicked(int position, ActionItem actionItem) {
-                Toast.makeText(getBaseContext(), actionItem.getText() + " clicked", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        bar.setOnMenuClickedListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.openDrawer(Gravity.START);
-            }
-        });
-
-        bar.displayHomeAsUpEnabled(false);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-//        FrameLayout fL = (FrameLayout) findViewById(R.id.fLFragments);
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.toPopulate, new ScheduleFragment());
-        ft.commit();
-
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(addScheduleListener);
-
-        // Initialize FirebaseAuth instance
-        mAuth = FirebaseAuth.getInstance();
-
-        // Firebase database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(mAuth.getUid());
-        myRef.child("city").setValue(city_name);
-
-        //navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        Menu nav_Menu = navigationView.getMenu();
-//        nav_Menu.findItem(R.id.nav_schedule).setVisible(false);
-        //navigationView.getMenu().findItem(R.id.add_schedule).setVisible(false);
-
-        //NavigationView  navigationView1
-        Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.add_schedule).setVisible(false);
-        menu.findItem(R.id.nav_emergency).setVisible(false);
-        // menu.findItem(R.id.activity_location_picker).setVisible(false);
-        menu.findItem(R.id.nav_logout).setVisible(false);
-    }
-
-
+    //String city_name;
     private View.OnClickListener addScheduleListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -125,12 +52,101 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
     };
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navbar);
+        ButterKnife.bind(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+
+        // City picker intent and extract information from bundle
+        // city_name = getIntent().getStringExtra("City");
+
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        AwesomeBar bar = findViewById(R.id.bar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        bar.setOnMenuClickedListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.START);
+            }
+        });
+
+        bar.displayHomeAsUpEnabled(false);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+//        FrameLayout fL = (FrameLayout) findViewById(R.id.fLFragments);
+
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(addScheduleListener);
+
+        // Initialize FirebaseAuth instance
+//        mAuth = FirebaseAuth.getInstance();
+
+        // Firebase database
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference(mAuth.getUid());
+        //  myRef.child("city").setValue(city_name);
+
+
+        if (!prefs.getBoolean("admin_login", false)) {
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.add_schedule).setVisible(false);
+            menu.findItem(R.id.nav_emergency).setVisible(false);
+            menu.findItem(R.id.activity_location_picker).setVisible(false);
+            menu.findItem(R.id.nav_logout).setVisible(false);
+        } else {
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.add_schedule).setVisible(true);
+            menu.findItem(R.id.nav_emergency).setVisible(true);
+            menu.findItem(R.id.activity_location_picker).setVisible(true);
+            menu.findItem(R.id.nav_logout).setVisible(true);
+            menu.findItem(R.id.nav_subscribe).setVisible(false);
+            menu.findItem(R.id.nav_login).setVisible(false);
+            menu.findItem(R.id.nav_contact).setVisible(false);
+        }
+
+
+        FragmentTransaction ft;
+
+        Boolean first_open = prefs.getBoolean("first_open", true);
+        if (first_open) {
+            fab.setVisibility(View.INVISIBLE);
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.toPopulate, new SubscribeFragment());
+            ft.commit();
+            editor.putBoolean("first_open", false);
+            editor.apply();
+        } else if (!first_open && prefs.getBoolean("admin_login", false)) {
+            fab.setVisibility(View.VISIBLE);
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.toPopulate, new ScheduleFragment());
+            ft.commit();
+        } else {
+            fab.setVisibility(View.INVISIBLE);
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.toPopulate, new ScheduleFragment());
+            ft.commit();
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Exit")
                     .setMessage("Are you sure you want to close the app?")
@@ -139,7 +155,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
                         }
-
                     })
                     .setNegativeButton("No", null)
                     .show();
@@ -154,11 +169,14 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         // Schedule fragment
         if (id == R.id.nav_schedule) {
-            //Fragment fragment = getFragmentManager().findFragmentById(R.id.fMtoDisplay);
-            fab.setVisibility(View.VISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
+            if (!prefs.getBoolean("admin_login", false)) {
+                fab.setVisibility(View.INVISIBLE);
+            } else {
+                fab.setVisibility(View.VISIBLE);
+            }
         }
         // Emergency fragment
         else if (id == R.id.nav_emergency) {
@@ -169,7 +187,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
         // Logout Activity
         else if (id == R.id.nav_logout) {
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Logout")
                     .setMessage("Are you sure you want to Logout?")
@@ -182,8 +200,12 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                             //      editor.putString("city_name", "");
                             //    editor.apply();
 
+                            mAuth = FirebaseAuth.getInstance();
+                            final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                            editor.putBoolean("admin_login", false);
+                            editor.apply();
                             mAuth.signOut();
-                            startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
+                            //   startActivity(new Intent(NavbarActivity.this, LoginActivity.class));
                             finish();
                         }
                     })
@@ -193,6 +215,18 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         // Location picker fragment
         else if (id == R.id.activity_location_picker) {
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("PickPlace")
+                    .setMessage("Do you want set this position for warning?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
             //startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -202,10 +236,10 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         // Add schedule fragment
         else if (id == R.id.add_schedule) {
             fab.setVisibility(View.INVISIBLE);
-            Bundle bundle = new Bundle();
-            bundle.putString("City", city_name);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("City", city_name);
             AddScheduleFragment add = new AddScheduleFragment();
-            add.setArguments(bundle);
+            //         add.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, add);
             ft.commit();
@@ -227,7 +261,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new EmergencyContacts());
-
             ft.commit();
         } else if (id == R.id.nav_view_query) {
             fab.setVisibility(View.INVISIBLE);
@@ -235,14 +268,14 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.replace(R.id.toPopulate, new QueryDataFragment());
 
             ft.commit();
-        }else if (id == R.id.nav_login) {
-                Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
-                // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                this.finish();
-            }
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
+        } else if (id == R.id.nav_login) {
+            Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
+            // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            this.finish();
         }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
+}

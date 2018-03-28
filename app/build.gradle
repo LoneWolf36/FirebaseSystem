@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         multiDexEnabled true 
         applicationId "sih.firebasesendnotif"
@@ -58,5 +58,7 @@ dependencies {
     compile 'com.github.GrenderG:Toasty:1.2.8'
     compile 'com.github.florent37:awesomebar:1.0.3'
     compile 'com.rom4ek:arcnavigationview:1.0.3'
+    compile 'com.wajahatkarim3.EasyFlipView:EasyFlipView:2.0.5'
+    implementation 'com.github.sharish:ShimmerRecyclerView:v1.2'
 }
 apply plugin: 'com.google.gms.google-services'

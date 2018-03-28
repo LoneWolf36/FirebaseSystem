@@ -1,6 +1,7 @@
 package sih.firebasesendnotif;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,7 +50,6 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
                 // initialize the array
                 Log.i("lw", "onDataChange: I am here!");
                 final List<String> cities = new ArrayList<String>();
-
                 for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
                     String cityName = citySnapshot.getValue(String.class);
                     cities.add(cityName);
@@ -91,7 +91,6 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
             final SharedPreferences.Editor editor = this.getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
             editor.putString("city_name", city_pick);
             editor.apply();
-
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
@@ -109,6 +108,10 @@ public class CityPickerActivity extends AppCompatActivity implements AdapterView
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                        editor.putBoolean("admin_login",false);
+                        editor.apply();
+
                         FirebaseAuth.getInstance().signOut();
                         finish();
                     }
