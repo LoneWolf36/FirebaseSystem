@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"    >
+        <TextView
+            android:id="@+id/date1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHighlight="@android:color/primary_text_dark"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="40dp"/>
+        <TextView
+            android:id="@+id/time1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHighlight="@android:color/primary_text_dark"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="40dp"/>
+        <TextView
+            android:id="@+id/duration1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHighlight="@android:color/primary_text_dark"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="40dp"/>
+        <TextView
+            android:id="@+id/displaykey"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHighlight="@android:color/primary_text_dark"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="40dp"/>
+
+    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/edit_time"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/edit_date" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/edit_duration" />
+
+    <Button
+        android:id="@+id/update_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update" />
+
+    <Button
+        android:id="@+id/cancel_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel schedule" />
+
+
+</LinearLayout>

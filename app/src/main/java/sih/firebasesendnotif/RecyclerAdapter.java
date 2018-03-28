@@ -1,6 +1,7 @@
 package sih.firebasesendnotif;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -16,16 +17,16 @@ import android.os.Handler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import sih.firebasesendnotif.Classes.NotifyData;
 import android.os.Bundle;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import android.view.View;
-import android.widget.TextView;
+
 import sih.firebasesendnotif.Classes.ScheduleData;
-import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -35,6 +36,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHoder> {
     List<ScheduleData> list;
+    ArrayList<String> myKeys;
     private Context context;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("");
@@ -58,6 +60,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
     }
+
+    public RecyclerAdapter(List<ScheduleData> list, ArrayList<String> keys, Context context) {
+        this.list = list;
+        this.context = context;
+        this.myKeys = keys;
+        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        city_name = prefs.getString("city_name", "");
+    }
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
         //SharedPreferences.Editor e= prefs.edit();
@@ -75,36 +85,41 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         return myHoder;
     }
     @Override
-    public void onBindViewHolder(MyHoder holder, int position) {
+    public void onBindViewHolder(final MyHoder myHoder, int position) {
         final ScheduleData mylist = list.get(position);
-        holder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
-        holder.status.setText(mylist.getStatus());
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
+        myHoder.status.setText(mylist.getStatus());
         //code to make the Active green. It doesnt seem to work, do look into it
-        if(holder.status.getText().toString().equals("Accept")){
-            String status = holder.status.getText().toString();
+        if(myHoder.status.getText().toString().equals("Accept")){
+            String status = myHoder.status.getText().toString();
             Log.e("status",""+status);
-            holder.status.setTextColor(Color.parseColor("#00FF00"));
+            myHoder.status.setTextColor(Color.parseColor("#00FF00"));
         }
         //code segment ends here
         String events= mylist.getDate();
-        holder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
-        holder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
-        holder.countDownStart(events);
+        myHoder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
+        myHoder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
+        myHoder.countDownStart(events);
 
         // LOGIC FOR HIDING BUTTONS ON CARDS
         if (!prefs.getBoolean("admin_login", false)) {
-            holder.notify.setVisibility(View.INVISIBLE);
+            myHoder.notify.setVisibility(View.INVISIBLE);
         } else {
-            holder.notify.setOnClickListener(new View.OnClickListener() {
+            myHoder.notify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("city name in database",city_name);
-                    DatabaseReference ref = database.getReference(city_name);
-                    DatabaseReference mydam;
-                    mydam = ref.child("Notify");
-                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
-                    String key=mydam.push().getKey();
-                    mydam.child(key).setValue(schedule);
+                    //LOGIC FOR NOTIFICATION
+//                    Log.d("city name in database",city_name);
+//                    DatabaseReference ref = database.getReference(city_name);
+//                    DatabaseReference mydam;
+//                    mydam = ref.child("Notify");
+//                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+//                    String key=mydam.push().getKey();
+//                    mydam.child(key).setValue(schedule);
+
+                    Intent intent = new Intent(context, UpdateSchedule.class);
+                    context.startActivity(intent);
+
                     //               mydam = ref.child(mAuth.getUid());
 //                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
 //                ref.setValue(schedule);
@@ -113,10 +128,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //                mydam.child(key).setValue(schedule);
                 }
             });
+//            myHoder.update.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.d("city name in database",city_name);
+//                    DatabaseReference ref = database.getReference(city_name);
+//                    DatabaseReference mydam;
+//                    mydam = ref.child("Notify");
+//                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+//                    String key=mydam.push().getKey();
+//                    mydam.child(key).setValue(schedule);
+//                    //               mydam = ref.child(mAuth.getUid());
+////                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
+////                ref.setValue(schedule);
+////
+////                String key=mydam.push().getKey();
+////                mydam.child(key).setValue(schedule);
+//                }
+//            });
         }
-
-
-
     }
 
 
@@ -195,7 +225,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
             date = (TextView) itemView.findViewById(R.id.date);
-            notify =(Button) itemView.findViewById(R.id.notify);
+            notify =(Button) itemView.findViewById(R.id.notify_button);
             Log.e("date",date.getText().toString());
             txtDay = (TextView) itemView.findViewById(R.id.txtDay);
             txtHour = (TextView) itemView.findViewById(R.id.txtHour);
