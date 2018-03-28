@@ -263,11 +263,13 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                    if (setLayoutFlag) {
-                        recycle.setLayoutManager(new VegaLayoutManager());
-                        setLayoutFlag = false;
-                    }
+                    //RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                    //if (setLayoutFlag) {
+                    //    recycle.setLayoutManager(new VegaLayoutManager());
+                    //   setLayoutFlag = false;
+                    //}
+                    recyce = new LinearLayoutManager(context);
+                    recycle.setLayoutManager(recyce);
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
@@ -297,10 +299,12 @@ public class ScheduleFragment extends Fragment {
                         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
                         recycle.setItemAnimator(new DefaultItemAnimator());
                         recycle.setAdapter(recyclerAdapter);
-                        if (setLayoutFlag) {
-                            recycle.setLayoutManager(new VegaLayoutManager());
-                            setLayoutFlag = false;
-                        }
+                        //if (setLayoutFlag) {
+                        //    recycle.setLayoutManager(new VegaLayoutManager());
+                        //    setLayoutFlag = false;
+                        //}
+                        recyce = new LinearLayoutManager(context);
+                        recycle.setLayoutManager(recyce);
 
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
