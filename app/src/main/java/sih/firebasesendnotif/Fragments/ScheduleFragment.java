@@ -266,7 +266,11 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    //RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                    recycle.setLayoutManager(recyce);
+                    recycle.setItemAnimator(new DefaultItemAnimator());
+                    recycle.setAdapter(recyclerAdapter);
                     //if (setLayoutFlag) {
                     //    recycle.setLayoutManager(new VegaLayoutManager());
                     //   setLayoutFlag = false;
@@ -275,6 +279,7 @@ public class ScheduleFragment extends Fragment {
                     recycle.setLayoutManager(recyce);
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
+
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                         list.add(value);
@@ -299,13 +304,16 @@ public class ScheduleFragment extends Fragment {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                        recycle.setItemAnimator(new DefaultItemAnimator());
-                        recycle.setAdapter(recyclerAdapter);
+                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                    recycle.setLayoutManager(recyce);
+                    recycle.setItemAnimator(new DefaultItemAnimator());
+                    recycle.setAdapter(recyclerAdapter);
                         //if (setLayoutFlag) {
                         //    recycle.setLayoutManager(new VegaLayoutManager());
                         //    setLayoutFlag = false;
                         //}
+
                         //recyce = new LinearLayoutManager(context);
                         recycle.setLayoutManager(recyce);
 
