@@ -5,6 +5,7 @@ package sih.firebasesendnotif.Fragments;
 /**
  * Created by groot on 20/3/18.
  */
+        import android.content.Context;
         import android.content.SharedPreferences;
         import android.os.Bundle;
         import android.support.annotation.Nullable;
@@ -76,7 +77,7 @@ public class SubscribeFragment extends Fragment {
 
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Subscribe ScheduleFragment");
 //
@@ -86,7 +87,6 @@ public class SubscribeFragment extends Fragment {
 //        c4 = (CheckBox) this.getView().findViewById(R.id.checkBox4);
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         cities = new ArrayList<String>();
         citycb = new ArrayList<CheckBox>();
@@ -100,12 +100,8 @@ public class SubscribeFragment extends Fragment {
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
                 Log.i("lw", "onDataChange: I am here!");
-
                 for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
-
-
                     String cityName = citySnapshot.getValue(String.class);
-
                     //xif(cities.c)
                     cities.add(cityName);
                     Boolean chk1 = prefs.getBoolean(cityName, false);
@@ -116,8 +112,6 @@ public class SubscribeFragment extends Fragment {
                     citycb.add(cb);
                     cb.setText(cityName);
                     ll.addView(cb);
-
-
                 }
 
 
@@ -145,8 +139,7 @@ public class SubscribeFragment extends Fragment {
                         }
                     });
                 }
-
-
+            //    saveArray(cities.toArray(new String[cities.size()]),"citieslocal",getActivity());
 
             }
             @Override
@@ -155,87 +148,16 @@ public class SubscribeFragment extends Fragment {
             }
 
         });
-
-
-
-//
-//        c1.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (c1.isChecked())
-//                {
-//                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
-//                    editor.putBoolean("c1", true);
-//                    editor.apply();
-//                                    }
-//                else
-//                {
-//                    FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-//                    editor.putBoolean("c1", false);
-//                    editor.apply();
-//
-//                }
-//            }
-//        });
-//        c2.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (c2.isChecked())
-//                {
-//                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
-//                    editor.putBoolean("c2", true);
-//                    editor.apply();
-//                }
-//                else
-//                {
-//                    FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-//                    editor.putBoolean("c2", false);
-//                    editor.apply();
-//                }
-//            }
-//        });
-//        c3.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (c3.isChecked())
-//                {
-//                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
-//                    editor.putBoolean("c3", true);
-//                    editor.apply();
-//                }
-//                else
-//                {
-//                    FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-//                    editor.putBoolean("c3", false);
-//                    editor.apply();
-//                }
-//            }
-//        });
-//        c4.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (c4.isChecked())
-//                {
-//                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
-//                    editor.putBoolean("c4", true);
-//                    editor.apply();
-//                }
-//                else
-//                {
-//                    FirebaseMessaging.getInstance().unsubscribeFromTopic("pushNotifications");
-//                    editor.putBoolean("c4", false);
-//                    editor.apply();
-//                }
-//            }
-//        });
-
     }
+
+//
+//    public boolean saveArray(String[] array, String arrayName, Context mContext) {
+//        SharedPreferences prefs = mContext.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putInt(arrayName +"_size", array.length);
+//        for(int i=0;i<array.length;i++) {
+//            Log.d("Save Array", array[i]);
+//            editor.putString(arrayName + "_" + i, array[i]);
+//        }return editor.commit();
+//    }
 }

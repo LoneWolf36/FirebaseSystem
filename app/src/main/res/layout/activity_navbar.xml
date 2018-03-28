@@ -23,17 +23,9 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:bar_primaryColor="@color/red"
-            android:elevation="8dp" />
+            android:elevation="6dp" />
     </LinearLayout>
 
-    <!--<android.support.design.widget.NavigationView-->
-        <!--android:id="@+id/nav_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="start"-->
-        <!--android:fitsSystemWindows="true"-->
-        <!--app:headerLayout="@layout/nav_header_main"-->
-        <!--app:menu="@menu/activity_main_drawer" />-->
     <com.rom4ek.arcnavigationview.ArcNavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -48,5 +40,5 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
         app:arc_cropDirection="inside"
-        app:arc_width="96dp"/>
+        app:arc_width="0dp"/>
 </android.support.v4.widget.DrawerLayout>

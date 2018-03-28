@@ -23,7 +23,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class MyQueryDataRecyclerViewAdapter extends RecyclerView.Adapter<MyQueryDataRecyclerViewAdapter.ViewHolder> {
 
-    private final List<String> mValues;
+    private final List<QueryData> mValues;
     private Context context;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("");
@@ -32,7 +32,7 @@ public class MyQueryDataRecyclerViewAdapter extends RecyclerView.Adapter<MyQuery
     private FirebaseAuth mAuth;
     EditText txtDate, txtTime,txtDuration;
 
-    public MyQueryDataRecyclerViewAdapter(List<String> items, Context context) {
+    public MyQueryDataRecyclerViewAdapter(List<QueryData> items, Context context) {
         mValues = items;
         this.context=context;
         prefs =context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
@@ -54,8 +54,8 @@ public class MyQueryDataRecyclerViewAdapter extends RecyclerView.Adapter<MyQuery
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final String pick_q=mValues.get(position);
-        holder.question.setText(pick_q);
+        final QueryData pick_q=mValues.get(position);
+        holder.question.setText(pick_q.getQuestion());
     }
 
     @Override

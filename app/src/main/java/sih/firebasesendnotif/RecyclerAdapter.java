@@ -26,6 +26,7 @@ import java.util.Date;
 import android.view.View;
 import android.widget.TextView;
 import sih.firebasesendnotif.Classes.ScheduleData;
+import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -56,8 +57,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         this.list = list;
         this.context = context;
         prefs =context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
-
     }
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -79,7 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
         final ScheduleData mylist = list.get(position);
-        holder.date.setText("Water will be released on " + mylist.getDate());
+        holder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         holder.status.setText(mylist.getStatus());
         //code to make the Active green. It doesnt seem to work, do look into it
         if(holder.status.getText().toString().equals("Accept")){
@@ -95,28 +96,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //        }
         //setHasStableIds(true);
         String events= mylist.getDate();
-        //holder.email.setText(mylist.getEmail());
-        holder.time.setText("at " +mylist.getTime());
-        holder.duration.setText("for a duration of " + mylist.getDuration() + " hours");
-        holder.notify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("city name in database",city_name);
-                DatabaseReference ref = database.getReference(city_name);
-                DatabaseReference mydam;
-                mydam = ref.child("Notify");
-                NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
-                String key=mydam.push().getKey();
-                mydam.child(key).setValue(schedule);
-                //               mydam = ref.child(mAuth.getUid());
+        holder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
+        holder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
+        holder.countDownStart(events);
+
+        // LOGIC FOR HIDING BUTTONS ON CARDS
+        if (!prefs.getBoolean("admin_login", false)) {
+            holder.notify.setVisibility(View.INVISIBLE);
+        } else {
+            holder.notify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("city name in database",city_name);
+                    DatabaseReference ref = database.getReference(city_name);
+                    DatabaseReference mydam;
+                    mydam = ref.child("Notify");
+                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+                    String key=mydam.push().getKey();
+                    mydam.child(key).setValue(schedule);
+                    //               mydam = ref.child(mAuth.getUid());
 //                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
 //                ref.setValue(schedule);
 //
 //                String key=mydam.push().getKey();
 //                mydam.child(key).setValue(schedule);
-            }
-        });
-        holder.countDownStart(events);
+                }
+            });
+        }
+
+
 
 
     }
@@ -172,7 +180,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         return arr;
     }
 
-      class MyHoder extends RecyclerView.ViewHolder{
+    class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration,status;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
@@ -181,7 +189,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         private Runnable runnable;
         //
 
-          //        @Override
+        //        @Override
         protected void onCreate(Bundle savedInstanceState) {
 //           super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
@@ -253,6 +261,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             itemView.findViewById(R.id.LinearLayout3).setVisibility(View.GONE);
             itemView.findViewById(R.id.LinearLayout4).setVisibility(View.GONE);
         }
+
+
     }
+
 
 }

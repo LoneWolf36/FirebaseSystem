@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:id="@+id/flip_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -243,6 +245,18 @@
         <!--android:alpha="0.9"-->
         <!--android:scaleType="centerCrop"/>-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:flipDuration="400"-->
+        <!--app:flipEnabled="true"-->
+        <!--app:flipOnTouch="true"-->
+        <!--app:flipType="vertical">-->
+
+        <!-- Back Layout Goes Here -->
+        <include layout="@layout/card_back_view" />
+
+        <!-- Front Layout Goes Here -->
+        <include layout="@layout/card_front_view" />
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
 
 </LinearLayout>

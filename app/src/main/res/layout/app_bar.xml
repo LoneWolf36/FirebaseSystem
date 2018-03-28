@@ -30,6 +30,6 @@
         app:borderWidth="0dp"
         app:backgroundTint="@color/red"
         app:elevation="6dp"
-        app:srcCompat="@drawable/ic_notification" />
+        app:srcCompat="@drawable/awsb_ic_edit_animated" />
 
 </android.support.design.widget.CoordinatorLayout>
