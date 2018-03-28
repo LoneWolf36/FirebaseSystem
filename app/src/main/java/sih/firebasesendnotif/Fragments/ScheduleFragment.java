@@ -264,15 +264,14 @@ public class ScheduleFragment extends Fragment {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-//                    if (setLayoutFlag) {
-//                        recycle.setLayoutManager(new VegaLayoutManager());
-//                       setLayoutFlag = false;
-//                    }
-
-                    //recyce = new LinearLayoutManager(context);
-                    //recycle.setLayoutManager(recyce);
+                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                    recycle.setLayoutManager(recyce);
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
+                    //if (setLayoutFlag) {
+                    //    recycle.setLayoutManager(new VegaLayoutManager());
+                    //   setLayoutFlag = false;
+                    //}
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
                         list.add(value);
@@ -298,15 +297,14 @@ public class ScheduleFragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
+                        RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
+                        recycle.setLayoutManager(recyce);
                         recycle.setItemAnimator(new DefaultItemAnimator());
                         recycle.setAdapter(recyclerAdapter);
                         //if (setLayoutFlag) {
                         //    recycle.setLayoutManager(new VegaLayoutManager());
                         //    setLayoutFlag = false;
                         //}
-                        //recyce = new LinearLayoutManager(context);
-                       // recycle.setLayoutManager(recyce);
-
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                 ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
