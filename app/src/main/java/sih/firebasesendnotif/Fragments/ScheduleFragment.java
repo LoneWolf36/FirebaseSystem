@@ -254,11 +254,14 @@ public class ScheduleFragment extends Fragment {
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         final String city_name = prefs.getString("city_name", "");
+        final RecyclerAdapter recyclerAdapter= new RecyclerAdapter(list,context);
+        final RecyclerView.LayoutManager recyce=new LinearLayoutManager(context);;
         if (prefs.getBoolean("admin_login", false)) {
             //Admin Login view only auth dam
             Log.i("Admin view ", "display");
             DatabaseReference myRef1 = database.getReference(city_name);
             myRef = myRef1.child("Dams").child(mAuth.getUid());
+
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -268,7 +271,7 @@ public class ScheduleFragment extends Fragment {
                     //    recycle.setLayoutManager(new VegaLayoutManager());
                     //   setLayoutFlag = false;
                     //}
-                    recyce = new LinearLayoutManager(context);
+
                     recycle.setLayoutManager(recyce);
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
@@ -303,7 +306,7 @@ public class ScheduleFragment extends Fragment {
                         //    recycle.setLayoutManager(new VegaLayoutManager());
                         //    setLayoutFlag = false;
                         //}
-                        recyce = new LinearLayoutManager(context);
+                        //recyce = new LinearLayoutManager(context);
                         recycle.setLayoutManager(recyce);
 
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
