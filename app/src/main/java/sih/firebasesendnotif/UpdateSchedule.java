@@ -1,5 +1,6 @@
 package sih.firebasesendnotif;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,15 +22,26 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import es.dmoral.toasty.Toasty;
 import sih.firebasesendnotif.Classes.NotifyData;
 import sih.firebasesendnotif.Classes.ScheduleData;
+import sih.firebasesendnotif.Fragments.DateFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
+import sih.firebasesendnotif.Fragments.TimeDialogFragment;
 
 public class UpdateSchedule extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String key;
-    TextView time, date, duration, uid;
-    EditText edittime, editdate, editduration;
+    TextView time, date, duration;
+    Button btnDatePicker, btnTimePicker;
+    Button rescheduleBtn,cancelBtn;
+    EditText txtDuration;
+    SimpleDateFormat sdf;
+    String datetime;
+    String time_set, date_set, duration_set;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,58 +52,71 @@ public class UpdateSchedule extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         SharedPreferences prefs;
         String city_name;
-        Context context;
         prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
         mAuth = FirebaseAuth.getInstance();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        sdf = new SimpleDateFormat("dd-m-yyyy hh:mm");
+        date = findViewById(R.id.in_date);
+        time = findViewById(R.id.in_time);
+        duration = findViewById(R.id.txtDuration);
+        cancelBtn = findViewById(R.id.cancel_schedule);
+        rescheduleBtn = findViewById(R.id.reschedule);
+        btnDatePicker = (Button) findViewById(R.id.btn_date);
+        btnTimePicker = (Button) findViewById(R.id.btn_time);
+        time.setHint(AppGlobalData.time);
+        date.setHint(AppGlobalData.date);
+        duration.setHint(AppGlobalData.duration);
 
-        time= (TextView) findViewById(R.id.time1);
-        date= (TextView) findViewById(R.id.date1);
-        duration= (TextView) findViewById(R.id.duration1);
-        uid = findViewById(R.id.huid);
-        time.setText(AppGlobalData.time);
-        date.setText(AppGlobalData.date);
-        duration.setText(AppGlobalData.duration);
-        uid.setText(AppGlobalData.key);
-
-        Log.d(AppGlobalData.time, "onCreate: time of AppGlobal ");
-
-        edittime =(EditText) findViewById(R.id.edit_time);
-        editdate=(EditText) findViewById(R.id.edit_date);
-        editduration=(EditText) findViewById(R.id.edit_duration);
-        Button update=(Button)findViewById(R.id.update_schedule);
-        Button cancel=(Button)findViewById(R.id.cancel_schedule);
+        btnDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DateFragment();
+                newFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
+        btnTimePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new TimeDialogFragment();
+                newFragment.show(getFragmentManager(),"TimePicker");
+            }
+        });
 
         DatabaseReference myRef1 = database.getReference(city_name);
         final DatabaseReference myRef = myRef1.child("Dams").child(mAuth.getUid());
 
         key = AppGlobalData.key; //key to be postponed
-        key = key.substring(1,key.length()-1);
         final String key1=myRef.push().getKey(); //key to be active
 //        myRef.child(key1).setValue()
+        time_set = time.getText().toString();
+        date_set = date.getText().toString();
+        duration_set = duration.getText().toString();
 
-        update.setOnClickListener(new View.OnClickListener() {
+        rescheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final ScheduleData schedule1 = new ScheduleData(time.toString(),date.toString(),duration.toString(),1,"Postponed",key);
-                myRef.child(key).setValue(schedule1);
-                ScheduleData schedule = new ScheduleData(edittime.toString(),editdate.toString(),editduration.toString(),1,"Active",key1);
-                myRef.child(key1).setValue(schedule);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.toPopulate, new ScheduleFragment());
-                ft.commit();
+                if(time_set.equals("") || date_set.equals("") || duration_set.equals("")) {
+                    Toasty.info(UpdateSchedule.this, getResources().getString(R.string.toast_fill_details), Toast.LENGTH_SHORT, true).show();
+                }
+                else {
+                    final ScheduleData schedule1 = new ScheduleData(time_set,date_set,duration_set,1,"Rescheduled",key);
+                    myRef.child(key).setValue(schedule1);
+                    ScheduleData schedule = new ScheduleData(time_set,date_set,duration_set,1,"Active",key1);
+                    myRef.child(key1).setValue(schedule);
+                    Toasty.success(UpdateSchedule.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT, true).show();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.toPopulate, new ScheduleFragment());
+                    ft.commit();
+                }
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final ScheduleData schedule2 = new ScheduleData(time.toString(),date.toString(),duration.toString(),1,"Cancelled",key);
+                final ScheduleData schedule2 = new ScheduleData(time_set,date_set,duration_set,1,"Cancelled",key);
                 myRef.child(key).setValue(schedule2);
-                ScheduleData schedule = new ScheduleData(edittime.toString(),editdate.toString(),editduration.toString(),1,"Active",key1);
-                myRef.child(key1).setValue(schedule);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.toPopulate, new ScheduleFragment());
                 ft.commit();

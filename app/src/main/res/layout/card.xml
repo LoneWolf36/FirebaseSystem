@@ -8,8 +8,7 @@
     <TextView
         android:id="@+id/huid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="wrap_content" />
 
     <com.wajahatkarim3.easyflipview.EasyFlipView
         android:id="@+id/flip_view"

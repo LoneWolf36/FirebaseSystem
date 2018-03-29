@@ -90,7 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         myHoder.status.setText(mylist.getStatus());
-        myHoder.huid.setText(mylist.getUid());
+//        myHoder.huid.setVisibility(View.INVISIBLE);
 
         //code to make the Active green. It doesnt seem to work, do look into it
         if(myHoder.status.getText().toString().equals("Accept")){
@@ -121,6 +121,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //                    mydam.child(key).setValue(schedule);
 //                    Log.i("lw", parent_id.getText().toString());
                     AppGlobalData.key = myHoder.huid.getText().toString();
+                    Log.i("lw",myHoder.huid.getText().toString());
                     AppGlobalData.date = myHoder.date.getText().toString();
                     AppGlobalData.duration = myHoder.duration.getText().toString();
                     AppGlobalData.time = myHoder.time.getText().toString();
@@ -220,8 +221,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         protected void onCreate(Bundle savedInstanceState) {
 //           super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
-//99
-
         }
         //     public static class MyHoder extends RecyclerView.ViewHolder{
 //        TextView date,time,duration;

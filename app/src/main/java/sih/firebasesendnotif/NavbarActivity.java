@@ -80,7 +80,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             }
         });
 
-        bar.displayHomeAsUpEnabled(false);
+        bar.displayHomeAsUpEnabled(true);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

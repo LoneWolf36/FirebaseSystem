@@ -58,7 +58,6 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //prefs = getSharedPreferences("JaisPrefrence", Context.MODE_PRIVATE);
         prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
     }
 
@@ -89,14 +88,11 @@ public class ScheduleFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         context = getContext();
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        final String city_name = prefs.getString("city_name", "");
-        keys =new ArrayList<>();
+        keys = new ArrayList<>();
         update_list = new ArrayList<ScheduleData>();
         list = new ArrayList<ScheduleData>();
         city_list = new ArrayList<String>();
         notifyDataList = new ArrayList<>();
-        DatabaseReference myRef1 = database.getReference(city_name);
 
         cityRef = FirebaseDatabase.getInstance().getReference();
         cityRef.child("cities").addValueEventListener(new ValueEventListener() {
@@ -116,104 +112,9 @@ public class ScheduleFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
-
-
         });
-
-
-//        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-        //      FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        //    final String city_name = prefs.getString("city_name", "");
-//
-//        if(prefs.getBoolean("admin_login",false)){
-//            //Admin Login view only auth dam
-//            Log.i("Admin view ","display");
-//         //   DatabaseReference myRef1 = database.getReference(city_name);
-//            myRef=myRef1.child("Dams").child(mAuth.getUid());
-//
-//            myRef.addValueEventListener(new ValueEventListener() {
-//
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-//                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-//                    recycle.setLayoutManager(recyce);
-//                    recycle.setLayoutManager(new VegaLayoutManager());
-//                    recycle.setItemAnimator(new DefaultItemAnimator());
-//                    recycle.setAdapter(recyclerAdapter);
-//
-//                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-//                        ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
-//                        list.add(value);
-//
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError error) {
-//                    // Failed to read value
-//                    Log.w("Hello", "Failed to read value.", error.toException());
-//                }
-//            });
-//
-//        }
-//
-//        else{
-//            //User Login view all dams of city
-////            String[] citieslocal =loadArray("citieslocal", getActivity());
-//
-////            Log.i("UserSSS","display here baby  Array contents: "+citieslocal.length);
-//
-////            for(String user_subscribed_city:city_list){
-////            for(int i=0;i<citieslocal.length;i++){
-////                String user_subscribed_city=citieslocal[i];
-////                Log.i("City List user view ",   user_subscribed_city+" in user list");
-////                DatabaseReference myRefuser = database.getReference(user_subscribed_city);
-////                myRef=myRefuser.child("Dams");
-////                myRef.addValueEventListener(new ValueEventListener() {
-////                    @Override
-////                    public void onDataChange(DataSnapshot dataSnapshot) {
-////
-////
-////                        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-////                        RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-////                        recycle.setLayoutManager(recyce);
-////                        //recycle.setLayoutManager(new VegaLayoutManager());
-////                        recycle.setItemAnimator(new DefaultItemAnimator());
-////                        recycle.setAdapter(recyclerAdapter);
-////
-////                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-////                            for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
-////                                ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
-////                                list.add(value);
-////                            }
-////                        }
-////
-////
-////                    }
-////                    @Override
-////                    public void onCancelled(DatabaseError error) {
-////                        // Failed to read value
-////                        Log.w("Hello", "Failed to read value.", error.toException());
-////                    }
-////                });
-////            }
-////
-////
-//       }
-//
-//        if(flagger==true) {
-//            Log.d("flagger",flagger.toString());
-//           // populate_my_list();
-//        }
-//        // Inflate the layout for this fragment
-//
-//    }
-
         return v;
-
     }
 
     @Override
@@ -221,29 +122,15 @@ public class ScheduleFragment extends Fragment {
         super.onAttach(context);
     }
 
-
-//    public String[] loadArray(String arrayName, Context mContext) {
-//        SharedPreferences prefs = mContext.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-//        int size = prefs.getInt(arrayName + "_size", 0);
-//        String array[] = new String[size];
-//        for(int i=0;i<size;i++)
-//            array[i] = prefs.getString(arrayName + "_" + i, null);
-//        return array;
-//    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
-        //  populate_my_list();
     }
 
     public void populate_my_list() {
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         final String city_name = prefs.getString("city_name", "");
-        final RecyclerAdapter recyclerAdapter= new RecyclerAdapter(list,context);
-        final RecyclerView.LayoutManager recyce=new LinearLayoutManager(context);;
         if (prefs.getBoolean("admin_login", false)) {
             //Admin Login view only auth dam
             Log.i("Admin view ", "display");
@@ -262,10 +149,10 @@ public class ScheduleFragment extends Fragment {
                     //    recycle.setLayoutManager(new VegaLayoutManager());
                     //   setLayoutFlag = false;
                     //}
-
-                    recycle.setLayoutManager(recyce);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(recyclerAdapter);
+//
+//                    recycle.setLayoutManager(recyce);
+//                    recycle.setItemAnimator(new DefaultItemAnimator());
+//                    recycle.setAdapter(recyclerAdapter);
 
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
@@ -274,7 +161,6 @@ public class ScheduleFragment extends Fragment {
                         Log.i(keys.toArray().toString(), "onDataChange: Keys from ScheduleFrag");
                     }
                 }
-
 
                 @Override
                 public void onCancelled(DatabaseError error) {

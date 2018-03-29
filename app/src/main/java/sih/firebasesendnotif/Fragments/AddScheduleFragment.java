@@ -22,7 +22,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import sih.firebasesendnotif.AppGlobalData;
 import sih.firebasesendnotif.R;
 import sih.firebasesendnotif.Classes.ScheduleData;
 
@@ -84,7 +83,6 @@ public class AddScheduleFragment extends Fragment {
                // showDatePicker();
                 DialogFragment newFragment = new DateFragment();
                 newFragment.show(getActivity().getFragmentManager(), "datePicker");
-
             }
         });
         txtDate = (TextView) view.findViewById(R.id.in_date);
@@ -160,7 +158,7 @@ public class AddScheduleFragment extends Fragment {
 
             }
         });
-        clearBtn = (Button) view.findViewById(R.id.clear);
+        clearBtn = (Button) view.findViewById(R.id.cancel_schedule);
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

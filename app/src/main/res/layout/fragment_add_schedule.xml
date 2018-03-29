@@ -37,7 +37,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/btn_time"
-            android:layout_alignStart="@+id/clear"
+            android:layout_alignStart="@+id/cancel_schedule"
             android:hint="@string/in_time"
             android:textColor="@color/black"
             android:textSize="20dp" />
@@ -69,15 +69,15 @@
             android:id="@+id/submit"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/clear"
-            android:layout_alignBottom="@+id/clear"
+            android:layout_alignBaseline="@+id/cancel_schedule"
+            android:layout_alignBottom="@+id/cancel_schedule"
             android:layout_alignEnd="@+id/btn_date"
             android:text="@string/submitSchedule"
             android:textColor="@color/white"
             android:background="@drawable/mybutton"/>
 
         <Button
-            android:id="@+id/clear"
+            android:id="@+id/cancel_schedule"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

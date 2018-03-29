@@ -1,89 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"    >
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TextView
-            android:id="@+id/date1"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:hint="Date"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textColorHighlight="@android:color/primary_text_dark"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/time1"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:hint="Time"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textColorHighlight="@android:color/primary_text_dark"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/duration1"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:hint="Duration"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textColorHighlight="@android:color/primary_text_dark"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/displaykey"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:hint="Previous key"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textColorHighlight="@android:color/primary_text_dark"
-            android:textSize="40dp" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/edit_time"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="time" />
-
-    <EditText
-        android:id="@+id/edit_date"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="date" />
-
-    <EditText
-        android:id="@+id/edit_duration"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="duration" />
+            android:id="@+id/in_date"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginTop="86dp"
+            android:layout_toStartOf="@+id/btn_date"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:hint="@string/in_date"/>
 
     <Button
-        android:id="@+id/update_schedule"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_date"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Update" />
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn_time"
+        android:layout_marginTop="115dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/selectDate"
+        android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/in_time"
+            android:layout_width="191dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="193dp"
+            android:hint="@string/in_time"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btn_time"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/in_time"
+            android:background="@drawable/mybutton"
+            android:text="@string/selectTime"
+            android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/txtDuration"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="283dp"
+        android:ems="10"
+        android:hint="@string/duration"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/reschedule"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cancel_schedule"
+        android:layout_marginStart="-13dp"
+        android:layout_toEndOf="@+id/in_date"
+        android:background="@drawable/mybutton"
+        android:text="@string/reschedule"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/cancel_schedule"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Cancel schedule" />
-
-
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/in_date"
+        android:layout_marginBottom="151dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/cancel_this_schedule"
+        android:textColor="@color/white" />
+    </RelativeLayout>
