@@ -90,7 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         myHoder.status.setText(mylist.getStatus());
-//        myHoder.huid.setVisibility(View.INVISIBLE);
+        myHoder.huid.setVisibility(View.INVISIBLE);
 
         //code to make the Active green. It doesnt seem to work, do look into it
         if(myHoder.status.getText().toString().equals("Accept")){
@@ -107,19 +107,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         // LOGIC FOR HIDING BUTTONS ON CARDS
         if (!prefs.getBoolean("admin_login", false)) {
             myHoder.notify.setVisibility(View.INVISIBLE);
+            myHoder.update.setVisibility(View.INVISIBLE);
         } else {
-            myHoder.notify.setOnClickListener(new View.OnClickListener() {
+            myHoder.update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //LOGIC FOR NOTIFICATION
-//                    Log.d("city name in database",city_name);
-//                    DatabaseReference ref = database.getReference(city_name);
-//                    DatabaseReference mydam;
-//                    mydam = ref.child("Notify");
-//                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
-//                    String key=mydam.push().getKey();
-//                    mydam.child(key).setValue(schedule);
-//                    Log.i("lw", parent_id.getText().toString());
                     AppGlobalData.key = myHoder.huid.getText().toString();
                     Log.i("lw",myHoder.huid.getText().toString());
                     AppGlobalData.date = myHoder.date.getText().toString();
@@ -127,8 +119,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                     AppGlobalData.time = myHoder.time.getText().toString();
                     Intent intent = new Intent(context, UpdateSchedule.class);
                     context.startActivity(intent);
-
-                    //               mydam = ref.child(mAuth.getUid());
+                }
+            });
+            myHoder.notify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //LOGIC FOR NOTIFICATION
+                    Log.d("city name in database",city_name);
+                    DatabaseReference ref = database.getReference(city_name);
+                    DatabaseReference mydam;
+                    mydam = ref.child("Notify");
+                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+                    String key=mydam.push().getKey();
+                    mydam.child(key).setValue(schedule);
+//                                   mydam = ref.child(mAuth.getUid());
 //                ScheduleData schedule = new ScheduleData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),1);
 //                ref.setValue(schedule);
 //
@@ -210,7 +214,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration,status,huid;
-        Button notify;
+        Button notify,update;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
         private Handler handler;
@@ -233,6 +237,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             huid = (TextView) itemView.findViewById(R.id.huid);
             date = (TextView) itemView.findViewById(R.id.date);
             notify =(Button) itemView.findViewById(R.id.notify_button);
+            update = itemView.findViewById(R.id.update_button);
             Log.e("date",date.getText().toString());
             txtDay = (TextView) itemView.findViewById(R.id.txtDay);
             txtHour = (TextView) itemView.findViewById(R.id.txtHour);
