@@ -96,7 +96,7 @@ public class ContactAuthority extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(getActivity(), "Please select something", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getResources().getString(R.string.blank), Toast.LENGTH_SHORT).show();
             }
         });
         submitQuery.setOnClickListener(new View.OnClickListener() {

@@ -110,7 +110,7 @@ public class DamLocationPicker extends Fragment{
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(getActivity(), "Please select something", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getResources().getString(R.string.blank), Toast.LENGTH_SHORT).show();
             }
         });
         submit_loc.setOnClickListener(new View.OnClickListener() {
@@ -280,8 +280,8 @@ public class DamLocationPicker extends Fragment{
                 Lat = queriedLocation.latitude;
                 Long = queriedLocation.longitude;
                 //Log.e("Latitude= " , ""+queriedLocation.latitude);
-                tvLong.setText("Longitude= " + String.valueOf(Lat));
-                tvLat.setText("Latitude= " + String.valueOf(Long));
+                tvLong.setText(getContext().getResources().getString(R.string.lat)+"= " + String.valueOf(Lat));
+                tvLat.setText(getContext().getResources().getString(R.string.longi)+"= " + String.valueOf(Long));
                 // tvLat.setText(place.getAddress());
             }
         }

@@ -321,8 +321,6 @@ public class ScheduleFragment extends Fragment {
                     }
                 });
             }
-
-
         }
     }
 }

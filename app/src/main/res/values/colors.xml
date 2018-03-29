@@ -22,4 +22,11 @@
     <color name="violet">#7885CB</color>
     <color name="Lightblue">#00e5ff</color>
     <color name="background">#dddddd</color>
+    <color name="prim">#1e88e5</color>
+    <color name="prim_light">#6ab7ff</color>
+    <color name="prim_dark">#005cb2</color>
+    <color name="sec">#e040fb</color>
+    <color name="sec_light">#ff79ff</color>
+    <color name="sec_dark">#a900c5</color>
+    <color name="fab">#f50057</color>
 </resources>

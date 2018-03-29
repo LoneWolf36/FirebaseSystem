@@ -66,4 +66,19 @@
     <string name="at">वक़्त</string>
     <string name="for_duration">अवधि</string>
     <string name="hourss">घंटे</string>
+    <string name="toast_fill_details">कृपया सभी क्षेत्र भरे</string>
+    <string name="toast_fill_dur">कृपया अवधि के लिए अंक लिखें</string>
+    <string name="toast_success">शेड्यूल बन गया</string>
+    <string name="blank">कृपया कुछ चुनें</string>
+    <string name="fire_brig_connect">फायर ब्रिगेड से संपर्क किया जा रहा है</string>
+    <string name="confirm_call">क्या आप वाकई कॉल करना चाहते हैं?</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="emerg_connect">आपातकालीन आपदा प्रबंधन से संपर्क किया जा रहा है</string>
+    <string name="police_connect">पुलिस से संपर्क किया जा रहा है</string>
+    <string name="confirm_logout">क्या आप लॉग आउट करना चाहते हैं</string>
+    <string name="place">बांध स्थान चुनें</string>
+    <string name="confirm_place">क्या आप इस बांध से चेतावनी भेजना चाहते हैं?</string>
+    <string name="exit">ऐप को बंद करें</string>
+    <string name="confirm_exit">क्या आप ऐप बंद करना चाहते हैं?</string>
 </resources>
