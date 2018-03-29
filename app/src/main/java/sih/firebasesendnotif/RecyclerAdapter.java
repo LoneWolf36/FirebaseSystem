@@ -237,8 +237,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            setContentView(R.layout.card);
             huid = (TextView) itemView.findViewById(R.id.huid);
             date = (TextView) itemView.findViewById(R.id.date);
-            notify =(Button) itemView.findViewById(R.id.notify_button);
-            update = itemView.findViewById(R.id.update_button);
+            notify =(Button) itemView.findViewById(R.id.notify);
+            update = itemView.findViewById(R.id.update);
             Log.e("date",date.getText().toString());
             txtDay = (TextView) itemView.findViewById(R.id.txtDay);
             txtHour = (TextView) itemView.findViewById(R.id.txtHour);
@@ -296,9 +296,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             itemView.findViewById(R.id.LinearLayout3).setVisibility(View.GONE);
             itemView.findViewById(R.id.LinearLayout4).setVisibility(View.GONE);
         }
-
-
     }
-
-
 }

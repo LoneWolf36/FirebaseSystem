@@ -4,6 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/huid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="250dp"
