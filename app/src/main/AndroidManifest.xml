@@ -59,6 +59,8 @@
         <activity
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".UpdateSchedule"
+            android:theme="@style/AppTheme.Dark" />
     </application>
 
 </manifest>

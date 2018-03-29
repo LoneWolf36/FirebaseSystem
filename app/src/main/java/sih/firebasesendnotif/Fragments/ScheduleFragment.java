@@ -310,7 +310,6 @@ public class ScheduleFragment extends Fragment {
                                 ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
                                 list.add(value);
                                 keys.add(dataSnapshot.getKey());
-                                Log.i(keys.toArray().toString(), "onDataChange: Keys from ScheduleFrag");
                             }
                         }
                     }

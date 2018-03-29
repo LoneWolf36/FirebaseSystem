@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import sih.firebasesendnotif.AppGlobalData;
 import sih.firebasesendnotif.R;
 import sih.firebasesendnotif.Classes.ScheduleData;
 
@@ -136,6 +137,7 @@ public class AddScheduleFragment extends Fragment {
                     }
                     //Log.d("dT",date_in_mili.getTime());
                     String key = mydam.push().getKey();
+
                     long dim;
                     String Lat = prefs.getString("Latitude", "" );
                     String Lng = prefs.getString("Longitude", "" );

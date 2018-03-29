@@ -8,57 +8,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"    >
+
         <TextView
             android:id="@+id/date1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:hint="Date"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHighlight="@android:color/primary_text_dark"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="40dp"/>
+            android:textSize="40dp" />
+
         <TextView
             android:id="@+id/time1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:hint="Time"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHighlight="@android:color/primary_text_dark"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="40dp"/>
+            android:textSize="40dp" />
+
         <TextView
             android:id="@+id/duration1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:hint="Duration"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHighlight="@android:color/primary_text_dark"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="40dp"/>
+            android:textSize="40dp" />
+
         <TextView
             android:id="@+id/displaykey"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:hint="Previous key"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHighlight="@android:color/primary_text_dark"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="40dp"/>
+            android:textSize="40dp" />
 
     </LinearLayout>
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
         android:id="@+id/edit_time"
-        />
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/edit_date" />
+        android:hint="time" />
+
     <EditText
+        android:id="@+id/edit_date"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/edit_duration" />
+        android:hint="date" />
+
+    <EditText
+        android:id="@+id/edit_duration"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="duration" />
 
     <Button
         android:id="@+id/update_schedule"

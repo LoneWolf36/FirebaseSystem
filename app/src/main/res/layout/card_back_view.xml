@@ -15,7 +15,6 @@
             app:roundRect_bottomRightRadius="20dp"
             app:roundRect_topLeftRadius="20dp"
             app:roundRect_topRightRadius="20dp">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

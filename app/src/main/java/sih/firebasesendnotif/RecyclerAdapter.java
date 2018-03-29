@@ -44,6 +44,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     String city_name;
     private FirebaseAuth mAuth;
     EditText txtDate, txtTime,txtDuration;
+    //TextView parent_id;
 
     //    prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
@@ -89,6 +90,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         myHoder.status.setText(mylist.getStatus());
+        myHoder.huid.setText(mylist.getUid());
+
         //code to make the Active green. It doesnt seem to work, do look into it
         if(myHoder.status.getText().toString().equals("Accept")){
             String status = myHoder.status.getText().toString();
@@ -116,7 +119,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
 //                    String key=mydam.push().getKey();
 //                    mydam.child(key).setValue(schedule);
-
+//                    Log.i("lw", parent_id.getText().toString());
+                    AppGlobalData.key = myHoder.huid.getText().toString();
+                    AppGlobalData.date = myHoder.date.getText().toString();
+                    AppGlobalData.duration = myHoder.duration.getText().toString();
+                    AppGlobalData.time = myHoder.time.getText().toString();
                     Intent intent = new Intent(context, UpdateSchedule.class);
                     context.startActivity(intent);
 
@@ -201,7 +208,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
 
     class MyHoder extends RecyclerView.ViewHolder{
-        TextView date,time,duration,status;
+        TextView date,time,duration,status,huid;
         Button notify;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
@@ -224,6 +231,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             super(itemView);
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
+            huid = (TextView) itemView.findViewById(R.id.huid);
             date = (TextView) itemView.findViewById(R.id.date);
             notify =(Button) itemView.findViewById(R.id.notify_button);
             Log.e("date",date.getText().toString());
@@ -235,6 +243,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             time= (TextView) itemView.findViewById(R.id.time);
             duration= (TextView) itemView.findViewById(R.id.duration);
             status =(TextView) itemView.findViewById(R.id.status);
+//            parent_id = itemView.findViewById(R.id.parent_id);
+//            parent_id.setVisibility(View.INVISIBLE);
         }
 
         public void countDownStart(final String events) {

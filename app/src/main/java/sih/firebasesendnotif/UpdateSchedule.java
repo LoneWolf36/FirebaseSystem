@@ -27,9 +27,8 @@ import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 public class UpdateSchedule extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    DatabaseReference ref;
     String key;
-    TextView time, date, duration;
+    TextView time, date, duration, uid;
     EditText edittime, editdate, editduration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +50,12 @@ public class UpdateSchedule extends AppCompatActivity {
         time= (TextView) findViewById(R.id.time1);
         date= (TextView) findViewById(R.id.date1);
         duration= (TextView) findViewById(R.id.duration1);
+        uid = findViewById(R.id.huid);
         time.setText(AppGlobalData.time);
         date.setText(AppGlobalData.date);
         duration.setText(AppGlobalData.duration);
+        uid.setText(AppGlobalData.key);
+
         Log.d(AppGlobalData.time, "onCreate: time of AppGlobal ");
 
         edittime =(EditText) findViewById(R.id.edit_time);
@@ -67,7 +69,8 @@ public class UpdateSchedule extends AppCompatActivity {
 
         key = AppGlobalData.key; //key to be postponed
         key = key.substring(1,key.length()-1);
-        final String key1=ref.push().getKey(); //key to be active
+        final String key1=myRef.push().getKey(); //key to be active
+//        myRef.child(key1).setValue()
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override

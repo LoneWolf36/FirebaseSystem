@@ -5,6 +5,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/huid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
     <com.wajahatkarim3.easyflipview.EasyFlipView
         android:id="@+id/flip_view"
         android:layout_width="match_parent"
@@ -18,6 +24,8 @@
         <include layout="@layout/card_back_view" />
 
         <!-- Front Layout Goes Here -->
+
+
         <include layout="@layout/card_front_view" />
     </com.wajahatkarim3.easyflipview.EasyFlipView>
 
