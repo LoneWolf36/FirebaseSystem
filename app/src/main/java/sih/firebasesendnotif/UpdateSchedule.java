@@ -2,6 +2,7 @@ package sih.firebasesendnotif;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -89,9 +90,9 @@ public class UpdateSchedule extends AppCompatActivity {
         key = AppGlobalData.key; //key to be postponed
         final String key1=myRef.push().getKey(); //key to be active
 //        myRef.child(key1).setValue()
-        time_set = time.getText().toString();
-        date_set = date.getText().toString();
-        duration_set = duration.getText().toString();
+        time_set = AppGlobalData.time;
+        date_set = AppGlobalData.date;
+        duration_set = AppGlobalData.duration;
 
         rescheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +106,7 @@ public class UpdateSchedule extends AppCompatActivity {
                     ScheduleData schedule = new ScheduleData(time_set,date_set,duration_set,1,"Active",key1);
                     myRef.child(key1).setValue(schedule);
                     Toasty.success(UpdateSchedule.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT, true).show();
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.toPopulate, new ScheduleFragment());
-                    ft.commit();
+                    startActivity(new Intent(UpdateSchedule.this, NavbarActivity.class));
                 }
             }
         });

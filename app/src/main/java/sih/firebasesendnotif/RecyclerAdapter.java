@@ -90,6 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         myHoder.status.setText(mylist.getStatus());
+        myHoder.huid.setText(mylist.getUid());
         myHoder.huid.setVisibility(View.INVISIBLE);
 
         //code to make the Active green. It doesnt seem to work, do look into it
