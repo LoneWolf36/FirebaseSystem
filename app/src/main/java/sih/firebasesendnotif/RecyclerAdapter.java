@@ -76,7 +76,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
         //Log.d("city name",city_name);
         // e.getString(city_name);
-        View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.cardtest,parent,false);
         MyHoder myHoder = new MyHoder(view);
         mAuth = FirebaseAuth.getInstance();
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
@@ -100,9 +100,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         }
         //code segment ends here
         String events= mylist.getDate();
+        String events1 = events + " " +mylist.getTime();
         myHoder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
         myHoder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
-        myHoder.countDownStart(events);
+        myHoder.countDownStart(events,events1);
 
         // LOGIC FOR HIDING BUTTONS ON CARDS
         if (!prefs.getBoolean("admin_login", false)) {
@@ -251,16 +252,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            parent_id.setVisibility(View.INVISIBLE);
         }
 
-        public void countDownStart(final String events) {
+        public void countDownStart(final String events,final String events1) {
             handler = new Handler();
             runnable = new Runnable() {
                 @Override
                 public void run() {
                     handler.postDelayed(this, 1000);
                     try {
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
                         // Please here set your event date//YYYY-MM-DD
-                        Date futureDate = dateFormat.parse(String.valueOf(events));
+                        Date futureDate = dateFormat.parse(String.valueOf(events1));
                         Date currentDate = new Date();
                         if (!currentDate.after(futureDate)) {
                             long diff = futureDate.getTime() - currentDate.getTime();
@@ -275,6 +276,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                             txtHour.setText("" + String.format("%02d", hours));
                             txtMinute.setText("" + String.format("%02d", minutes));
                             txtSecond.setText("" + String.format("%02d", seconds));
+                            Log.e("Full time",events1);
                         } else {
                             tvEventStart.setVisibility(View.VISIBLE);
                             tvEventStart.setText("Water Released");
