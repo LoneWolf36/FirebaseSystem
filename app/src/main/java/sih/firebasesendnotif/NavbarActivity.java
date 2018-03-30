@@ -214,6 +214,20 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         }
 
         // Location picker fragme
+        else if (id == R.layout.activity_location_picker) {
+            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(getApplicationContext().getResources().getString(R.string.place))
+                    .setMessage(getApplicationContext().getResources().getString(R.string.confirm_place))
+                    .setPositiveButton(getApplicationContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+                        }
+                    })
+                    .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
+                    .show();
+        }
             //startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
         else if (id == R.id.fragment_dam_location_picker) {
 

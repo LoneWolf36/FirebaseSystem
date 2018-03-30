@@ -145,7 +145,7 @@ public class AddScheduleFragment extends Fragment {
 //                    Log.d("karle",Lng);
 //                    Log.d("karle",place);
 //                    Log.d("karle",dam_name);
-                    dim=date_in_mili.getTime();
+                    dim=date_in_mili.getTime()+19800000;
                     System.out.println(dim);
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key, dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
