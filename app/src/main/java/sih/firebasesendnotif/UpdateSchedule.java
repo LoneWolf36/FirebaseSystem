@@ -39,8 +39,6 @@ public class UpdateSchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_schedule);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         SharedPreferences prefs;
