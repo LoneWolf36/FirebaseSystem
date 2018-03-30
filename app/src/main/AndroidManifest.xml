@@ -35,7 +35,7 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.Dark">
         </activity>
-
+        <receiver android:name=".Classes.Alarmnotif" />
         <activity
             android:name=".DamDetailsPickerActivity"
             android:label="@string/title_activity_login"

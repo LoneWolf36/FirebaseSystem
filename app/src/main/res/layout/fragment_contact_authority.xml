@@ -23,9 +23,10 @@
             android:id="@+id/editText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="64dp"
+            android:layout_alignEnd="@+id/spinner"
+            android:layout_below="@+id/textView2"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="14dp"
             android:ems="10"
             android:inputType="textMultiLine" />
 
@@ -35,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="75dp"
             android:text="@string/post_button"
             android:background="@drawable/mybutton"
             android:textColor="@color/white"/>

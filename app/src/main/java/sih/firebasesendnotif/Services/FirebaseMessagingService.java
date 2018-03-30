@@ -30,8 +30,20 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
 
         if(remoteMessage.getNotification()!=null){
+            String dam_name = remoteMessage.getData().get("dam_name");
+            String latfcm = remoteMessage.getData().get("lat");
+            String lonfcm = remoteMessage.getData().get("lon");
+            String city_name = remoteMessage.getData().get("city_name");
+            String time = remoteMessage.getData().get("time");
+            String duration = remoteMessage.getData().get("duration");
+            String date = remoteMessage.getData().get("date");
+            //Log.i("JL",lat+"  "+lon);
+
+
+            String message = "Water Realeased from "+dam_name+" at time: "+time+" on date: "+date;
+
             String title=remoteMessage.getNotification().getTitle();
-            String message = remoteMessage.getNotification().getBody();
+            //String message = remoteMessage.getNotification().getBody();
             Log.d(TAG,"Title " + title);
             Log.d(TAG,"Body " + message);
             sendNotification(title,message);

@@ -97,8 +97,8 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
             public void onClick(View view) {
 
                 dam_pick= tvdam.getText().toString();
-                lat_pick=tvlat.getText().toString();
-                lon_pick=tvlong.getText().toString();
+                //lat_pick=tvlat.getText().toString();
+                //lon_pick=tvlong.getText().toString();
                 place_pick=tvPlace.getText().toString();
 
                 if (city_pick.equals("")||dam_pick.equals("")||place_pick.equals("")){
@@ -108,11 +108,12 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("City", city_pick);
                     //final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+                    // working !Log.d("Jai Log lat",lat_pick+"  "+lon_pick+" "+dam_pick);
                     editor.putString("Dam_Name", dam_pick);
                     editor.putString("Latitude", lat_pick);
                     editor.putString("Longitude", lon_pick);
                     editor.putString("Place", place_pick);
-
+                    editor.putBoolean("admin_det", true);
                     //editor.putString("Place",tvPlace.getText().toString());
                     editor.apply();
                     startActivity(intent);

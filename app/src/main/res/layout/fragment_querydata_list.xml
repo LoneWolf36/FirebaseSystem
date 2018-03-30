@@ -10,7 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:elevation="10dp"
-            android:background="@color/violet"
             android:layout_margin="9dp"
             android:padding="5dp"
             app:roundRect_bottomLeftRadius="20dp"

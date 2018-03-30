@@ -10,6 +10,21 @@ public class NotifyData
     String time;
     String duration;
     String city_name;
+    String dam_name;
+    String address;
+    String lat;
+    String lon;
+
+    public NotifyData(String date, String time, String duration, String city_name, String dam_name, String address, String lat, String lon) {
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.city_name = city_name;
+        this.dam_name = dam_name;
+        this.address = address;
+        this.lat = lat;
+        this.lon = lon;
+    }
 
     public String getDate() {
         return date;
@@ -43,11 +58,35 @@ public class NotifyData
         this.city_name = city_name;
     }
 
-    public NotifyData(String date, String time, String duration, String city_name) {
+    public String getDam_name() {
+        return dam_name;
+    }
 
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.city_name = city_name;
+    public void setDam_name(String dam_name) {
+        this.dam_name = dam_name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }
