@@ -119,7 +119,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         Log.e("getdate format",mylist.getDate());
-        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at "+ mylist.getDam_name()+" in "+mylist.getCity_name());
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+ mylist.getDam_name()+" in "+mylist.getCity_name());
         myHoder.status.setText(mylist.getStatus());
 
         //code to make the Active green. It doesnt seem to work, do look into it

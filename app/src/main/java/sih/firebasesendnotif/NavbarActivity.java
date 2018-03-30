@@ -161,6 +161,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             ft.add(R.id.toPopulate, new ScheduleFragment());
             ft.commit();
         }
+
     }
 
     @Override
