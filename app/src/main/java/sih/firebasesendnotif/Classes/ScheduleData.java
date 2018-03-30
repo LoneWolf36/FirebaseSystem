@@ -117,9 +117,5 @@ public class ScheduleData {
         this.address = address;
         this.lat = lat;
         this.lon = lon;
-
-<<<<<<< HEAD
-    }
-=======
->>>>>>> c757f80cac9477e724e07395864c955e041f94e3
+        }
 }

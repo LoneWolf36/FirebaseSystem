@@ -90,11 +90,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public void onBindViewHolder(final MyHoder myHoder, int position) {
         final ScheduleData mylist = list.get(position);
-        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at"+ mylist.getDam_name());
         myHoder.status.setText(mylist.getStatus());
         myHoder.huid.setText(mylist.getUid());
         myHoder.huid.setVisibility(View.INVISIBLE);
-
+        //myHoder.damname.setText(mylist.getDam_name());
         //code to make the Active green. It doesnt seem to work, do look into it
         if(myHoder.status.getText().toString().equals("Accept")){
             String status = myHoder.status.getText().toString();
@@ -225,7 +225,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
 
     class MyHoder extends RecyclerView.ViewHolder{
-        TextView date,time,duration,status,huid;
+        TextView date,time,duration,status,huid,damname;
         Button notify,update,query;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
@@ -246,7 +246,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             super(itemView);
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
-
+            //damname=(TextView) itemView.findViewById(R.id.dam_name);
             query = itemView.findViewById(R.id.query);
             huid = (TextView) itemView.findViewById(R.id.huid);
             date = (TextView) itemView.findViewById(R.id.date);
