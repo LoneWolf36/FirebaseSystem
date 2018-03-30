@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.stone.vega.library.VegaLayoutManager;
 
 import java.util.ArrayList;
 
@@ -41,10 +42,8 @@ public class ScheduleFragment extends Fragment {
     java.util.List<String> city_list;
     DatabaseReference cityRef;
     RecyclerView recycle;
-    //    Button notify, update;
     Context context;
     Boolean flagger;
-    Boolean setLayoutFlag;
     ArrayList<String> keys;
     java.util.List<ScheduleData> update_list;
     SharedPreferences prefs;
@@ -52,7 +51,6 @@ public class ScheduleFragment extends Fragment {
     public ScheduleFragment() {
         // Required empty public constructor
         flagger = false;
-        setLayoutFlag = true;
     }
 
     @Override
@@ -66,23 +64,6 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_schedule, container, false);
-//        notify = (Button) v.findViewById(R.id.notify);
-//        update = (Button) v.findViewById(R.id.update);
-
-//        EasyFlipView easyFlipView = (EasyFlipView) v.findViewById(R.id.flip_view);
-//        easyFlipView.onTouchEvent()
-//        easyFlipView.flipTheView();
-//        easyFlipView.setOnFlipListener(new EasyFlipView.OnFlipAnimationListener() {
-//            @Override
-//            public void onViewFlipCompleted(EasyFlipView flipView, EasyFlipView.FlipState newCurrentSide)
-//            {
-//
-//                // ...
-//                // Your code goes here
-//                // ...
-//
-//            }
-//        });
 
         recycle = (RecyclerView) v.findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
@@ -107,6 +88,7 @@ public class ScheduleFragment extends Fragment {
                     }
                 }
                 flagger = true;
+                recycle.setLayoutManager(new VegaLayoutManager());
                 populate_my_list();
             }
 
@@ -141,18 +123,8 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                    recycle.setLayoutManager(recyce);
                     recycle.setItemAnimator(new DefaultItemAnimator());
                     recycle.setAdapter(recyclerAdapter);
-                    //if (setLayoutFlag) {
-                    //    recycle.setLayoutManager(new VegaLayoutManager());
-                    //   setLayoutFlag = false;
-                    //}
-//
-//                    recycle.setLayoutManager(recyce);
-//                    recycle.setItemAnimator(new DefaultItemAnimator());
-//                    recycle.setAdapter(recyclerAdapter);
 
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         ScheduleData value = dataSnapshot1.getValue(ScheduleData.class);
@@ -180,16 +152,8 @@ public class ScheduleFragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, context);
-                        RecyclerView.LayoutManager recyce = new LinearLayoutManager(context);
-                        recycle.setLayoutManager(recyce);
                         recycle.setItemAnimator(new DefaultItemAnimator());
                         recycle.setAdapter(recyclerAdapter);
-                        //if (setLayoutFlag) {
-                        //    recycle.setLayoutManager(new VegaLayoutManager());
-                        //    setLayoutFlag = false;
-                        //}
-
-                        //recyce = new LinearLayoutManager(context);
 
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
