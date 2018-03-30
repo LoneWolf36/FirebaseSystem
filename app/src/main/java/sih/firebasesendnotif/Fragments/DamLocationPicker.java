@@ -224,6 +224,7 @@ public class DamLocationPicker extends Fragment{
                 // tvLat.setText(place.getAddress());
                 editor.putString("Latitude",String.valueOf(Lat));
                 editor.putString("Longitude",String.valueOf(Long));
+
             }
         }
 

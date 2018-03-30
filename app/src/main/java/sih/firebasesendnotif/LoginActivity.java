@@ -207,9 +207,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         //if(city_name.equals("unset")){
-                        Intent intent = new Intent(LoginActivity.this, DamDetailsPickerActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);//}
+                        if(!prefs.getBoolean("admin_det",false)) {
+                            Intent intent = new Intent(LoginActivity.this, DamDetailsPickerActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                        else {
+                            Intent intent = new Intent(LoginActivity.this, NavbarActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+
+                        //}
                         /*else{
                             Intent intent = new Intent(LoginActivity.this, NavbarActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
