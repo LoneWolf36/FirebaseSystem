@@ -90,7 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public void onBindViewHolder(final MyHoder myHoder, int position) {
         final ScheduleData mylist = list.get(position);
-        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at"+ mylist.getDam_name());
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at "+ mylist.getDam_name()+" in "+mylist.getCity_name());
         myHoder.status.setText(mylist.getStatus());
         myHoder.huid.setText(mylist.getUid());
         myHoder.huid.setVisibility(View.INVISIBLE);
