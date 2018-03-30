@@ -87,7 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
         //Log.d("city name",city_name);
         // e.getString(city_name);
-        View view = LayoutInflater.from(context).inflate(R.layout.cardtest,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
         MyHoder myHoder = new MyHoder(view);
         mAuth = FirebaseAuth.getInstance();
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
