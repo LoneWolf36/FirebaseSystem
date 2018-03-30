@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Calendar;
 
 import butterknife.ButterKnife;
+import sih.firebasesendnotif.Classes.Alarmnotif;
 import sih.firebasesendnotif.Classes.ScheduledNotif;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
@@ -67,10 +69,11 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         //code for Notification
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 07);
-        calendar.set(Calendar.MINUTE, 30);
+
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 56);
         calendar.set(Calendar.SECOND, 0);
-        Intent intent1 = new Intent(NavbarActivity.this, ScheduledNotif.class);
+        Intent intent1 = new Intent(NavbarActivity.this, Alarmnotif.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(NavbarActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) NavbarActivity.this.getSystemService(NavbarActivity.this.ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
@@ -99,7 +102,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             }
         });
 
-        bar.displayHomeAsUpEnabled(false);
+        bar.displayHomeAsUpEnabled(true);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

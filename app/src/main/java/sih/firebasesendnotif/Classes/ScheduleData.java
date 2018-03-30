@@ -13,6 +13,7 @@ public class ScheduleData {
     String uid;
     String city_name;
     String dam_name;
+    String address;
 
     public ScheduleData(String date, String time, String duration, long temp, String status, String uid, String dam_name, String address, String lat, String lng) {
         this.date = date;
@@ -28,7 +29,14 @@ public class ScheduleData {
         this.lng = lng;
     }
 
-    String address;
+    public ScheduleData(String time, String date, String duration, long temp, String status, String uid) {
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.temp = temp;
+        this.status = status;
+        this.uid = uid;
+    }
 
     public String getCity_name() {
         return city_name;

@@ -119,6 +119,11 @@
     <string name="confirm_logout">Are you sure you want to logout?</string>
     <string name="place">PickPlace</string>
     <string name="confirm_place">Do you want set this position for warning?</string>
-    <string name="exit"></string>
-    <string name="confirm_exit"></string>
+    <string name="exit">Exit</string>
+    <string name="confirm_exit">Are you sure you want to exit?</string>
+    <string name="cancel_this_schedule">Cancel this schedule</string>
+    <string name="reschedule">Reschedule</string>
+
+    <!--Strings related to Update schedule-->
+    <string name="success">Success</string>
 </resources>

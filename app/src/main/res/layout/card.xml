@@ -39,7 +39,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:orientation="vertical" >
-
     <com.github.florent37.shapeofview.shapes.RoundRectView
         android:layout_width="match_parent"
         android:layout_height="266dp"
@@ -267,6 +266,21 @@ android:orientation="vertical" >
                         android:elevation="15dp"
                         android:text="@string/notify"
                         android:textColor="@color/white" />
+                </RelativeLayout>
+            </RelativeLayout>
+    <TextView
+        android:id="@+id/huid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:id="@+id/flip_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flipDuration="400"
+        app:flipEnabled="true"
+        app:flipOnTouch="true"
+        app:flipType="vertical">
 
                     <Button
                         android:id="@+id/update"
@@ -280,8 +294,11 @@ android:orientation="vertical" >
                         android:text="@string/update"
                         android:textColor="@color/white" />
 
-                </RelativeLayout>
-            </RelativeLayout>
+        <!-- Front Layout Goes Here -->
+
+
+        <include layout="@layout/card_front_view" />
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
 
         </LinearLayout>
     </com.github.florent37.shapeofview.shapes.RoundRectView>

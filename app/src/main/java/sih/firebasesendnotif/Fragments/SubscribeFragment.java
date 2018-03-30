@@ -16,8 +16,10 @@ package sih.firebasesendnotif.Fragments;
         import android.view.ViewGroup;
         import android.widget.ArrayAdapter;
         import android.widget.CheckBox;
+        import android.widget.CompoundButton;
         import android.widget.LinearLayout;
         import android.widget.Spinner;
+        import android.widget.Switch;
 
         import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.DatabaseError;
@@ -47,30 +49,13 @@ public class SubscribeFragment extends Fragment {
     private DatabaseReference myRef;
     LinearLayout ll;
     List<String> cities;
-    List<CheckBox> citycb;
+    List<Switch> citycb;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-//        Boolean chk1 = prefs.getBoolean("c1", false);
-//        Boolean chk2 = prefs.getBoolean("c2", false);
-//        Boolean chk3 = prefs.getBoolean("c3", false);
-//        Boolean chk4 = prefs.getBoolean("c4", false);
         View view = inflater.inflate(R.layout.frament_subscribe, container, false);
-//        c1=view.findViewById(R.id.checkBox1);
-//        c1.setChecked(chk1);
-//
-//        c1=view.findViewById(R.id.checkBox2);
-//        c1.setChecked(chk2);
-//
-//        c1=view.findViewById(R.id.checkBox3);
-//        c1.setChecked(chk3);
-//
-//        c1=view.findViewById(R.id.checkBox4);
-//        c1.setChecked(chk4);
-//
-
         return view;
     }
 
@@ -80,16 +65,11 @@ public class SubscribeFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Subscribe ScheduleFragment");
-//
-//        c1 = (CheckBox) this.getView().findViewById(R.id.checkBox1);
-//        c2 = (CheckBox) this.getView().findViewById(R.id.checkBox2);
-//        c3 = (CheckBox) this.getView().findViewById(R.id.checkBox3);
-//        c4 = (CheckBox) this.getView().findViewById(R.id.checkBox4);
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         cities = new ArrayList<String>();
-        citycb = new ArrayList<CheckBox>();
+        citycb = new ArrayList<Switch>();
 
         ll=this.getView().findViewById(R.id.linlay);
         myRef = FirebaseDatabase.getInstance().getReference();
@@ -105,7 +85,7 @@ public class SubscribeFragment extends Fragment {
                     //xif(cities.c)
                     cities.add(cityName);
                     Boolean chk1 = prefs.getBoolean(cityName, false);
-                    CheckBox cb = new CheckBox(getActivity());
+                    Switch cb = new Switch(getActivity());
                     cb.setChecked(chk1);
                     cb.setTextSize(22);
                     cb.setTextColor(((int) R.color.primary));
@@ -116,10 +96,10 @@ public class SubscribeFragment extends Fragment {
 
 
 
-                for(final CheckBox cb:citycb){
-                    cb.setOnClickListener(new View.OnClickListener() {
+                for(final Switch cb:citycb){
+                    cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
-                        public void onClick(View view) {
+                        public void onCheckedChanged(CompoundButton compoundButton,boolean b) {
                             if (cb.isChecked())
 
                             {

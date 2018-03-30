@@ -63,7 +63,6 @@ public abstract class ScheduledNotif extends BroadcastReceiver {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                 Date currentDate = new Date();
-                                //String futureDate = getDate();
                                 ScheduleData value = dataSnapshot2.getValue(ScheduleData.class);
                                 //list.add(value);
                                 //ADD DATE OF ANDROID AND getTEMP FROM VALUE

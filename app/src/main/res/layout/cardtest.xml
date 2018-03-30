@@ -1,42 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-    <com.github.florent37.shapeofview.shapes.RoundRectView
+    <TextView
+        android:id="@+id/huid"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_margin="9dp"
-        android:background="@color/cardview_light_background"
-        android:elevation="10dp"
-        android:padding="15dp"
-        android:paddingBottom="30dp"
-        app:roundRect_bottomLeftRadius="20dp"
-        app:roundRect_bottomRightRadius="20dp"
-        app:roundRect_topLeftRadius="20dp"
-        app:roundRect_topRightRadius="20dp">
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <!--<RelativeLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:padding="5dp"-->
-            <!--android:id="@+id/rLNotch"-->
-            <!--android:background="@color/black">-->
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="12d 12h 24m 7s"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textAllCaps="true"-->
-            <!--android:textSize="20sp"-->
-            <!--android:layout_centerHorizontal="true" />-->
+
             <RelativeLayout
                 android:id="@+id/rLNotch"
                 android:layout_width="250dp"
@@ -76,7 +58,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="txtDay"
+                            android:text="12D"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -98,7 +80,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="txtHour"
+                            android:text="12H"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -121,7 +103,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="txtMin"
+                            android:text="12M"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -144,7 +126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="txtSec"
+                            android:text="12S"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#4a0000"
                             android:textSize="25sp"
@@ -154,67 +136,89 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <!--</RelativeLayout>-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/status"
-                    android:layout_below="@+id/status"
-
-                    android:layout_marginTop="15dp"
-                    android:text="@+string/textView"
-                    android:textSize="23dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="100sp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/textView3"
-                    android:layout_alignBottom="@+id/textView3"
-                    android:layout_toEndOf="@+id/duration"
-                    android:text="status"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/date"
-                    android:text="@+string/textView"
-                    android:textSize="15dp"
-
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/time"
-                    android:text="textView"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
 
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="12dp"
-                    android:text="status" />
 
-            </RelativeLayout>
         </LinearLayout>
-    </com.github.florent37.shapeofview.shapes.RoundRectView>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:padding="7dp">
+
+           <TextView
+               android:id="@+id/status"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_marginTop="69dp"
+               android:layout_toEndOf="@+id/time"
+               android:text="TextView"
+               android:textSize="15sp" />
+
+           <TextView
+               android:id="@+id/date"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_below="@+id/status"
+               android:text="TextView"
+
+               android:textSize="24sp"/>
+
+           <TextView
+               android:id="@+id/time"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_above="@+id/duration"
+               android:layout_alignStart="@+id/date"
+               android:text="TextView"
+               android:textSize="15sp" />
+
+           <TextView
+               android:id="@+id/textView6"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_alignTop="@+id/status"
+               android:text="Status : "
+               android:textSize="15sp"/>
+
+           <TextView
+               android:id="@+id/duration"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               android:layout_alignStart="@+id/date"
+               android:layout_marginBottom="53dp"
+               android:text="TextView"
+               android:textSize="15sp" />
+
+           <Button
+               android:id="@+id/update"
+               android:layout_width="130dp"
+               android:layout_height="50dp"
+               android:layout_alignParentStart="true"
+               android:layout_below="@+id/duration"
+               android:layout_marginStart="35dp"
+               android:layout_marginTop="-53dp"
+               android:text="Update"
+               android:background="@drawable/mybutton"
+               android:textColor="@color/white"/>
+
+           <Button
+               android:id="@+id/notify"
+               android:layout_width="130dp"
+               android:layout_height="50dp"
+               android:layout_alignParentEnd="true"
+               android:layout_below="@+id/duration"
+               android:layout_marginEnd="37dp"
+               android:layout_marginTop="-53dp"
+               android:text="Notify"
+               android:background="@drawable/mybutton"
+               android:textColor="@color/white"/>
+       </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

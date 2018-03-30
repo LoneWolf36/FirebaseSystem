@@ -84,7 +84,6 @@ public class AddScheduleFragment extends Fragment {
                // showDatePicker();
                 DialogFragment newFragment = new DateFragment();
                 newFragment.show(getActivity().getFragmentManager(), "datePicker");
-
             }
         });
         txtDate = (TextView) view.findViewById(R.id.in_date);
@@ -138,6 +137,7 @@ public class AddScheduleFragment extends Fragment {
                     }
                     //Log.d("dT",date_in_mili.getTime());
                     String key = mydam.push().getKey();
+
                     long dim;
                     String Lat = prefs.getString("Latitude", "" );
                     String Lng = prefs.getString("Longitude", "" );
@@ -162,7 +162,7 @@ public class AddScheduleFragment extends Fragment {
 
             }
         });
-        clearBtn = (Button) view.findViewById(R.id.clear);
+        clearBtn = (Button) view.findViewById(R.id.cancel_schedule);
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
