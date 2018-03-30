@@ -1,6 +1,8 @@
 package sih.firebasesendnotif;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +24,11 @@ import android.view.View;
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+
 import butterknife.ButterKnife;
+import sih.firebasesendnotif.Classes.Alarmnotif;
+import sih.firebasesendnotif.Classes.ScheduledNotif;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
 import sih.firebasesendnotif.Fragments.DamLocationPicker;
@@ -57,8 +64,23 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar);
-        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //code for Notification
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 56);
+        calendar.set(Calendar.SECOND, 0);
+        Intent intent1 = new Intent(NavbarActivity.this, Alarmnotif.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(NavbarActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) NavbarActivity.this.getSystemService(NavbarActivity.this.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+
+        ButterKnife.bind(this);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
@@ -213,6 +235,22 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
                     .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
                     .show();
         }
+//
+//        // Location picker fragme
+//        else if (id == R.id.fragment_dam_location_picker) {
+//            new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setTitle(getApplicationContext().getResources().getString(R.string.place))
+//                    .setMessage(getApplicationContext().getResources().getString(R.string.confirm_place))
+//                    .setPositiveButton(getApplicationContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            startActivity(new Intent(NavbarActivity.this, LocationPickerActivity.class));
+//                        }
+//                    })
+//                    .setNegativeButton(getApplicationContext().getResources().getString(R.string.no), null)
+//                    .show();
+//        }
 
         // Location picker fragme
         else if (id == R.layout.activity_location_picker) {

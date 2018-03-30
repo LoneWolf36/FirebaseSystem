@@ -96,9 +96,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         Log.d("city name",city_name);
         return myHoder;
     }
+
+//    @Override
+//    public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        //SharedPreferences.Editor e= prefs.edit();
+//        // e.getString(city_name);
+//        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
+//        //Log.d("city name",city_name);
+//        // e.getString(city_name);
+//        View view = LayoutInflater.from(context).inflate(R.layout.card_back_view,parent,false);
+//        MyHoder myHoder = new MyHoder(view);
+//        mAuth = FirebaseAuth.getInstance();
+//        //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
+//        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+//        city_name = prefs.getString("city_name", "");
+//        Log.d("city name",city_name);
+//        return myHoder;
+//    }
+
     @Override
     public void onBindViewHolder(final MyHoder myHoder, int position) {
         final ScheduleData mylist = list.get(position);
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
+        Log.e("getdate format",mylist.getDate());
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at "+ mylist.getDam_name()+" in "+mylist.getCity_name());
         myHoder.status.setText(mylist.getStatus());
 
@@ -110,8 +130,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         }
         //code segment ends here
         String events= mylist.getDate();
-        String events1 = events + " " +mylist.getTime();
-        myHoder.time.setText(context.getResources().getString(R.string.at)+": " +mylist.getTime());
+        String events1= events+" " +mylist.getTime();
+        myHoder.time.setText(context.getResources().getString(R.string.at)+": "+mylist.getTime());
         myHoder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
         myHoder.countDownStart(events,events1);
 
@@ -276,8 +296,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            parent_id = itemView.findViewById(R.id.parent_id);
 //            parent_id.setVisibility(View.INVISIBLE);
         }
-
-        public void countDownStart(final String events,final String events1) {
+        public void countDownStart(final String events, final String events1) {
             handler = new Handler();
             runnable = new Runnable() {
                 @Override
@@ -306,6 +325,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                             tvEventStart.setVisibility(View.VISIBLE);
                             tvEventStart.setText("Water Released");
                             textViewGone();
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
