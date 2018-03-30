@@ -113,7 +113,7 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                     editor.putString("Latitude", lat_pick);
                     editor.putString("Longitude", lon_pick);
                     editor.putString("Place", place_pick);
-
+                    editor.putBoolean("admin_det", true);
                     //editor.putString("Place",tvPlace.getText().toString());
                     editor.apply();
                     startActivity(intent);
