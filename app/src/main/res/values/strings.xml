@@ -132,4 +132,6 @@
     <string name="phone2">Enter Phone No. of cellular Tower 2</string>
     <string name="phone3">Enter Phone No. of cellular Tower 3</string>
     <string name="msg">Send Message to cell towers</string>
+
+    <string name="affects">Affected radius by released water</string>
 </resources>

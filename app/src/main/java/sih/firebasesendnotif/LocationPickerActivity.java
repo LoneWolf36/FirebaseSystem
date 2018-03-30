@@ -61,6 +61,7 @@ public class LocationPickerActivity extends AppCompatActivity {
 //                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_FINE_LOCATION_REQUEST_CODE);
 //        }
 //    }
+
     public void goPlacePicker(View view) {
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
