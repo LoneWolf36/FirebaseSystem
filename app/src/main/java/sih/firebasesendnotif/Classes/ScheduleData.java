@@ -118,7 +118,6 @@ public class ScheduleData {
         this.lat = lat;
         this.lon = lon;
     }
-    public ScheduleData(){
+    public ScheduleData(){}
 
-    }
 }

@@ -99,7 +99,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public void onBindViewHolder(final MyHoder myHoder, int position) {
         final ScheduleData mylist = list.get(position);
-        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at "+ mylist.getDam_name()+" in "+mylist.getCity_name());
         myHoder.status.setText(mylist.getStatus());
 
         //code to make the Active green. It doesnt seem to work, do look into it
@@ -259,7 +259,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             super(itemView);
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
-
+            //damname=(TextView) itemView.findViewById(R.id.dam_name);
             query = itemView.findViewById(R.id.query);
             date = (TextView) itemView.findViewById(R.id.date);
             notify =(Button) itemView.findViewById(R.id.notify);

@@ -151,10 +151,10 @@ public class AddScheduleFragment extends Fragment {
                       //dim=date_in_mili.getTime();
                     //System.out.println(dim);
                     //DT DATE TO DIM
-                    dim=1;
+ //                   dim=1;
+                    dim=date_in_mili.getTime();
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key,city_name,dam_name, place, Lat, Lng);
    //dim is date and time in miliseconds
-                    dim=date_in_mili.getTime();
                     //System.out.println(dim);
 //                    Calendar calendar =Calendar.getInstance();
 //                    calendar.setTimeInMillis(dim);
@@ -167,7 +167,6 @@ public class AddScheduleFragment extends Fragment {
                     txtDuration.setText("");
                     txtTime.setText("");
                 }
-
             }
         });
         clearBtn = (Button) view.findViewById(R.id.cancel_schedule);
