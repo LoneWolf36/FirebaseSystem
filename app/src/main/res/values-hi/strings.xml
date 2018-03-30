@@ -81,6 +81,6 @@
     <string name="confirm_place">क्या आप इस बांध से चेतावनी भेजना चाहते हैं?</string>
     <string name="exit">ऐप को बंद करें</string>
     <string name="confirm_exit">क्या आप ऐप बंद करना चाहते हैं?</string>
-    <string name="success">कार्य पूर्ण हुआ</string>
-    <string name="query">प्रश्न अधिकारी</string>
+    <string name="success">कार्य पूरा हुआ</string>
+    <string name="query">अधिकारियों से पूछिए</string>
 </resources>

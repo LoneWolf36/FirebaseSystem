@@ -54,12 +54,10 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.stone.vega.library:VegaLayoutManager:1.0.6'
-    compile 'com.github.florent37:shapeofview:1.0.6'
     compile 'com.github.GrenderG:Toasty:1.2.8'
     compile 'com.github.florent37:awesomebar:1.0.3'
     compile 'com.rom4ek:arcnavigationview:1.0.3'
-    compile 'com.wajahatkarim3.EasyFlipView:EasyFlipView:2.0.5'
-    implementation 'com.github.sharish:ShimmerRecyclerView:v1.2'
+    compile 'com.github.florent37:shapeofview:1.0.6'
 }
 
 apply plugin: 'com.google.gms.google-services'
