@@ -145,9 +145,11 @@ public class AddScheduleFragment extends Fragment {
 //                    Log.d("karle",Lng);
 //                    Log.d("karle",place);
 //                    Log.d("karle",dam_name);
-                    dim=date_in_mili.getTime();
-                    System.out.println(dim);
-                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key, dam_name, place, Lat, Lng);
+                    //dim=date_in_mili.getTime();
+                    //System.out.println(dim);
+                    //DT DATE TO DIM
+                    dim=1;
+                    ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key,city_name,dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
                     mydam.child(key).setValue(schedule);
                     Toast.makeText(getContext(),getContext().getResources().getString(R.string.toast_success), Toast.LENGTH_SHORT).show();

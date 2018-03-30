@@ -1,7 +1,6 @@
 package sih.firebasesendnotif.Fragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -85,7 +84,7 @@ public class ContactAuthority extends Fragment {
         public void onCancelled(DatabaseError databaseError) {
 
         }});
-        submitQuery=view.findViewById(R.id.button1);
+        submitQuery=view.findViewById(R.id.fplace);
         //city_name=view.findViewById(R.id.editText);
         queryContent=view.findViewById(R.id.editText2);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

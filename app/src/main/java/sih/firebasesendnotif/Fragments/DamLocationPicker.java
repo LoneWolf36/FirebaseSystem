@@ -1,11 +1,8 @@
 package sih.firebasesendnotif.Fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,10 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import sih.firebasesendnotif.CityPickerActivity;
-import sih.firebasesendnotif.Classes.ScheduleData;
-import sih.firebasesendnotif.LocationPickerActivity;
-import sih.firebasesendnotif.NavbarActivity;
 import sih.firebasesendnotif.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -83,6 +76,11 @@ public class DamLocationPicker extends Fragment{
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         submit_loc = (Button) view.findViewById(R.id.submit_loc);
+    //    final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+
+
+
+
         myRef.child("cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,98 +126,6 @@ public class DamLocationPicker extends Fragment{
         });
     }
 
-//    SharedPreferences prefs;
-//    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
-// //   private OnFragmentInteractionListener mListener;
-//    // Instance of Firebase
-//    private DatabaseReference myRef;
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        //setContentView(R.layout.activity_city_picker);
-//
-//        myRef = FirebaseDatabase.getInstance().getReference();
-//        myRef.child("cities").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Is better to use a List, because you don't know the size
-//                // of the iterator returned by dataSnapshot.getChildren() to
-//                // initialize the array
-//                Log.i("lw", "onDataChange: I am here!");
-//                final List<String> cities = new ArrayList<String>();
-//
-//                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
-//                    String cityName = citySnapshot.getValue(String.class);
-//                    cities.add(cityName);
-//                }
-//
-//                ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, cities);
-//                cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                spinner.setAdapter(cityAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-//        spinner.setOnItemSelectedListener(this);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (city_pick.equals("")){
-//                    //Toast.makeText(getActivity(), "Invalid information", Toast.LENGTH_SHORT).show();
-//                }else{
-//                    Intent intent = new Intent(getActivity(), NavbarActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    intent.putExtra("City", city_pick);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
-//    }
-//
-//
-//
-//    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-//        // An item was selected. You can retrieve the selected item using
-//        // parent.getItemAtPosition(pos)
-//        city_pick = parent.getItemAtPosition(pos).toString();
-//        //final SharedPreferences.Editor editor = view.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-//        prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-//        city_pick = prefs.getString("city_name", "");
-//        //editor.putString("city_name", city_pick);
-//        //editor.apply();
-//
-//    }
-//
-//    public void onNothingSelected(AdapterView<?> parent) {
-//        // Another interface callback
-//        //Toast.makeText(parent.getContext(),"Please select something", Toast.LENGTH_SHORT).show();
-//    }
-
-//    @Override
-//    public void onBackPressed() {
-//        new AlertDialog.Builder(this)
-//                .setIcon(android.R.drawable.ic_dialog_alert)
-//                .setTitle("Closing Activity")
-//                .setMessage("Are you sure you want to close this activity?")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        FirebaseAuth.getInstance().signOut();
-//                        finish();
-//                    }
-//
-//                })
-//                .setNegativeButton("No", null)
-//                .show();
-//
-//    }
-//}
-
     /*
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -244,12 +150,35 @@ public class DamLocationPicker extends Fragment{
         tvPlace= (TextView)v.findViewById(R.id.tvPlace);
         tvLat= (TextView)v.findViewById(R.id.tvLat);
         tvLong= (TextView)v.findViewById(R.id.tvLong);
-        button1 = (Button) v.findViewById(R.id.button1);
+        button1 = (Button) v.findViewById(R.id.fplace);
         //button = v.findViewById(R.id.complete_login);
         spinner = v.findViewById(R.id.city_picker);
         button = v.findViewById(R.id.complete_login);
         spinner = v.findViewById(R.id.city_picker);
         tvDam = v.findViewById(R.id.tvDam);
+
+
+        final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        String lat =prefs.getString("Latitude","Unset");
+        String lon =prefs.getString("Longitude","Unset");
+        String dam_name =prefs.getString("Dam_Name","Unset");
+        String place =prefs.getString("Place","Unset");
+        String city =prefs.getString("city_name","Unset");
+        tvLong.setText(lon);
+        tvLat.setText(lat);
+        tvDam.setText(dam_name);
+
+
+//
+//        tvLat.setText(lat);
+//        tvLong.setText(lon);
+//        tvDam.setText(dam_name);
+//        spinner.setSelection(2,true);
+
+
+
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
