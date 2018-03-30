@@ -128,4 +128,8 @@
     <string name="success">Success</string>
 
     <string name="query">Query the authority</string>
+    <string name="phone1">Enter Phone No. of cellular Tower 1</string>
+    <string name="phone2">Enter Phone No. of cellular Tower 2</string>
+    <string name="phone3">Enter Phone No. of cellular Tower 3</string>
+    <string name="msg">Send Message to cell towers</string>
 </resources>
