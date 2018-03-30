@@ -40,7 +40,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             //Log.i("JL",lat+"  "+lon);
 
 
-            String message = "Water Realeased from "+dam_name+" at time: "+time+" on date: "+date;
+            String message = "Water released from "+dam_name+" at time: "+time+" on date: "+date;
 
             String title=remoteMessage.getNotification().getTitle();
             //String message = remoteMessage.getNotification().getBody();
@@ -69,7 +69,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
+                        .setColor(getResources().getColor(R.color.red))
+                        .setContentIntent(pendingIntent).setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody));
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
