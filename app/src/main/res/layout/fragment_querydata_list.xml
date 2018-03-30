@@ -15,19 +15,24 @@
             app:roundRect_bottomLeftRadius="20dp"
             app:roundRect_bottomRightRadius="20dp"
             app:roundRect_topLeftRadius="20dp"
-            app:roundRect_topRightRadius="20dp">
+            app:roundRect_topRightRadius="20dp"
+            android:background="@color/white">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/question"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="331dp"
+                    android:layout_height="175dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/textView"
-                    android:textSize="23dp"
-                    android:textColor="#FFF" />
+                    android:textColor="@color/grey"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </com.github.florent37.shapeofview.shapes.RoundRectView>
     </RelativeLayout>

@@ -31,8 +31,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="53dp"
             android:layout_toEndOf="@+id/citytv"
-            android:textAlignment="center"
-            android:padding="20dp"/>
+            android:padding="20dp"
+            android:textAlignment="center" />
     </RelativeLayout>
     <EditText
         android:id="@+id/tvDam"
@@ -46,26 +46,28 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="109dp"
             android:orientation="horizontal"
+            android:padding="10dp"
             android:paddingTop="30dp">
-            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvPlace"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="374dp"
+                android:layout_height="41dp" />
 
             <Button
                 android:id="@+id/fplace"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/mybutton"
                 android:text="@string/place_select"
                 android:textColor="@color/white" />
-        </LinearLayout>
+        </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,18 +76,18 @@
         >
         <TextView
             android:id="@+id/tvLat"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:hint="@string/lat"
             android:layout_height="wrap_content"
             android:padding="10dp"
             />
+
         <TextView
             android:id="@+id/tvLong"
-            android:layout_width="wrap_content"
-            android:hint="@string/longi"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-           />
+            android:hint="@string/longi"
+            android:padding="10dp" />
 
         </LinearLayout>
     </LinearLayout>
