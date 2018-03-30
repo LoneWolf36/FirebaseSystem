@@ -99,21 +99,22 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                 dam_pick= tvdam.getText().toString();
                 lat_pick=tvlat.getText().toString();
                 lon_pick=tvlong.getText().toString();
+                place_pick=tvPlace.getText().toString();
 
-                if (city_pick.equals("")||dam_pick.equals("")){
+                if (city_pick.equals("")||dam_pick.equals("")||place_pick.equals("")){
                     Toast.makeText(DamDetailsPickerActivity.this, "Invalid information", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(DamDetailsPickerActivity.this, NavbarActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("City", city_pick);
-
                     //final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
                     editor.putString("Dam_Name", dam_pick);
                     editor.putString("Latitude", lat_pick);
                     editor.putString("Longitude", lon_pick);
+                    editor.putString("Place", place_pick);
+
                     //editor.putString("Place",tvPlace.getText().toString());
                     editor.apply();
-
                     startActivity(intent);
 
                 }
@@ -198,7 +199,6 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                 final Place place = PlacePicker.getPlace(this, data);
                 //final Place myPlace = place.get(0);
                 LatLng queriedLocation = place.getLatLng();
-
                 //GET PLACE
                 //tvPlace.setText(place.getAddress());
                 lat_pick = String.valueOf(queriedLocation.latitude);
@@ -208,7 +208,7 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                 tvlong.setText(getResources().getString(R.string.lat)+"= " + lon_pick);
                 tvlat.setText(getResources().getString(R.string.longi)+"= " + lat_pick);
                 // tvLat.setText(place.getAddress());
-
+                tvPlace.setText(place.getAddress());
             }
         }
 
