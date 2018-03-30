@@ -80,8 +80,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                                 Log.d("loc","loc");
                                 double lat = location.getLatitude();
                                 double lng = location.getLongitude();
-                                String strCurrentLatitude = String.valueOf(lat);
-                                String strCurrentLongitude = String.valueOf(lng);
                                 Log.d("LatCurr",String.valueOf(lat));
                                 Log.d("LongCurr",String.valueOf(lng));
                             }
@@ -133,27 +131,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.d("Start loc","Helooo");
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermisions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for ActivityCompat#requestPermissions for more details.
-//            return;
-//        }
-//        else{
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, CurrentlocationListener);
-//        //LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-//        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        double longitude = location.getLongitude();
-//        double latitude = location.getLatitude();
-//        String locLat = String.valueOf(latitude)+","+String.valueOf(longitude);
-//        Log.d("lat long",locLat);
-//        }
-
         if(remoteMessage.getData().size()>0){
             Log.d(TAG,"Message data : " +remoteMessage.getData());
         }
@@ -177,11 +154,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 //        intent.putExtra("Current Location", true);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
-
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.replace(R.id.toPopulate, new DamLocationPicker());
-//        ft.commit();
-
         String channelId = "8605+";
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
