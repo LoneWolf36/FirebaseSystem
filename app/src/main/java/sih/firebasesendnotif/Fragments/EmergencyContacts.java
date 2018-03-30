@@ -3,6 +3,7 @@ package sih.firebasesendnotif.Fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import sih.firebasesendnotif.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +37,8 @@ public class EmergencyContacts extends DialogFragment {
     Button callpolice;
     Button call_firefighter;
     Button call_disaster;
+    Button msg;
+    SharedPreferences prefs;
     private OnFragmentInteractionListener mListener;
 
     public EmergencyContacts() {
@@ -73,9 +78,11 @@ public class EmergencyContacts extends DialogFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_emergency_contacts, container, false);
 
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         callpolice = (Button) v.findViewById(R.id.call_police);
         call_firefighter = (Button) v.findViewById(R.id.calldis);
         call_disaster =(Button) v.findViewById(R.id.callfirebrigade);
+        msg = (Button)v.findViewById(R.id.msg);
         call_firefighter.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
@@ -170,7 +177,23 @@ public class EmergencyContacts extends DialogFragment {
 
                                        }
         );
+        msg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String p1 = prefs.getString("phone1",null);
+                String p2 = prefs.getString("phone2",null);
+                String p3 = prefs.getString("phone3",null);
 
+                StringBuilder Uri = new StringBuilder("sms:");
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType("vnd.android-dir/mms-sms");
+                intent.putExtra("address", p1+" , "+p2+" , "+p3);
+//                intent.putExtra("address", p2);
+//                intent.putExtra("address", p3);
+                intent.putExtra("sms_body","Water will be released from " + prefs.getString("Dam_name","") + " located at "+prefs.getString("Place","") + ". Please be Careful!");
+                startActivity(intent);
+            }
+        });
         return v;
     }
 
