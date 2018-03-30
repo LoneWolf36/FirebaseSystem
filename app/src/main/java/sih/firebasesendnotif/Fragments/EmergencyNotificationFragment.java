@@ -1,6 +1,9 @@
 package sih.firebasesendnotif.Fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,19 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.twitter.sdk.android.core.DefaultLogger;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import sih.firebasesendnotif.Classes.EmergencyData;
 import sih.firebasesendnotif.R;
@@ -34,7 +39,9 @@ public class EmergencyNotificationFragment extends Fragment {
     private FirebaseAuth mAuth;
     SharedPreferences prefs ;
     String city_name;
-    Button submit;
+    Button submit, postfb, posttw;
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
 
     public EmergencyNotificationFragment() {
         // Required empty public constructor
@@ -46,6 +53,15 @@ public class EmergencyNotificationFragment extends Fragment {
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        Twitter.initialize(getContext());
+    }
+
+    @Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -55,10 +71,6 @@ public class EmergencyNotificationFragment extends Fragment {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         //ref = database.getReference("pune");
         View v = inflater.inflate(R.layout.fragment_emergency_notification, container, false);
-
-        Log.d("lw", "qwqwqwqwqwqw");
-
-        //Button submit=(Button) v.findViewById(R.id.push);
         return v;
         }
 
@@ -67,6 +79,47 @@ public class EmergencyNotificationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final EditText text = (EditText) view.findViewById(R.id.text1);
         submit=(Button) view.findViewById(R.id.push);
+        postfb = view.findViewById(R.id.post_fb);
+        posttw = view.findViewById(R.id.post_tw);
+
+        //final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+
+        postfb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = text.getText().toString();
+                String mess ="Water to be released from "+prefs.getString("Dam_Name","")+" located at "+prefs.getString("Place","")+
+                        " Authority message :  "+message;
+                Log.i("JL",mess);
+               if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentUrl(Uri.parse("http://mowr.gov.in/"))
+                           .setQuote(mess)
+                            .build();
+                    shareDialog.show(linkContent);
+                }
+            }
+        });
+
+        posttw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = text.getText().toString();
+                String mess ="Water to be released from "+prefs.getString("Dam_Name","")+" located at "+prefs.getString("Place","")+
+                        " Authority message :  "+message;
+                Log.i("JL",mess);
+                TwitterConfig config = new TwitterConfig.Builder(getContext())
+                        .logger(new DefaultLogger(Log.DEBUG))
+                        .twitterAuthConfig(new TwitterAuthConfig("CONSUMER_KEY", "CONSUMER_SECRET"))
+                        .debug(true)
+                        .build();
+                Twitter.initialize(config);
+                TweetComposer.Builder builder = new TweetComposer.Builder(getContext())
+                        .text(mess);
+                builder.show();
+                }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

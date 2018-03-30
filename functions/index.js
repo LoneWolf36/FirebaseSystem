@@ -1,4 +1,6 @@
+//import firebase functions modules
 const functions = require('firebase-functions');
+
 //import admin module
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
@@ -57,10 +59,80 @@ console.log('Payload made');
 
 
 exports.timely_cron = functions.https.onRequest((req, res) => {
-	console.log('FIRECRON');
+	//console.log(admin.database.ServerValue.TIMESTAMP);
+//	return;
+
+	/*return Promise.all([
+	
 	const time =new Date().getTime();
 	const cRef = admin.database().ref("cities");
 	console.log(time);
-    //console.log(admin.database.ServerValue.TIMESTAMP);
-    return cRef.toString();
+	
+]).then(() => {
+  res.status(200).send('ok');
+}).catch(err => {
+  console.log(err.stack);
+  res.status(500).send('error');
+});*/
+
+
+	console.log('FIRECRON4');
+	const time =new Date().getTime();
+	const cRef = admin.database().ref("cities");
+	console.log(time);
+	//const citylist[];
+	var cur_city;
+	var in_city;
+	var cur_dam;
+	var in_dam;
+	var cur_sh;
+	var in_sh;
+return new Promise(function(resolve, reject) {
+
+//console.log(cRef+"   ->Cref");
+return cRef.once('value').then(snapshot => {
+      snapshot.forEach(function(child) {	
+		//Each City
+			//console.log(child.val());
+			//For each city
+			cur_city=child.val(); //namecity 
+			in_city=admin.database().ref(cur_city+"/Dams") //ref maker
+			console.log(in_city+"  in_city var"); 				
+				in_city.once('value').then(snapshot1 => {
+				snapshot1.forEach(function(child1) {
+					//console.log("Here123");
+						//EACH DAM
+						console.log("MY DAM VALUE :"+child1.val().key);
+						console.log("MY DAM KEY :"+child1.key);
+						
+							/*		cur_dam=child1.key;
+									//in_dam=admin.database().ref(cur_city+"/"+cur_dam)
+									in_dam=  in_city+"/"+cur_dam;
+									console.log(in_dam+"  in_dam var");
+									
+									in_dam.once('value').then(snapshot2 => {
+									//console.log("HereXXX0");
+									snapshot2.forEach(function(child2) {
+									console.log("HereABS23");
+									console.log(child2.val());
+									});
+									
+							return; //res.status(200).send('ok');
+							}).catch(error => {this.errorMessage = 'Error - ' + error.message})	
+						*/
+						
+						//EACH DAM
+					});
+				return; //res.status(200).send('ok');
+				}).catch(error => {this.errorMessage = 'Error - ' + error.message})	
+			//For each city
+			//return;
+     
+      });
+     return res.status(200).send('ok');
+  });
+//}
+
 });
+});
+

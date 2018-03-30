@@ -105,7 +105,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
   @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if(remoteMessage.getData().size()>0){
-            Log.d(TAG,"Message data : " +remoteMessage.getData());
+            Log.d("lw","Message data : " +remoteMessage.getData());
         }
 
         if(remoteMessage.getNotification()!=null){
@@ -144,6 +144,23 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 String message= dam_name + " in "+city_name+"'s message: "+text+ " for release at "+time;
                 sendNotification(title,message);
             }
+            String dam_name = remoteMessage.getData().get("dam_name");
+            String latfcm = remoteMessage.getData().get("lat");
+            String lonfcm = remoteMessage.getData().get("lon");
+            String city_name = remoteMessage.getData().get("city_name");
+            String time = remoteMessage.getData().get("time");
+            String duration = remoteMessage.getData().get("duration");
+            String date = remoteMessage.getData().get("date");
+            //Log.i("JL",lat+"  "+lon);
+
+
+            String message = "Water released from "+dam_name+" at time: "+time+" on date: "+date;
+
+            String title=remoteMessage.getNotification().getTitle();
+            //String message = remoteMessage.getNotification().getBody();
+            Log.d(TAG,"Title " + title);
+            Log.d(TAG,"Body " + message);
+            sendNotification(title,message);
         }
     }
     private void sendNotification(String title, String messageBody) {
@@ -161,7 +178,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
+                        .setColor(getResources().getColor(R.color.red))
+                        .setContentIntent(pendingIntent).setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody));
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

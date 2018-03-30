@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class DamLocationPicker extends Fragment{
     String city_name;
     Button button;
     DatabaseReference myRef;
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -165,6 +167,7 @@ public class DamLocationPicker extends Fragment{
         button = v.findViewById(R.id.complete_login);
         spinner = v.findViewById(R.id.city_picker);
         tvDam = v.findViewById(R.id.tvDam);
+
 
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();

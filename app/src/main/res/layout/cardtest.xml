@@ -214,11 +214,22 @@
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/query"
-                android:layout_width="242dp"
+                android:id="@+id/share"
+                android:layout_width="130dp"
                 android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/duration"
-                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-53dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/share"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/query"
+                android:layout_width="172dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/duration"
                 android:layout_marginTop="-53dp"
                 android:background="@drawable/mybutton"
                 android:text="@string/query"
