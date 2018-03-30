@@ -18,8 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import sih.firebasesendnotif.R;
@@ -40,6 +42,7 @@ public class AddScheduleFragment extends Fragment {
     SharedPreferences prefs;
     String city_name;
     SimpleDateFormat sdf;
+    DateFormat form =new SimpleDateFormat("dd-MM-yyyy hh:mm");
     String datetime;
     Date date_in_mili;
     //String city;
@@ -57,7 +60,7 @@ public class AddScheduleFragment extends Fragment {
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
-        sdf=new SimpleDateFormat("dd-m-yyyy hh:mm");
+        sdf=new SimpleDateFormat("dd-MM-yyyy hh:mm");
     }
 
     @Override
@@ -83,7 +86,6 @@ public class AddScheduleFragment extends Fragment {
                // showDatePicker();
                 DialogFragment newFragment = new DateFragment();
                 newFragment.show(getActivity().getFragmentManager(), "datePicker");
-
             }
         });
         txtDate = (TextView) view.findViewById(R.id.in_date);
@@ -136,6 +138,7 @@ public class AddScheduleFragment extends Fragment {
                     }
                     //Log.d("dT",date_in_mili.getTime());
                     String key = mydam.push().getKey();
+
                     long dim;
                     String Lat = prefs.getString("Latitude", "" );
                     String Lng = prefs.getString("Longitude", "" );
@@ -145,8 +148,13 @@ public class AddScheduleFragment extends Fragment {
 //                    Log.d("karle",Lng);
 //                    Log.d("karle",place);
 //                    Log.d("karle",dam_name);
-                    dim=date_in_mili.getTime()+19800000;
-                    System.out.println(dim);
+
+   //dim is date and time in miliseconds
+                    dim=date_in_mili.getTime();
+                    //System.out.println(dim);
+//                    Calendar calendar =Calendar.getInstance();
+//                    calendar.setTimeInMillis(dim);
+//                    Log.d("back",form.format(calendar.getTime()));
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key, dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
                     mydam.child(key).setValue(schedule);
@@ -158,7 +166,7 @@ public class AddScheduleFragment extends Fragment {
 
             }
         });
-        clearBtn = (Button) view.findViewById(R.id.clear);
+        clearBtn = (Button) view.findViewById(R.id.cancel_schedule);
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

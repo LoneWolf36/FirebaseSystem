@@ -15,13 +15,12 @@
             app:roundRect_bottomRightRadius="20dp"
             app:roundRect_topLeftRadius="20dp"
             app:roundRect_topRightRadius="20dp">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/notify"
+                    android:id="@+id/notify_button"
                     android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
@@ -32,12 +31,12 @@
                     android:text="@string/notify" />
 
                 <Button
-                    android:id="@+id/update"
+                    android:id="@+id/update_button"
                     android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
-                    android:layout_toEndOf="@+id/notify"
+                    android:layout_toEndOf="@+id/notify_button"
                     android:elevation="15dp"
                     android:text="@string/update" />
 
