@@ -8,13 +8,4 @@
     android:orientation="vertical"
     android:padding="30dp">
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/avi"
-        style="@style/AVLoadingIndicatorView"
-        android:layout_width="166dp"
-        android:layout_height="168dp"
-        android:background="@color/prim_dark"
-        android:visibility="visible"
-        app:indicatorColor="@color/white"
-        app:indicatorName="BallPulseIndicator" />
 </LinearLayout>

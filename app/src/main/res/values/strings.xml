@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Water Release</string>
     <string name="main_activity">Schedules</string>
     <string name="enter_your_data">Enter your data</string>
@@ -128,4 +128,10 @@
     <string name="success">Success</string>
 
     <string name="query">Query the authority</string>
+    <string name="post_to_facebook">Post to Facebook</string>
+    <string name="facebook_app_id">612465245782300</string>
+    <string name="post_to_twitter">Post to Twitter</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">xXsmt8VHVXwGqddC4L7p3zFHh</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">RIuutAJDVMSLMSEUnsXSKrc9oKgVX5LiHqLbWt6kCX0q6ekQBA</string>
+    <string name="share">Share</string>
 </resources>
