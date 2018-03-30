@@ -28,8 +28,7 @@
                     android:layout_alignParentTop="true"
                     android:text="@string/textView"
                     android:textSize="23dp"
-                    android:textColor="#FFF"
-            />
+                    android:textColor="#FFF" />
             </RelativeLayout>
         </com.github.florent37.shapeofview.shapes.RoundRectView>
     </RelativeLayout>
