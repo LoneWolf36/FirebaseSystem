@@ -131,6 +131,7 @@ public class AddScheduleFragment extends Fragment {
                     mydam = temp.child(mAuth.getUid());
                     datetime=datetxt+" "+timetxt;
                     Log.d("dT",datetime);
+                    Calendar c=Calendar.getInstance();
                     try {
                         date_in_mili=sdf.parse(datetime);
                     } catch (ParseException e) {
@@ -142,6 +143,8 @@ public class AddScheduleFragment extends Fragment {
                     long dim;
                     String Lat = prefs.getString("Latitude", "" );
                     String Lng = prefs.getString("Longitude", "" );
+                   // Log.d("Jai Log lat",Lat+"  "+Lng);
+
                     String place = prefs.getString("Place", "" );
                     String dam_name = prefs.getString("Dam_Name", "" );
 //                    Log.d("karle",Lat);
@@ -153,6 +156,9 @@ public class AddScheduleFragment extends Fragment {
                     //DT DATE TO DIM
  //                   dim=1;
                     dim=date_in_mili.getTime();
+                    c.setTime(date_in_mili);
+                    System.out.println(dim);
+                    System.out.println(c.getTimeInMillis());
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key,city_name,dam_name, place, Lat, Lng);
    //dim is date and time in miliseconds
                     //System.out.println(dim);

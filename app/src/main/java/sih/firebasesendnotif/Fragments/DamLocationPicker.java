@@ -105,6 +105,8 @@ public class DamLocationPicker extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 city_name = adapterView.getItemAtPosition(i).toString();
+                editor.putString("city_name",city_name);
+
             }
 
             @Override
@@ -115,6 +117,7 @@ public class DamLocationPicker extends Fragment{
         submit_loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Log.d("Jai Log lat",Lat+"  "+Long);
                 editor.putString("Latitude",String.valueOf(Lat));
                 editor.putString("Longitude",String.valueOf(Long));
                 editor.putString("Dam_Name",tvDam.getText().toString());
@@ -174,8 +177,7 @@ public class DamLocationPicker extends Fragment{
         tvLong.setText(lon);
         tvLat.setText(lat);
         tvDam.setText(dam_name);
-
-
+        tvPlace.setText(place);
 //
 //        tvLat.setText(lat);
 //        tvLong.setText(lon);
@@ -206,6 +208,8 @@ public class DamLocationPicker extends Fragment{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
+        final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         if(requestCode == PLACE_PICKER_REQUEST){
             if(resultCode == getActivity().RESULT_OK){
                 final Place place = PlacePicker.getPlace(getActivity(), data);
@@ -218,6 +222,9 @@ public class DamLocationPicker extends Fragment{
                 tvLong.setText(getContext().getResources().getString(R.string.lat)+"= " + String.valueOf(Lat));
                 tvLat.setText(getContext().getResources().getString(R.string.longi)+"= " + String.valueOf(Long));
                 // tvLat.setText(place.getAddress());
+                editor.putString("Latitude",String.valueOf(Lat));
+                editor.putString("Longitude",String.valueOf(Long));
+
             }
         }
 
