@@ -21,8 +21,8 @@
             android:id="@+id/bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:bar_primaryColor="@color/red"
+            android:background="@color/prim"
+            app:bar_primaryColor="@color/white"
             android:elevation="6dp" />
     </LinearLayout>
 

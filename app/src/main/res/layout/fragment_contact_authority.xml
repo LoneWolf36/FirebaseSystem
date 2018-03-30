@@ -32,12 +32,13 @@
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="34dp"
-            android:text="@string/post_button" />
+            android:text="@string/post_button"
+            android:background="@drawable/mybutton"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/textView2"
