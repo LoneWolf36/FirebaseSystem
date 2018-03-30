@@ -1,31 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/huid"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="250dp"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="10dp">
 
-    <com.wajahatkarim3.easyflipview.EasyFlipView
-        android:id="@+id/flip_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:flipDuration="400"
-        app:flipEnabled="true"
-        app:flipOnTouch="true"
-        app:flipType="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <!-- Back Layout Goes Here -->
-        <include layout="@layout/card_back_view" />
+            <RelativeLayout
+                android:id="@+id/rLNotch"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="5dp">
 
-        <!-- Front Layout Goes Here -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tveventStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@+string/worldcup_2k19"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDay"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="12D"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtHour"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="12H"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtMinute"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="12M"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/counter"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSecond"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="12S"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#4a0000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
 
 
-        <include layout="@layout/card_front_view" />
-    </com.wajahatkarim3.easyflipview.EasyFlipView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="7dp">
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="69dp"
+                android:layout_toEndOf="@+id/time"
+                android:text="TextView"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/status"
+                android:text="TextView"
+
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/duration"
+                android:layout_alignStart="@+id/date"
+                android:text="TextView"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/status"
+                android:text="Status : "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/date"
+                android:layout_marginBottom="53dp"
+                android:text="TextView"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/update"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/duration"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="-53dp"
+                android:background="@drawable/mybutton"
+                android:text="Update"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/notify"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/duration"
+                android:layout_marginEnd="37dp"
+                android:layout_marginTop="-53dp"
+                android:background="@drawable/mybutton"
+                android:text="Notify"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/query"
+                android:layout_width="242dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/duration"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-53dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/query"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

@@ -52,7 +52,7 @@
                         <TextView
                             android:id="@+id/txtDay"
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="12D"
@@ -74,7 +74,7 @@
                         <TextView
                             android:id="@+id/txtHour"
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="12H"
@@ -97,7 +97,7 @@
                         <TextView
                             android:id="@+id/txtMinute"
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="12M"
@@ -120,7 +120,7 @@
                         <TextView
                             android:id="@+id/txtSecond"
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="12S"

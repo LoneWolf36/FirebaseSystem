@@ -69,9 +69,6 @@
 
         <activity android:name=".UpdateSchedule"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Fragments.EmergencyNotification"
-            android:label="@string/title_activity_maps" />
 
     </application>
 
