@@ -135,7 +135,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if(remoteMessage.getData().size()>0){
-            Log.d(TAG,"Message data : " +remoteMessage.getData());
+            Log.d("lw","Message data : " +remoteMessage.getData());
         }
 
         if(remoteMessage.getNotification()!=null){
@@ -150,6 +150,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             String date = remoteMessage.getData().get("date");
             //Log.i("JL",lat+"  "+lon);
             String message = "Water Realeased from "+dam_name+" at time: "+time+" on date: "+date;
+
             String title=remoteMessage.getNotification().getTitle();
             //String message = remoteMessage.getNotification().getBody();
             Log.d(TAG,"Title " + title);
@@ -182,6 +183,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        intent.putExtra("Current Location", true);
+
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                     PendingIntent.FLAG_ONE_SHOT);
             String channelId = "8605+";
