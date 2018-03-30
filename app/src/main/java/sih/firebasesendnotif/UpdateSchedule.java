@@ -94,9 +94,9 @@ public class UpdateSchedule extends AppCompatActivity {
                     Toasty.info(UpdateSchedule.this, getResources().getString(R.string.toast_fill_details), Toast.LENGTH_SHORT, true).show();
                 }
                 else {
-                    final ScheduleData schedule1 = new ScheduleData("00:00","NILL","NILL",1,"Rescheduled",key);
+                    final ScheduleData schedule1 = new ScheduleData("Nill","00:00","0",1,"Rescheduled",key,AppGlobalData.city_name,AppGlobalData.dam_name,AppGlobalData.address,AppGlobalData.lat,AppGlobalData.lon);
                     myRef.child(key).setValue(schedule1);
-                    ScheduleData schedule = new ScheduleData(time_set,date_set,duration_set,1,"Active",key1);
+                    ScheduleData schedule = new ScheduleData(date_set,time_set,duration_set,1,"Active",key1,AppGlobalData.city_name,AppGlobalData.dam_name,AppGlobalData.address,AppGlobalData.lat,AppGlobalData.lon);
                     myRef.child(key1).setValue(schedule);
                     Toasty.success(UpdateSchedule.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT, true).show();
                     startActivity(new Intent(UpdateSchedule.this, NavbarActivity.class));
@@ -108,7 +108,7 @@ public class UpdateSchedule extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final ScheduleData schedule2 = new ScheduleData("","","",1,"Cancelled",key);
+                final ScheduleData schedule2 = new ScheduleData("Nill","00:00","0",1," Cancelled",key,AppGlobalData.city_name,AppGlobalData.dam_name,AppGlobalData.address,AppGlobalData.lat,AppGlobalData.lon);
                 myRef.child(key).setValue(schedule2);
                 startActivity(new Intent(UpdateSchedule.this, NavbarActivity.class));
                 finish();

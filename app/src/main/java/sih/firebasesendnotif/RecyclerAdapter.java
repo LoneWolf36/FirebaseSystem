@@ -101,8 +101,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         myHoder.status.setText(mylist.getStatus());
-        myHoder.huid.setText(mylist.getUid());
-        myHoder.huid.setVisibility(View.INVISIBLE);
 
         //code to make the Active green. It doesnt seem to work, do look into it
         if(myHoder.status.getText().toString().equals("Accept")){
@@ -134,11 +132,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             myHoder.update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AppGlobalData.key = myHoder.huid.getText().toString();
-                    Log.i("lw",myHoder.huid.getText().toString());
                     AppGlobalData.date = myHoder.date.getText().toString();
                     AppGlobalData.duration = myHoder.duration.getText().toString();
                     AppGlobalData.time = myHoder.time.getText().toString();
+                    AppGlobalData.address=mylist.getAddress();
+                    AppGlobalData.city_name=mylist.getCity_name();
+                    AppGlobalData.dam_name=mylist.getDam_name();
+                    AppGlobalData.key=mylist.getUid();
+                    AppGlobalData.lat=mylist.getLat();
+                    AppGlobalData.lon=mylist.getLon();
+
                     Intent intent = new Intent(context, UpdateSchedule.class);
                     context.startActivity(intent);
                 }
@@ -235,7 +238,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
 
     class MyHoder extends RecyclerView.ViewHolder{
-        TextView date,time,duration,status,huid;
+        TextView date,time,duration,status;
         Button notify,update,query;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
@@ -258,7 +261,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //            setContentView(R.layout.card);
 
             query = itemView.findViewById(R.id.query);
-            huid = (TextView) itemView.findViewById(R.id.huid);
             date = (TextView) itemView.findViewById(R.id.date);
             notify =(Button) itemView.findViewById(R.id.notify);
             update = itemView.findViewById(R.id.update);

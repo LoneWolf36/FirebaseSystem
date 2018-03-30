@@ -5,9 +5,15 @@ package sih.firebasesendnotif;
  */
 
 public class AppGlobalData {
-    public static String duration;
     public static String date;
     public static String time;
+    public static String duration;
+    long millis;
+    public static String status;
     public static String key;
-
+    public static String city_name;
+    public static String dam_name;
+    public static String address;
+    public static String lat;
+    public static String lon;
 }
