@@ -22,7 +22,10 @@ import android.util.Log;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.messaging.RemoteMessage;
 
 import sih.firebasesendnotif.Fragments.DamLocationPicker;
@@ -36,36 +39,68 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     private static final String TAG = "FirebaseService";
     double UserLat, UserLong;
     LocationManager locationManager;
+    private FusedLocationProviderClient mFusedLocationClient;
+
     public FirebaseMessagingService() {
-         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
     }
 
-    public void getLocation() {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d("Start loc","Helooo on create");
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Criteria criteria = new Criteria();
+            Log.d("inside if","is provider");
+            String provider = locationManager.getBestProvider(criteria, true);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+            // Getting Current Location
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            //Location location = locationManager.getLastLocation();
+
+
+            mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            Log.d("hi","NULL");
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                // Logic to handle location object
+                                Log.d("loc","loc");
+                                double lat = location.getLatitude();
+                                double lng = location.getLongitude();
+                                String strCurrentLatitude = String.valueOf(lat);
+                                String strCurrentLongitude = String.valueOf(lng);
+                                Log.d("LatCurr",String.valueOf(lat));
+                                Log.d("LongCurr",String.valueOf(lng));
+                            }
+                        }
+                    });
+
+
+//            if(location != null)
+//            {
+//                CurrentlocationListener.onLocationChanged(location);
+//            }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,0,CurrentlocationListener);
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, CurrentlocationListener);
-        //LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        double longitude = location.getLongitude();
-        double latitude = location.getLatitude();
-        String locLat = String.valueOf(latitude)+","+String.valueOf(longitude);
-        Log.d("lat long",locLat);
-
     }
-
 
     LocationListener CurrentlocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
+            Log.d("Start loc","Helooo LOCATION CHhanged");
 
             // TODO Auto-generated method stub
             if (location != null) {
@@ -75,8 +110,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 String strCurrentLatitude = String.valueOf(lat);
                 String strCurrentLongitude = String.valueOf(lng);
 
-                Log.e("Latitude FireMessage" ,strCurrentLatitude);
-                Log.e("Longitude",strCurrentLongitude);
+                Log.e("Latitude FireMessage", strCurrentLatitude);
+                Log.e("Longitude", strCurrentLongitude);
             }
         }
 
@@ -98,6 +133,27 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        Log.d("Start loc","Helooo");
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermisions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
+//        else{
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, CurrentlocationListener);
+//        //LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+//        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        double longitude = location.getLongitude();
+//        double latitude = location.getLatitude();
+//        String locLat = String.valueOf(latitude)+","+String.valueOf(longitude);
+//        Log.d("lat long",locLat);
+//        }
+
         if(remoteMessage.getData().size()>0){
             Log.d(TAG,"Message data : " +remoteMessage.getData());
         }
@@ -149,5 +205,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
 }
 
