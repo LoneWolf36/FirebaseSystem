@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,8 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
 
     Button button1,submit;
     TextView tvdam,tvlat,tvlong,tvPlace;
+    EditText phone1,phone2,phone3;
+    Long p1,p2,p3;
 
 
     Spinner spinner;
@@ -62,6 +65,9 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
         tvlat =findViewById(R.id.act_lat);
 
         tvPlace =findViewById(R.id.act_tv_place);
+        phone1 = findViewById(R.id.phone1);
+        phone2 = findViewById(R.id.phone2);
+        phone3 = findViewById(R.id.phone3);
 
         //submit_loc = (Button) findViewById(R.id.submit_loc);
         myRef = FirebaseDatabase.getInstance().getReference();
@@ -114,6 +120,13 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                     editor.putString("Longitude", lon_pick);
                     editor.putString("Place", place_pick);
                     editor.putBoolean("admin_det", true);
+                    String p1 = String.valueOf(phone1.getText());
+                    String p2 = String.valueOf(phone2.getText());
+                    String p3 = String.valueOf(phone3.getText());
+                    editor.putString("phone1",p1);
+                    editor.putString("phone2",p2);
+                    editor.putString("phone3",p3);
+
                     //editor.putString("Place",tvPlace.getText().toString());
                     editor.apply();
                     startActivity(intent);

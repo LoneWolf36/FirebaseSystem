@@ -134,4 +134,10 @@
     <string name="com.twitter.sdk.android.CONSUMER_KEY">xXsmt8VHVXwGqddC4L7p3zFHh</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">RIuutAJDVMSLMSEUnsXSKrc9oKgVX5LiHqLbWt6kCX0q6ekQBA</string>
     <string name="share">Share</string>
+    <string name="phone1">Enter Phone No. of cellular Tower 1</string>
+    <string name="phone2">Enter Phone No. of cellular Tower 2</string>
+    <string name="phone3">Enter Phone No. of cellular Tower 3</string>
+    <string name="msg">Send Message to cell towers</string>
+
+    <string name="affects">Affected radius by released water</string>
 </resources>
