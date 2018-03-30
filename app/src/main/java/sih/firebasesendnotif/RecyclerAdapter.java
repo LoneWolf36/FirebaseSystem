@@ -1,10 +1,13 @@
 package sih.firebasesendnotif;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,10 +27,15 @@ import java.util.List;
 
 import sih.firebasesendnotif.Classes.NotifyData;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import sih.firebasesendnotif.Classes.ScheduleData;
+import sih.firebasesendnotif.Fragments.AddScheduleFragment;
+import sih.firebasesendnotif.Fragments.ContactAuthority;
+import sih.firebasesendnotif.Fragments.QueryDataFragment;
 import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -52,10 +60,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    city_name = prefs.getString("city_name", "");
 
-
-    public RecyclerAdapter(Context context){
-        this.context =context;
-    }
+//
+//    public RecyclerAdapter(Context context){
+//        this.context =context;
+//    }
 
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
@@ -64,13 +72,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         city_name = prefs.getString("city_name", "");
     }
 
-    public RecyclerAdapter(List<ScheduleData> list, ArrayList<String> keys, Context context) {
-        this.list = list;
-        this.context = context;
-        this.myKeys = keys;
-        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-        city_name = prefs.getString("city_name", "");
-    }
+//    public RecyclerAdapter(List<ScheduleData> list, ArrayList<String> keys, Context context) {
+//        this.list = list;
+//        this.context = context;
+//        this.myKeys = keys;
+//        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+//        city_name = prefs.getString("city_name", "");
+//    }
+
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
         //SharedPreferences.Editor e= prefs.edit();
@@ -116,7 +125,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             myHoder.query.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    context.startActivity(Intent);
+                    NavbarActivity myActivity = (NavbarActivity) context;
+                    myActivity.getSupportFragmentManager().beginTransaction().replace(R.id.toPopulate, new ContactAuthority()).commit();
                 }
             });
         } else {

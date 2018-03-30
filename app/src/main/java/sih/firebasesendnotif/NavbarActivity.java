@@ -270,7 +270,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new QueryDataFragment());
-
             ft.commit();
         }else if (id == R.id.nav_login) {
             Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);
