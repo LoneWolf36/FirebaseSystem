@@ -143,6 +143,8 @@ public class AddScheduleFragment extends Fragment {
                     long dim;
                     String Lat = prefs.getString("Latitude", "" );
                     String Lng = prefs.getString("Longitude", "" );
+                   // Log.d("Jai Log lat",Lat+"  "+Lng);
+
                     String place = prefs.getString("Place", "" );
                     String dam_name = prefs.getString("Dam_Name", "" );
 //                    Log.d("karle",Lat);
