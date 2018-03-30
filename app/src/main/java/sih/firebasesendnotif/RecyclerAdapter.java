@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import sih.firebasesendnotif.Classes.ScheduleData;
+import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -110,7 +112,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         if (!prefs.getBoolean("admin_login", false)) {
             myHoder.notify.setVisibility(View.INVISIBLE);
             myHoder.update.setVisibility(View.INVISIBLE);
+            myHoder.query.setVisibility(View.VISIBLE);
+            myHoder.query.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    context.startActivity(Intent);
+                }
+            });
         } else {
+            myHoder.query.setVisibility(View.INVISIBLE);
             myHoder.update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -216,7 +226,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 
     class MyHoder extends RecyclerView.ViewHolder{
         TextView date,time,duration,status,huid;
-        Button notify,update;
+        Button notify,update,query;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
         private Handler handler;
@@ -236,6 +246,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             super(itemView);
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
+
+            query = itemView.findViewById(R.id.query);
             huid = (TextView) itemView.findViewById(R.id.huid);
             date = (TextView) itemView.findViewById(R.id.date);
             notify =(Button) itemView.findViewById(R.id.notify);
