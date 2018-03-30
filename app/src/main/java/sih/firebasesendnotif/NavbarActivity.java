@@ -127,6 +127,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             menu.findItem(R.id.nav_emergency).setVisible(false);
             menu.findItem(R.id.fragment_dam_location_picker).setVisible(false);
             menu.findItem(R.id.nav_logout).setVisible(false);
+            menu.findItem(R.id.nav_view_query).setVisible(false);
         } else {
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.add_schedule).setVisible(true);
@@ -307,7 +308,6 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
             fab.setVisibility(View.INVISIBLE);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.toPopulate, new QueryDataFragment());
-
             ft.commit();
         }else if (id == R.id.nav_login) {
             Intent intent = new Intent(NavbarActivity.this, LoginActivity.class);

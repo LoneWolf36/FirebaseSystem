@@ -1,9 +1,13 @@
 package sih.firebasesendnotif;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,10 +27,16 @@ import java.util.List;
 
 import sih.firebasesendnotif.Classes.NotifyData;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import sih.firebasesendnotif.Classes.ScheduleData;
+import sih.firebasesendnotif.Fragments.AddScheduleFragment;
+import sih.firebasesendnotif.Fragments.ContactAuthority;
+import sih.firebasesendnotif.Fragments.QueryDataFragment;
+import sih.firebasesendnotif.Fragments.ScheduleFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,10 +60,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
 //    //prefs = getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
 //    city_name = prefs.getString("city_name", "");
 
-
-    public RecyclerAdapter(Context context){
-        this.context =context;
-    }
+//
+//    public RecyclerAdapter(Context context){
+//        this.context =context;
+//    }
 
     public RecyclerAdapter(List<ScheduleData> list, Context context) {
         this.list = list;
@@ -62,13 +72,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         city_name = prefs.getString("city_name", "");
     }
 
-    public RecyclerAdapter(List<ScheduleData> list, ArrayList<String> keys, Context context) {
-        this.list = list;
-        this.context = context;
-        this.myKeys = keys;
-        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-        city_name = prefs.getString("city_name", "");
-    }
+//    public RecyclerAdapter(List<ScheduleData> list, ArrayList<String> keys, Context context) {
+//        this.list = list;
+//        this.context = context;
+//        this.myKeys = keys;
+//        prefs = context.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+//        city_name = prefs.getString("city_name", "");
+//    }
+
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
         //SharedPreferences.Editor e= prefs.edit();
@@ -108,9 +119,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         final ScheduleData mylist = list.get(position);
         myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate());
         Log.e("getdate format",mylist.getDate());
+        myHoder.date.setText(context.getResources().getString(R.string.water_rel)+": "+ mylist.getDate()+" at "+ mylist.getDam_name()+" in "+mylist.getCity_name());
         myHoder.status.setText(mylist.getStatus());
-        myHoder.huid.setText(mylist.getUid());
-        myHoder.huid.setVisibility(View.INVISIBLE);
 
         //code to make the Active green. It doesnt seem to work, do look into it
         if(myHoder.status.getText().toString().equals("Accept")){
@@ -129,15 +139,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         if (!prefs.getBoolean("admin_login", false)) {
             myHoder.notify.setVisibility(View.INVISIBLE);
             myHoder.update.setVisibility(View.INVISIBLE);
+            myHoder.query.setVisibility(View.VISIBLE);
+            myHoder.query.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NavbarActivity myActivity = (NavbarActivity) context;
+                    myActivity.getSupportFragmentManager().beginTransaction().replace(R.id.toPopulate, new ContactAuthority()).commit();
+                }
+            });
         } else {
+            myHoder.query.setVisibility(View.INVISIBLE);
             myHoder.update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AppGlobalData.key = myHoder.huid.getText().toString();
-                    Log.i("lw",myHoder.huid.getText().toString());
                     AppGlobalData.date = myHoder.date.getText().toString();
                     AppGlobalData.duration = myHoder.duration.getText().toString();
                     AppGlobalData.time = myHoder.time.getText().toString();
+                    AppGlobalData.address=mylist.getAddress();
+                    AppGlobalData.city_name=mylist.getCity_name();
+                    AppGlobalData.dam_name=mylist.getDam_name();
+                    AppGlobalData.key=mylist.getUid();
+                    AppGlobalData.lat=mylist.getLat();
+                    AppGlobalData.lon=mylist.getLon();
+
                     Intent intent = new Intent(context, UpdateSchedule.class);
                     context.startActivity(intent);
                 }
@@ -234,8 +258,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     }
 
     class MyHoder extends RecyclerView.ViewHolder{
-        TextView date,time,duration,status,huid;
-        Button notify,update;
+        TextView date,time,duration,status;
+        Button notify,update,query;
         private TextView txtDay, txtHour, txtMinute, txtSecond;
         private TextView tvEventStart;
         private Handler handler;
@@ -255,7 +279,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             super(itemView);
 //            super.onCreate(savedInstanceState);
 //            setContentView(R.layout.card);
-            huid = (TextView) itemView.findViewById(R.id.huid);
+            //damname=(TextView) itemView.findViewById(R.id.dam_name);
+            query = itemView.findViewById(R.id.query);
             date = (TextView) itemView.findViewById(R.id.date);
             notify =(Button) itemView.findViewById(R.id.notify);
             update = itemView.findViewById(R.id.update);
