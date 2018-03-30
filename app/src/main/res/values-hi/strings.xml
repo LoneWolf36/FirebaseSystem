@@ -82,4 +82,5 @@
     <string name="exit">ऐप को बंद करें</string>
     <string name="confirm_exit">क्या आप ऐप बंद करना चाहते हैं?</string>
     <string name="success">कार्य पूर्ण हुआ</string>
+    <string name="query">प्रश्न अधिकारी</string>
 </resources>

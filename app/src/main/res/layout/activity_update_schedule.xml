@@ -4,17 +4,15 @@
     android:padding="20dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TextView
-            android:id="@+id/in_date"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="13dp"
-            android:layout_marginTop="86dp"
-            android:layout_toStartOf="@+id/btn_date"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:hint="@string/in_date"/>
+    <TextView
+        android:id="@+id/in_date"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_date"
+        android:layout_alignStart="@+id/in_time"
+        android:hint="@string/in_date"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/btn_date"
@@ -54,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="283dp"
+        android:layout_marginBottom="238dp"
         android:ems="10"
         android:hint="@string/duration"
         android:inputType="number|numberSigned|numberDecimal"
@@ -64,9 +62,8 @@
         android:id="@+id/reschedule"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/in_date"
         android:layout_alignTop="@+id/cancel_schedule"
-        android:layout_marginStart="-13dp"
-        android:layout_toEndOf="@+id/in_date"
         android:background="@drawable/mybutton"
         android:text="@string/reschedule"
         android:textColor="@color/white" />
@@ -76,8 +73,9 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/in_date"
-        android:layout_marginBottom="151dp"
+        android:layout_marginBottom="171dp"
+        android:layout_marginStart="-13dp"
+        android:layout_toEndOf="@+id/in_date"
         android:background="@drawable/mybutton"
         android:text="@string/cancel_this_schedule"
         android:textColor="@color/white" />

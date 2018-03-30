@@ -18,8 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import sih.firebasesendnotif.R;
@@ -40,6 +42,7 @@ public class AddScheduleFragment extends Fragment {
     SharedPreferences prefs;
     String city_name;
     SimpleDateFormat sdf;
+    DateFormat form =new SimpleDateFormat("dd-MM-yyyy hh:mm");
     String datetime;
     Date date_in_mili;
     //String city;
@@ -57,7 +60,7 @@ public class AddScheduleFragment extends Fragment {
         prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
         city_name = prefs.getString("city_name", "");
-        sdf=new SimpleDateFormat("dd-m-yyyy hh:mm");
+        sdf=new SimpleDateFormat("dd-MM-yyyy hh:mm");
     }
 
     @Override
@@ -145,11 +148,18 @@ public class AddScheduleFragment extends Fragment {
 //                    Log.d("karle",Lng);
 //                    Log.d("karle",place);
 //                    Log.d("karle",dam_name);
-                    //dim=date_in_mili.getTime();
+                      //dim=date_in_mili.getTime();
                     //System.out.println(dim);
                     //DT DATE TO DIM
                     dim=1;
                     ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key,city_name,dam_name, place, Lat, Lng);
+   //dim is date and time in miliseconds
+                    dim=date_in_mili.getTime();
+                    //System.out.println(dim);
+//                    Calendar calendar =Calendar.getInstance();
+//                    calendar.setTimeInMillis(dim);
+//                    Log.d("back",form.format(calendar.getTime()));
+                   // ScheduleData schedule = new ScheduleData(txtDate.getText().toString(), txtTime.getText().toString(), txtDuration.getText().toString(),dim,"Active",key,city_name, dam_name, place, Lat, Lng);
                     //ref.setValue(schedule);
                     mydam.child(key).setValue(schedule);
                     Toast.makeText(getContext(),getContext().getResources().getString(R.string.toast_success), Toast.LENGTH_SHORT).show();
