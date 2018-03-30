@@ -170,11 +170,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 @Override
                 public void onClick(View view) {
                     //LOGIC FOR NOTIFICATION
+                    String lat =prefs.getString("Latitude","Unset");
+                    String lon =prefs.getString("Longitude","Unset");
+                    String dam_name =prefs.getString("Dam_Name","Unset");
+                    String place =prefs.getString("Place","Unset");
+                    String city =prefs.getString("city_name","Unset");
                     Log.d("city name in database",city_name);
                     DatabaseReference ref = database.getReference(city_name);
                     DatabaseReference mydam;
                     mydam = ref.child("Notify");
-                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name);
+                    NotifyData schedule = new NotifyData(mylist.getDate().toString(),mylist.getTime().toString(),mylist.getDuration().toString(),city_name,mylist.getDam_name(),mylist.getAddress(),mylist.getLat(),mylist.getLon());
                     String key=mydam.push().getKey();
                     mydam.child(key).setValue(schedule);
 //                                   mydam = ref.child(mAuth.getUid());
