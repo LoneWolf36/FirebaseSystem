@@ -130,13 +130,4 @@ public class ScheduleData {
         this.uid = uid;
     }
 
-//    public ScheduleData(String date, String time, String duration, int temp, String status, String uid) {
-//
-//        this.date = date;
-//        this.time = time;
-//        this.duration = duration;
-//        this.temp = temp;
-//        this.status = status;
-//        this.uid = uid;
-//    }
 }
