@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -34,7 +35,7 @@ public class Alarmnotif extends BroadcastReceiver {
     java.util.List<String> city_list;
     ScheduleData data;
     DatabaseReference cityRef;
-
+    String fDate;
     int MID = 0;
 
     @Override
@@ -51,6 +52,7 @@ public class Alarmnotif extends BroadcastReceiver {
 
         final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         city_list = new ArrayList<String>();
         cityRef = FirebaseDatabase.getInstance().getReference();
         cityRef.child("cities").addValueEventListener(new ValueEventListener() {
@@ -95,6 +97,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                         Log.e("Testing date", test);
                                         try {
                                             futureDate = dateFormat.parse(value.getDate());
+                                            fDate = value.getDate();
                                             Log.e("originall", String.valueOf(futureDate));
                                         } catch (ParseException e) {
                                             e.printStackTrace();
@@ -105,21 +108,20 @@ public class Alarmnotif extends BroadcastReceiver {
                                         {
                                                 long diff = futureDate.getTime() - currentDate.getTime();
                                                 Log.e("Difference", String.valueOf(diff));
-                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 14*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 7*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 2*60 * 60 * 24 * 1000 && diff >= 10000) {
+                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 1000 || diff <= 14*60 * 60 * 24 * 1000 && diff >= 1000 || diff <= 7*60 * 60 * 24 * 1000 && diff >= 1000 || diff <= 2*60 * 60 * 24 * 1000 && diff >= 1000) {
                                                     Log.e("Chalja", "plis");
                                                     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                                                     String channelId = "12";
                                                     NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, channelId)
+                                                            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                                                    R.mipmap.ic_launcher))
                                                             .setSmallIcon(R.mipmap.ic_launcher)
-                                                            .setContentTitle("Timely notif for:")
-                                                            .setStyle(new NotificationCompat.InboxStyle()
-                                                                    .addLine(damname +" " + citname)
-                                                                    .addLine(futureDate + " "+ time))
+                                                            .setContentTitle("Scheduled alert:")
+                                                            .setContentText("Water Released from" + damname + " at time: " + time + " on date: " + test)
                                                             .setSound(alarmSound)
+                                                            .setSmallIcon(R.drawable.logo)
                                                             .setAutoCancel(true).setWhen(when)
-                                                            .setContentIntent(pendingIntent)
-                                                            .setVibrate(new long[]{1000, 1000});
-
+                                                            .setContentIntent(pendingIntent).setStyle(new NotificationCompat.BigTextStyle().bigText("Water Released from " + damname + " at time: " + time + " on date: " + test));
                                                     notificationManager.notify(MID, mNotifyBuilder.build());
                                                     MID++;
                                                 }
@@ -136,11 +138,7 @@ public class Alarmnotif extends BroadcastReceiver {
                         });
                     }
                 }
-
-
             }
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }

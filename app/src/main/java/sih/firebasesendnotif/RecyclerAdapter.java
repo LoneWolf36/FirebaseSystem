@@ -68,14 +68,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     @Override
     public MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
-        MyHoder myHoder = new MyHoder(view);
         mAuth = FirebaseAuth.getInstance();
         //prefs= PreferenceManager.getDefaultSharedPreferences(parent.getContext());
         prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
         Log.d("city name",city_name);
         //myHoder.countDownStart(events,events1);
-        return myHoder;
+        return new MyHoder(view);
     }
 
     @Override
@@ -160,6 +159,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 }
             });
         }
+       // myHoder.countDownStart(events,events1);
         myHoder.countDownStart(events,events1);
     }
 
