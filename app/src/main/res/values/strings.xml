@@ -85,7 +85,7 @@
     <string name="add_schedule">Add a schedule</string>
     <string name="nav_emergency">Send Emergency Notification</string>
     <string name="nav_subscribe">Get Notifiations From</string>
-    <string name="location_picker">Change Dam Location</string>
+    <string name="location_picker">Pick Most Affected Location</string>
     <string name="nav_contact">Contact dam authority</string>
     <string name="emergency">Emergency Contacts</string>
     <string name="nav_view_query">View questions</string>
@@ -95,8 +95,8 @@
 
     <!--Strings related to recycle adapter-->
     <string name="water_rel">Water will be released on</string>
-    <string name="at">at</string>
-    <string name="for_duration">for a duration of</string>
+    <string name="at">Time</string>
+    <string name="for_duration">Duration:</string>
     <string name="hourss">hours</string>
 
     <!--Strings related to add schedule fragment-->
