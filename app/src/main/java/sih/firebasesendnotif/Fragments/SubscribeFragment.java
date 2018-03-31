@@ -151,15 +151,13 @@ public class SubscribeFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            Log.i("lw", "onPreExecute: Yay!");
-//            progress = new ProgressDialog(getActivity(), R.style.AppTheme_Dark_Dialog);
-//            progress.setIndeterminate(true);
-//            progress.setCancelable(false);
-//            progress.setCanceledOnTouchOutside(false);
-//            progress.setMessage("Populating list...");
-//            progress.show();
-            ProgressDialog dialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
-
+            Log.i("lw", "onPreExecute: Yay!");
+            progress = new ProgressDialog(getContext(), R.style.AppTheme_Dark_Dialog);
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            progress.setCanceledOnTouchOutside(false);
+            progress.setMessage("Populating list...");
+            progress.show();
         }
 
         @Override

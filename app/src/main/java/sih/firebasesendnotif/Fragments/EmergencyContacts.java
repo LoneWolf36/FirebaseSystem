@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -177,6 +178,12 @@ public class EmergencyContacts extends DialogFragment {
 
                                        }
         );
+
+        if (!prefs.getBoolean("admin_login", false)) {
+            msg.setVisibility(View.INVISIBLE);
+        } else {
+            msg.setVisibility(View.VISIBLE);
+        }
         msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -184,14 +191,10 @@ public class EmergencyContacts extends DialogFragment {
                 String p2 = prefs.getString("phone2",null);
                 String p3 = prefs.getString("phone3",null);
 
-                StringBuilder Uri = new StringBuilder("sms:");
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setType("vnd.android-dir/mms-sms");
-                intent.putExtra("address", p1+" , "+p2+" , "+p3);
-//                intent.putExtra("address", p2);
-//                intent.putExtra("address", p3);
-                intent.putExtra("sms_body","Water will be released from " + prefs.getString("Dam_name","") + " located at "+prefs.getString("Place","") + ". Please be Careful!");
-                startActivity(intent);
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms:" +p1+","+p2+","+p3));
+                sendIntent.putExtra("sms_body","Water will be released from " + prefs.getString("Dam_name","") + " located at "+prefs.getString("Place","") + ". Please be Careful!");
+                startActivity(sendIntent);
             }
         });
         return v;
