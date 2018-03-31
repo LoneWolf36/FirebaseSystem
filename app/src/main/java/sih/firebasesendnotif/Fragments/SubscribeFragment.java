@@ -1,78 +1,76 @@
 package sih.firebasesendnotif.Fragments;
 
 
-
 /**
  * Created by groot on 20/3/18.
  */
-        import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.Fragment;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.CheckBox;
-        import android.widget.CompoundButton;
-        import android.widget.LinearLayout;
-        import android.widget.Spinner;
-        import android.widget.Switch;
 
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.google.firebase.messaging.FirebaseMessaging;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
-        import sih.firebasesendnotif.CityPickerActivity;
-        import sih.firebasesendnotif.R;
+import java.util.ArrayList;
+import java.util.List;
 
-        import static android.content.Context.MODE_PRIVATE;
+import sih.firebasesendnotif.R;
 
-/**
- * Created by Belal on 18/09/16.
- */
-
+import static android.content.Context.MODE_PRIVATE;
 
 public class SubscribeFragment extends Fragment {
 
-    //static ArrayList<Boolean> checkstate;
-    Spinner spinner;
-    CheckBox c1,c2,c3,c4;
-    private DatabaseReference myRef;
+    CheckBox c1, c2, c3, c4;
+    DatabaseReference myRef;
     LinearLayout ll;
     List<String> cities;
     List<Switch> citycb;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    ProgressDialog progress;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         View view = inflater.inflate(R.layout.frament_subscribe, container, false);
         return view;
     }
-
-
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Subscribe ScheduleFragment");
 
-        final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
-        final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
+        editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
+        prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         cities = new ArrayList<String>();
         citycb = new ArrayList<Switch>();
 
-        ll=this.getView().findViewById(R.id.linlay);
+        ll = this.getView().findViewById(R.id.linlay);
         myRef = FirebaseDatabase.getInstance().getReference();
+        startASycnc();
+    }
+
+    public void task(final SharedPreferences preferences, final SharedPreferences.Editor editor) {
+        Log.i("lw", "task: Running!");
         myRef.child("cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,10 +78,11 @@ public class SubscribeFragment extends Fragment {
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
                 Log.i("lw", "onDataChange: I am here!");
-                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
                     String cityName = citySnapshot.getValue(String.class);
                     //xif(cities.c)
                     cities.add(cityName);
+                    prefs = preferences;
                     Boolean chk1 = prefs.getBoolean(cityName, false);
                     Switch cb = new Switch(getActivity());
                     cb.setChecked(chk1);
@@ -94,10 +93,10 @@ public class SubscribeFragment extends Fragment {
                     ll.addView(cb);
                 }
 
-                for(final Switch cb:citycb){
+                for (final Switch cb : citycb) {
                     cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
-                        public void onCheckedChanged(CompoundButton compoundButton,boolean b) {
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             if (cb.isChecked())
 
                             {
@@ -106,9 +105,7 @@ public class SubscribeFragment extends Fragment {
                                 FirebaseMessaging.getInstance().subscribeToTopic(cb.getText().toString());
                                 editor.putBoolean(cb.getText().toString(), true);
                                 editor.apply();
-                            }
-                            else
-                            {
+                            } else {
                                 FirebaseMessaging.getInstance().unsubscribeFromTopic(cb.getText().toString());
                                 editor.putBoolean(cb.getText().toString(), false);
                                 editor.apply();
@@ -117,11 +114,11 @@ public class SubscribeFragment extends Fragment {
                         }
                     });
                 }
-            //    saveArray(cities.toArray(new String[cities.size()]),"citieslocal",getActivity());
-
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
 
         });
     }
@@ -136,4 +133,40 @@ public class SubscribeFragment extends Fragment {
 //            editor.putString(arrayName + "_" + i, array[i]);
 //        }return editor.commit();
 //    }
+
+
+    public void startASycnc() {
+        new StartAsyncTask().execute();
+    }
+
+    public class StartAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            task(prefs, editor);
+            Log.i("lw", "doInBackground: Working!");
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            Log.i("lw", "onPreExecute: Yay!");
+//            progress = new ProgressDialog(getActivity(), R.style.AppTheme_Dark_Dialog);
+//            progress.setIndeterminate(true);
+//            progress.setCancelable(false);
+//            progress.setCanceledOnTouchOutside(false);
+//            progress.setMessage("Populating list...");
+//            progress.show();
+            ProgressDialog dialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.i("lw", "onPostExecute: Awwh!");
+            progress.dismiss();
+        }
+    }
 }
