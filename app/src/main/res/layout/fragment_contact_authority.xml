@@ -13,19 +13,21 @@
             android:id="@+id/citytv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/editText2"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="97dp"
             android:text="@string/choose_city"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
             android:layout_alignEnd="@+id/spinner"
             android:layout_below="@+id/textView2"
-            android:layout_marginEnd="18dp"
+            android:layout_marginEnd="-117dp"
             android:layout_marginTop="14dp"
             android:ems="10"
             android:inputType="textMultiLine" />
@@ -38,25 +40,29 @@
             android:layout_centerHorizontal="true"
             android:text="@string/post_button"
             android:background="@drawable/mybutton"
+            android:textStyle="bold"
             android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/citytv"
-            android:layout_below="@+id/citytv"
-            android:layout_marginTop="52dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="187dp"
             android:text="@string/post_query"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/citytv"
-            android:layout_toEndOf="@+id/fplace" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="84dp"
+            android:layout_marginTop="99dp" />
     </RelativeLayout>
 
 
