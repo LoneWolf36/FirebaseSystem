@@ -14,14 +14,15 @@
     <!-- TODO: Update blank fragment layout -->
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="40dp" />
     <!--android:onClick="goPlacePicker"-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
     <TextView
         android:id="@+id/citytv"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/choose_city"
         android:textSize="18sp"
@@ -31,10 +32,10 @@
         <Spinner
             android:id="@+id/act_spin_city"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/citytv"
-            android:padding="20dp"
+            android:layout_marginTop="12dp"
             android:textAlignment="center" />
     </RelativeLayout>
 
@@ -42,51 +43,73 @@
         android:id="@+id/act_dam"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:hint="@string/dam_hint" />
+        android:layout_marginTop="5dp"
+        android:hint="@string/dam_hint"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="15dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center_horizontal">
+            <Button
+                android:id="@+id/act_place"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/place_select"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+
+                android:layout_gravity="center"
+                android:paddingLeft="35dp"
+                android:paddingRight="35dp"
+                android:layout_marginBottom="5dp"
+
+                />
 
             <TextView
                 android:id="@+id/act_tv_place"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Dam Address"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/act_lat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/lat"
+                android:padding="10dp"
+                android:textSize="15sp"/>
 
-            <Button
-                android:id="@+id/act_place"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:background="@drawable/mybutton"
-                android:text="@string/place_select"
-                android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/act_lon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/longi"
+                android:padding="10dp"
+                android:textSize="15sp"/>
+
+
         </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="15dp"
         >
 
-        <TextView
-            android:id="@+id/act_lat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/lat"
-            android:padding="10dp" />
 
-        <TextView
-            android:id="@+id/act_lon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/longi"
-            android:padding="10dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,15 +137,41 @@
 
     <Button
         android:id="@+id/act_submit"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@drawable/mybutton"
         android:text="Submit"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:textSize="15sp"/>
 
 
 </LinearLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/citytv"-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/choose_city"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textColor="@color/black"/>-->
+
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner2"-->
+                <!--android:layout_width="215dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_marginStart="149dp"-->
+                <!--/>-->
+        <!--</RelativeLayout>-->
     </ScrollView>
+
 </FrameLayout>
