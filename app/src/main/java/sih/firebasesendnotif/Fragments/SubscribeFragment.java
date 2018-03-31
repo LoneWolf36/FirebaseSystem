@@ -60,8 +60,6 @@ public class SubscribeFragment extends Fragment {
         return view;
     }
 
-
-
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

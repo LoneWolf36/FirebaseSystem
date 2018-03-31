@@ -55,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="30dp">
-                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/tvPlace"
@@ -83,41 +82,43 @@
                     android:hint="@string/longi"
                     android:padding="10dp" />
 
-<<<<<<< HEAD
-    </LinearLayout>
-    </LinearLayout>
-=======
-                <TextView
-                    android:id="@+id/tvLat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/lat"
-                    android:padding="10dp" />
-
-                <EditText
-                    android:id="@+id/ali"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/phone1"
-                    android:inputType="phone" />
-
-                <EditText
-                    android:id="@+id/jai"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/phone2"
-                    android:inputType="phone" />
-
-                <EditText
-                    android:id="@+id/phone_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/phone3"
-                    android:inputType="phone" />
-
             </LinearLayout>
         </LinearLayout>
->>>>>>> 010651f0a77a17e98c54310c88a673827c463edc
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/lat"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/ali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone1"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/jai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone2"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/phone_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone3"
+                android:inputType="phone" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/submit_loc"
@@ -126,10 +127,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:background="@drawable/mybutton"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textAlignment="center"
             android:textColor="@color/white" />
-
-
     </LinearLayout>
 </FrameLayout>

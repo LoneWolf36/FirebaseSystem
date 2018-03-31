@@ -113,13 +113,13 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage.getData().size() > 0) {
-            Log.d("lw", "Message data : " + remoteMessage.getData());
+            Log.d("", "Message data : " + remoteMessage.getData());
         }
         Log.d("JL",remoteMessage.getData().toString());
 
         if (remoteMessage.getNotification() != null) {
             String flag = remoteMessage.getData().get("flag");
-            Log.d("here",flag);
+            Log.d("lw",flag);
             switch (flag) {
                 case "notify": {
                     Log.i("JL", "Notify");
@@ -143,6 +143,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 case "alert": {
                     Log.i("JL", "ALERT");
                     Log.d("here", "inside alert flag");
+                    Log.i("lw", "alert: ");
                     String dam_name = remoteMessage.getData().get("dam_name");
                     String text = remoteMessage.getData().get("text");
                     String time = remoteMessage.getData().get("time");
