@@ -115,7 +115,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                                             .setSmallIcon(R.mipmap.ic_launcher)
                                                             .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                                     R.mipmap.ic_launcher))
-                                                            .setContentTitle("Timely notif for:")
+                                                            .setContentTitle("Scheduled alert:")
                                                             .setStyle(new NotificationCompat.InboxStyle()
                                                                     .addLine(damname +" " + citname)
                                                                     .addLine(fDate + " "+ time))
