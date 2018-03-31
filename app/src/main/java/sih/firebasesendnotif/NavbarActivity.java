@@ -38,12 +38,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Calendar;
 
 import butterknife.ButterKnife;
 import sih.firebasesendnotif.Classes.Alarmnotif;
-import sih.firebasesendnotif.Classes.ScheduledNotif;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
 import sih.firebasesendnotif.Fragments.DamLocationPicker;
@@ -134,6 +134,7 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(addScheduleListener);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("vicinity");
 
 //        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
 //                != PackageManager.PERMISSION_GRANTED) {
