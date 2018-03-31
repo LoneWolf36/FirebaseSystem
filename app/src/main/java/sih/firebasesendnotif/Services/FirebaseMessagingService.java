@@ -165,30 +165,49 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     String time = remoteMessage.getData().get("time");
                     String duration = remoteMessage.getData().get("duration");
                     String date = remoteMessage.getData().get("date");
-                    //Log.i("JL",lat+"  "+lon);
-                    Log.d("latfcm", latfcm);
-                    Log.d("longfcm", lonfcm);
-                    double R = 6371;
-                    double lat1 = UserLat;
-                    double lon1 = UserLong;
-                    double lon2 = Double.parseDouble(lonfcm);
-                    double lat2 = Double.parseDouble(latfcm);
-                    double dLon = lon1 - lon2;
-                    double dLat = lat1 - lat2;
-                    double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                    distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                    Log.d(Double.toString(distkms), "distance in kms");
-                    // double R=6371;
 
-                    // double dLon=UserLong-lonfcmdo;
-                    //double dLat=UserLat-latfcmdo;
-                    //double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(UserLat)*Math.cos(deg2rad(latfcmdo))*Math.sin(dLon/2)*Math.sin(dLon/2));
-                    //double dist = R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+//                    //Log.i("JL",lat+"  "+lon);
+//                    Log.d("latfcm", latfcm);
+//                    Log.d("longfcm", lonfcm);
+//                    double R = 6371;
+//                    double lat1 = UserLat;
+//                    double lon1 = UserLong;
+//                    double lon2 = Double.parseDouble(lonfcm);
+//                    double lat2 = Double.parseDouble(latfcm);
+//                    double dLon = lon1 - lon2;
+//                    double dLat = lat1 - lat2;
+//                    double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+//                    distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//                    Log.d(Double.toString(distkms), "distance in kms");
+//                    // double R=6371;
+//
+//                    // double dLon=UserLong-lonfcmdo;
+//                    //double dLat=UserLat-latfcmdo;
+//                    //double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(UserLat)*Math.cos(deg2rad(latfcmdo))*Math.sin(dLon/2)*Math.sin(dLon/2));
+//                    //double dist = R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+
+                    double lat2 = Double.parseDouble(latfcm);
+                    double lon2 = Double.parseDouble(lonfcm);
+                    Log.i("lw", "Lat:"+lat2);
+                    Log.i("lw", "Lon:"+lon2);
                     String dis = Double.toString(distkms);
-                    Log.d("dist", dis);
+                    Log.d("lw", dis);
                     Log.i("JL", "VicinityCalc" + dis);
 
-                    distkms=5;
+                    Location loc1 = new Location("");
+                    loc1.setLatitude(UserLat);
+                    loc1.setLongitude(UserLong);
+                    Log.i("lw", "USER lat: "+UserLat);
+                    Log.i("lw", "USER lon: "+UserLong);
+                    Location loc2 = new Location("");
+                    loc2.setLatitude(lat2);
+                    loc2.setLongitude(lon2);
+                    Float distkms = loc1.distanceTo(loc2);
+                    Log.d(Double.toString(distkms), "distance in kms outside");
+                    Log.i("lw", "Distance: "+distkms);
+
+                    distkms= (distkms/1000);
+
                     if (distkms <= 10) {
                         Log.i("JL", "Vicinity10");
 
@@ -237,9 +256,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             notificationManager.createNotificationChannel(channel);
         }
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-    }
-    private double deg2rad (Double lat){
-        return lat * (Math.PI / 180);
     }
 
     @Override

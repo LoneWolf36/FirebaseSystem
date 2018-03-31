@@ -12,9 +12,6 @@
     android:orientation="vertical"
     android:paddingTop="30sp">
     <!-- TODO: Update blank fragment layout -->
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
     <!--android:onClick="goPlacePicker"-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -142,11 +139,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@drawable/mybutton"
-        android:text="Submit"
-        android:textColor="@color/white"
+        android:paddingBottom="70dp"
         android:paddingLeft="35dp"
         android:paddingRight="35dp"
-        android:textSize="15sp"/>
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 
 
 </LinearLayout>
