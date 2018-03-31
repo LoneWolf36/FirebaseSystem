@@ -71,6 +71,7 @@ public class DamLocationPicker extends Fragment{
     DatabaseReference myRef;
 
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -124,6 +125,7 @@ public class DamLocationPicker extends Fragment{
                 editor.putString("Longitude",String.valueOf(Long));
                 editor.putString("Dam_Name",tvDam.getText().toString());
                 editor.putString("Place",tvPlace.getText().toString());
+
                 editor.apply();
                 Log.d("lat", String.valueOf(Lat)  + "   " + String.valueOf(Long) + "   " +tvDam.getText().toString() + "     " + tvPlace.getText().toString());
 
@@ -165,7 +167,7 @@ public class DamLocationPicker extends Fragment{
         //button = v.findViewById(R.id.complete_login);
         spinner = v.findViewById(R.id.city_picker);
         button = v.findViewById(R.id.complete_login);
-        spinner = v.findViewById(R.id.city_picker);
+
         tvDam = v.findViewById(R.id.tvDam);
 
 
@@ -177,10 +179,12 @@ public class DamLocationPicker extends Fragment{
         String dam_name =prefs.getString("Dam_Name","Unset");
         String place =prefs.getString("Place","Unset");
         String city =prefs.getString("city_name","Unset");
+
         tvLong.setText(lon);
         tvLat.setText(lat);
         tvDam.setText(dam_name);
         tvPlace.setText(place);
+
 //
 //        tvLat.setText(lat);
 //        tvLong.setText(lon);
