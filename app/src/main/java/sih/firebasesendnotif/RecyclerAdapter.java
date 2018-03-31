@@ -74,7 +74,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
         Log.d("city name",city_name);
-        myHoder.countDownStart(events,events1);
+        //myHoder.countDownStart(events,events1);
         return myHoder;
     }
 
@@ -160,7 +160,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 }
             });
         }
-        //myHoder.countDownStart(events,events1);
+        myHoder.countDownStart(events,events1);
     }
 
     @Override
@@ -207,6 +207,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             status =(TextView) itemView.findViewById(R.id.status);
 //            parent_id = itemView.findViewById(R.id.parent_id);
 //            parent_id.setVisibility(View.INVISIBLE);
+            //countDownStart(events,events1);
         }
         public void countDownStart(final String events, final String events1) {
             handler = new Handler();
