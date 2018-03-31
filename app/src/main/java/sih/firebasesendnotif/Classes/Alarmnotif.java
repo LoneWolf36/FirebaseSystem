@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -112,6 +113,8 @@ public class Alarmnotif extends BroadcastReceiver {
                                                     String channelId = "12";
                                                     NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, channelId)
                                                             .setSmallIcon(R.mipmap.ic_launcher)
+                                                            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                                                    R.mipmap.ic_launcher))
                                                             .setContentTitle("Timely notif for:")
                                                             .setStyle(new NotificationCompat.InboxStyle()
                                                                     .addLine(damname +" " + citname)

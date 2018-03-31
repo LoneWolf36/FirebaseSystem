@@ -153,9 +153,6 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
 
             }
         });
-
-
-
     }
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
