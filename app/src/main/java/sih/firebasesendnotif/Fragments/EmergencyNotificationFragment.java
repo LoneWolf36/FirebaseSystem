@@ -130,8 +130,11 @@ public class EmergencyNotificationFragment extends Fragment {
                 //mydam = ref.child(mAuth.getUid());
                 //myalert = mydam.child("Alert");
                 //myalert = ref.child("Alert");
+                String dam_name =prefs.getString("Dam_Name","Unset");
+
                 String key=myalert.push().getKey();
-                EmergencyData emergencyData =new EmergencyData(text.getText().toString(),mAuth.getUid(),"1",city_name);
+               // EmergencyData emergencyData =new EmergencyData(text.getText().toString(),mAuth.getUid(),"1",city_name);
+               EmergencyData emergencyData =new EmergencyData(text.getText().toString(),dam_name,"123",city_name);
                 myalert.child(key).setValue(emergencyData);
                 //myalert.child(key).setValue(text.getText().toString());
                 //myalert.child(key).setValue(text.getText().toString());

@@ -10,14 +10,6 @@ public class EmergencyData {
     String time;
     String city_name;
 
-    public String getCity_name() {
-        return city_name;
-    }
-
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
-    }
-
     public EmergencyData(String text, String dam_name, String time, String city_name) {
         this.text = text;
         this.dam_name = dam_name;
@@ -47,5 +39,13 @@ public class EmergencyData {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
     }
 }

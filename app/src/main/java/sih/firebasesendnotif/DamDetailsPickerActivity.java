@@ -135,10 +135,6 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
             }
         });
 
-
-
-
-
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
