@@ -1,23 +1,20 @@
 package sih.firebasesendnotif.Fragments;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +27,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.List;
 
-import sih.firebasesendnotif.CityPickerActivity;
 import sih.firebasesendnotif.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -44,12 +40,13 @@ public class SubscribeFragment extends Fragment {
 
     //static ArrayList<Boolean> checkstate;
     Spinner spinner;
-    CheckBox c1,c2,c3,c4;
-    private DatabaseReference myRef;
+    CheckBox c1, c2, c3, c4;
     LinearLayout ll;
     Button b1;
     List<String> cities;
     List<Switch> citycb;
+    private DatabaseReference myRef;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,16 +61,15 @@ public class SubscribeFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Subscribe ScheduleFragment");
-        final int i=0;
 
         final SharedPreferences.Editor editor = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
         final SharedPreferences prefs = getActivity().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         cities = new ArrayList<String>();
         citycb = new ArrayList<Switch>();
 
-        b1=(Button) view.findViewById(R.id.subscribe);
+        b1 = (Button) view.findViewById(R.id.subscribe);
 
-        ll=this.getView().findViewById(R.id.linlay);
+        ll = this.getView().findViewById(R.id.linlay);
         myRef = FirebaseDatabase.getInstance().getReference();
         myRef.child("cities").addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,7 +78,7 @@ public class SubscribeFragment extends Fragment {
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
                 Log.i("lw", "onDataChange: I am here!");
-                for (DataSnapshot citySnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
                     String cityName = citySnapshot.getValue(String.class);
                     //xif(cities.c)
                     cities.add(cityName);
@@ -96,10 +92,10 @@ public class SubscribeFragment extends Fragment {
                     ll.addView(cb);
                 }
 
-                for(final Switch cb:citycb){
+                for (final Switch cb : citycb) {
                     cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
-                        public void onCheckedChanged(CompoundButton compoundButton,boolean b) {
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             if (cb.isChecked())
 
                             {
@@ -110,13 +106,10 @@ public class SubscribeFragment extends Fragment {
                                 editor.apply();
 
 
-                            }
-                            else
-                            {
+                            } else {
                                 FirebaseMessaging.getInstance().unsubscribeFromTopic(cb.getText().toString());
                                 editor.putBoolean(cb.getText().toString(), false);
                                 editor.apply();
-
                             }
                         }
                     });
@@ -124,8 +117,10 @@ public class SubscribeFragment extends Fragment {
                 //    saveArray(cities.toArray(new String[cities.size()]),"citieslocal",getActivity());
 
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
 
         });
 
@@ -168,13 +163,3 @@ public class SubscribeFragment extends Fragment {
         });
     }
 }
-//
-//    public boolean saveArray(String[] array, String arrayName, Context mContext) {
-//        SharedPreferences prefs = mContext.getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = prefs.edit();
-//        editor.putInt(arrayName +"_size", array.length);
-//        for(int i=0;i<array.length;i++) {
-//            Log.d("Save Array", array[i]);
-//            editor.putString(arrayName + "_" + i, array[i]);
-//        }return editor.commit();
-//    }
