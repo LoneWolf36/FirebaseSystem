@@ -34,7 +34,7 @@ public class Alarmnotif extends BroadcastReceiver {
     java.util.List<String> city_list;
     ScheduleData data;
     DatabaseReference cityRef;
-
+    String fDate;
     int MID = 0;
 
     @Override
@@ -95,6 +95,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                         Log.e("Testing date", test);
                                         try {
                                             futureDate = dateFormat.parse(value.getDate());
+                                            fDate = value.getDate();
                                             Log.e("originall", String.valueOf(futureDate));
                                         } catch (ParseException e) {
                                             e.printStackTrace();
@@ -114,7 +115,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                                             .setContentTitle("Timely notif for:")
                                                             .setStyle(new NotificationCompat.InboxStyle()
                                                                     .addLine(damname +" " + citname)
-                                                                    .addLine(futureDate + " "+ time))
+                                                                    .addLine(fDate + " "+ time))
                                                             .setSound(alarmSound)
                                                             .setAutoCancel(true).setWhen(when)
                                                             .setContentIntent(pendingIntent)
