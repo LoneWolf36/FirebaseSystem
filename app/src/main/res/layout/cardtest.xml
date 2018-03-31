@@ -149,6 +149,7 @@
                 android:layout_marginTop="69dp"
                 android:layout_toEndOf="@+id/time"
                 android:text="TextView"
+                android:layout_alignParentRight="true"
                 android:textSize="15sp" />
 
             <TextView
@@ -166,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/duration"
-                android:layout_alignStart="@+id/date"
+                android:layout_alignParentEnd="true"
                 android:text="TextView"
                 android:textSize="15sp" />
 
@@ -184,8 +185,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/date"
-                android:layout_marginBottom="53dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="58dp"
                 android:text="TextView"
                 android:textSize="15sp" />
 

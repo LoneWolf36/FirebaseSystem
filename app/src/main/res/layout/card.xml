@@ -178,9 +178,10 @@
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="52dp"
-                android:layout_toEndOf="@+id/time"
+                android:layout_marginStart="72dp"
+                android:layout_marginTop="43dp"
                 android:text="TextView"
                 android:textSize="15sp" />
 
@@ -191,7 +192,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/status"
                 android:text="TextView"
-
+                android:textStyle="bold"
                 android:textSize="24sp" />
 
             <TextView
@@ -199,16 +200,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/duration"
-                android:layout_alignStart="@+id/date"
+                android:layout_alignStart="@+id/duration"
                 android:text="TextView"
+                android:textStyle="bold"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignTop="@+id/status"
+                android:layout_marginEnd="-72dp"
+                android:layout_toStartOf="@+id/status"
                 android:text="Status : "
                 android:textSize="15sp" />
 
@@ -217,9 +220,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/date"
-                android:layout_marginBottom="53dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="56dp"
                 android:text="TextView"
+                android:textStyle="bold"
                 android:textSize="15sp" />
 
             <Button

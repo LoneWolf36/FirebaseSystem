@@ -180,7 +180,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
     private void sendNotification(String title,String messageBody) {
         if (distkms < radius) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, NavbarActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        intent.putExtra("Current Location", true);
 
@@ -195,6 +195,9 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                             .setColor(R.color.red)
                             .setContentText(messageBody)
                             .setAutoCancel(true)
+                            .setStyle(new NotificationCompat.InboxStyle()
+                                    .addLine(messageBody)
+                                    .addLine("emergency"))
                             .setSound(defaultSoundUri)
                             .setContentIntent(pendingIntent);
 
@@ -210,7 +213,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             }
             notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
         } else {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, NavbarActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        intent.putExtra("Current Location", true);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -221,8 +224,10 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle(title)
-                            .setContentText(messageBody)
                             .setAutoCancel(true)
+                            .setStyle(new NotificationCompat.InboxStyle()
+                                    .addLine(messageBody)
+                                    .addLine("emergency"))
                             .setSound(defaultSoundUri)
                             .setContentIntent(pendingIntent);
 
