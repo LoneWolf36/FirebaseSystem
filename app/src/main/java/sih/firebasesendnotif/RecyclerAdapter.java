@@ -52,6 +52,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     DatabaseReference ref = database.getReference("");
     SharedPreferences prefs;
     String city_name;
+    String events;
+    String events1;
     private FirebaseAuth mAuth;
     EditText txtDate, txtTime,txtDuration;
 
@@ -72,6 +74,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         prefs = parent.getContext().getSharedPreferences("JaisPrefrence", MODE_PRIVATE);
         city_name = prefs.getString("city_name", "");
         Log.d("city name",city_name);
+        //myHoder.countDownStart(events,events1);
         return myHoder;
     }
 
@@ -90,11 +93,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             myHoder.status.setTextColor(Color.parseColor("#00FF00"));
         }
         //code segment ends here
-        String events= mylist.getDate();
-        String events1= events+" " +mylist.getTime();
+        events= mylist.getDate();
+        events1= events+" " +mylist.getTime();
         myHoder.time.setText(context.getResources().getString(R.string.at)+": "+mylist.getTime());
         myHoder.duration.setText(context.getResources().getString(R.string.for_duration) +": "+ mylist.getDuration()+" "+context.getResources().getString(R.string.hourss));
-        myHoder.countDownStart(events,events1);
 
         // LOGIC FOR HIDING BUTTONS ON CARDS
         if (!prefs.getBoolean("admin_login", false)) {
@@ -158,6 +160,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                 }
             });
         }
+        myHoder.countDownStart(events,events1);
     }
 
     @Override
@@ -188,7 +191,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         }
         public MyHoder(View itemView) {
             super(itemView);
-
             share = itemView.findViewById(R.id.share);
             query = itemView.findViewById(R.id.query);
             date = (TextView) itemView.findViewById(R.id.date);
@@ -205,6 +207,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             status =(TextView) itemView.findViewById(R.id.status);
 //            parent_id = itemView.findViewById(R.id.parent_id);
 //            parent_id.setVisibility(View.INVISIBLE);
+            //countDownStart(events,events1);
         }
         public void countDownStart(final String events, final String events1) {
             handler = new Handler();
@@ -232,8 +235,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                             txtSecond.setText("" + String.format("%02d", seconds));
                             Log.e("Full time",events1);
                         } else {
+                            futureDate = dateFormat.parse(String.valueOf(events1));
                             tvEventStart.setVisibility(View.VISIBLE);
-                            tvEventStart.setText("Water Released");
+                            tvEventStart.setText("Water is Released");
                             textViewGone();
 
                         }

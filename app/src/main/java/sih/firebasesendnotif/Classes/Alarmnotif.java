@@ -105,7 +105,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                         {
                                                 long diff = futureDate.getTime() - currentDate.getTime();
                                                 Log.e("Difference", String.valueOf(diff));
-                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 10000) {
+                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 14*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 7*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 2*60 * 60 * 24 * 1000 && diff >= 10000) {
                                                     Log.e("Chalja", "plis");
                                                     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                                                     String channelId = "12";

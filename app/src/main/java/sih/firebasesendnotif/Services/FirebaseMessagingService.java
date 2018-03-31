@@ -94,34 +94,18 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
     }
 
-    //    @Override
-//    public void onMessageReceived(RemoteMessage remoteMessage) {
-//        String str;
-//
-//
-//        if (remoteMessage.getData().size() > 0) {
-//            Log.d(TAG, "Message data : " + remoteMessage.getData());
-//        }
-//
-//        if (remoteMessage.getNotification() != null) {
-//            String title = remoteMessage.getNotification().getTitle();
-//            String message = remoteMessage.getNotification().getBody();
-//            Log.d(TAG, "Title " + title);
-//            Log.d(TAG, "Body " + message);
-//            sendNotification(title, message);
-//        }
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage.getData().size() > 0) {
             Log.d("lw", "Message data : " + remoteMessage.getData());
         }
-        Log.d("JL",remoteMessage.getData().toString());
+        Log.d("JL", remoteMessage.getData().toString());
 
         if (remoteMessage.getNotification() != null) {
             String flag = remoteMessage.getData().get("flag");
-            Log.d("here",flag);
+            Log.d("here", flag);
             if (flag.equals("notify")) {
-                Log.i("JL","Notify");
+                Log.i("JL", "Notify");
                 String dam_name = remoteMessage.getData().get("dam_name");
                 String latfcm = remoteMessage.getData().get("lat");
                 String lonfcm = remoteMessage.getData().get("lon");
@@ -137,8 +121,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 Log.d(TAG, "Body " + message);
                 sendNotification(title, message);
             } else if (flag.equals("alert")) {
-                Log.i("JL","ALERT");
-                Log.d("here","inside alert flag");
+                Log.i("JL", "ALERT");
+                Log.d("here", "inside alert flag");
                 String dam_name = remoteMessage.getData().get("dam_name");
                 String text = remoteMessage.getData().get("text");
                 String time = remoteMessage.getData().get("time");
@@ -146,12 +130,11 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 String title = remoteMessage.getNotification().getTitle();
                 String message = dam_name + " in " + city_name + "'s message: " + text + " for release at " + time;
                 sendNotification(title, message);
-                Log.d("title",title);
-                Log.d("message",message);
-                Log.d("notif","built");
-            }
-            else if(flag.equals("vicinity")) {
-                Log.i("JL","Vicinity");
+                Log.d("title", title);
+                Log.d("message", message);
+                Log.d("notif", "built");
+            } else if (flag.equals("vicinity")) {
+                Log.i("JL", "Vicinity");
                 String dam_name = remoteMessage.getData().get("dam_name");
                 String latfcm = remoteMessage.getData().get("lat");
                 String lonfcm = remoteMessage.getData().get("lon");
@@ -160,30 +143,30 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 String duration = remoteMessage.getData().get("duration");
                 String date = remoteMessage.getData().get("date");
                 //Log.i("JL",lat+"  "+lon);
-                Log.d("latfcm",latfcm);
-                Log.d("longfcm",lonfcm);
+                Log.d("latfcm", latfcm);
+                Log.d("longfcm", lonfcm);
                 double R = 6371;
-                double lat1=UserLat;
-                double lon1=UserLong;
-                double lon2=Double.parseDouble(lonfcm);
-                double lat2=Double.parseDouble(latfcm);
+                double lat1 = UserLat;
+                double lon1 = UserLong;
+                double lon2 = Double.parseDouble(lonfcm);
+                double lat2 = Double.parseDouble(latfcm);
                 double dLon = lon1 - lon2;
                 double dLat = lat1 - lat2;
-                double a= Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
-                distkms =  R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-                Log.d(Double.toString(distkms),"distance in kms");
-               // double R=6371;
+                double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                Log.d(Double.toString(distkms), "distance in kms");
+                // double R=6371;
 
-               // double dLon=UserLong-lonfcmdo;
+                // double dLon=UserLong-lonfcmdo;
                 //double dLat=UserLat-latfcmdo;
                 //double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(UserLat)*Math.cos(deg2rad(latfcmdo))*Math.sin(dLon/2)*Math.sin(dLon/2));
                 //double dist = R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
                 String dis = Double.toString(distkms);
                 Log.d("dist", dis);
-                Log.i("JL","VicinityCalc"+dis);
+                Log.i("JL", "VicinityCalc" + dis);
 
                 if (distkms <= 10) {
-                    Log.i("JL","Vicinity10");
+                    Log.i("JL", "Vicinity10");
 
                     String message = "Water Released from " + dam_name + " at time: " + time + " on date: " + date;
                     String title = remoteMessage.getNotification().getTitle();
@@ -204,7 +187,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 PendingIntent.FLAG_ONE_SHOT);
         String channelId = "8605+";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Log.d("inside","notification");
+        Log.d("inside", "notification");
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -226,7 +209,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             notificationManager.createNotificationChannel(channel);
         }
     }
-    private double deg2rad (Double lat){
+
+    private double deg2rad(Double lat) {
         return lat * (Math.PI / 180);
     }
 
@@ -235,5 +219,71 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     }
 }
+//    private void sendNotification(String title,String messageBody) {
+//        if (distkms < radius) {
+//            Intent intent = new Intent(this, NavbarActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////        intent.putExtra("Current Location", true);
+//
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+//                    PendingIntent.FLAG_ONE_SHOT);
+//            String channelId = "8605+";
+//            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            @SuppressLint("ResourceAsColor") NotificationCompat.Builder notificationBuilder =
+//                    new NotificationCompat.Builder(this)
+//                            .setSmallIcon(R.mipmap.ic_launcher)
+//                            .setContentTitle("Close to water Released area")
+//                            .setColor(R.color.red)
+//                            .setContentText(messageBody)
+//                            .setAutoCancel(true)
+//                            .setStyle(new NotificationCompat.InboxStyle()
+//                                    .addLine(messageBody)
+//                                    .addLine("emergency"))
+//                            .setSound(defaultSoundUri)
+//                            .setContentIntent(pendingIntent);
+//
+//            NotificationManager notificationManager =
+//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//            // Since android Oreo notification channel is needed.
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                NotificationChannel channel = new NotificationChannel(channelId,
+//                        "Channel human readable title",
+//                        NotificationManager.IMPORTANCE_DEFAULT);
+//                notificationManager.createNotificationChannel(channel);
+//            }
+//            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//        } else {
+//            Intent intent = new Intent(this, NavbarActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////        intent.putExtra("Current Location", true);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+//                    PendingIntent.FLAG_ONE_SHOT);
+//            String channelId = "8605+";
+//            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            NotificationCompat.Builder notificationBuilder =
+//                    new NotificationCompat.Builder(this)
+//                            .setSmallIcon(R.mipmap.ic_launcher)
+//                            .setContentTitle(title)
+//                            .setAutoCancel(true)
+//                            .setStyle(new NotificationCompat.InboxStyle()
+//                                    .addLine(messageBody)
+//                                    .addLine("emergency"))
+//                            .setSound(defaultSoundUri)
+//                            .setContentIntent(pendingIntent);
+//
+//            NotificationManager notificationManager =
+//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//            // Since android Oreo notification channel is needed.
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                NotificationChannel channel = new NotificationChannel(channelId,
+//                        "Channel human readable title",
+//                        NotificationManager.IMPORTANCE_DEFAULT);
+//                notificationManager.createNotificationChannel(channel);
+//            }
+//            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//        }
+//    }
 
 
