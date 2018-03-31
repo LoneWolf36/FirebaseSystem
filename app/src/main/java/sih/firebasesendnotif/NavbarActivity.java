@@ -90,10 +90,9 @@ public class NavbarActivity extends AppCompatActivity implements NavigationView.
 
         //code for Notification
         Calendar calendar = Calendar.getInstance();
-
-        calendar.set(Calendar.HOUR_OF_DAY, 11);
-        calendar.set(Calendar.MINUTE, 56);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.SECOND, 00);
         Intent intent1 = new Intent(NavbarActivity.this, Alarmnotif.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(NavbarActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) NavbarActivity.this.getSystemService(NavbarActivity.this.ALARM_SERVICE);

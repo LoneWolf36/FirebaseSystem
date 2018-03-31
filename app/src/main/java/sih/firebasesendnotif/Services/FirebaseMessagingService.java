@@ -113,14 +113,10 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-<<<<<<< HEAD
-=======
         if (remoteMessage.getData().size() > 0) {
             Log.d("", "Message data : " + remoteMessage.getData());
         }
         Log.d("JL",remoteMessage.getData().toString());
-
->>>>>>> a10dbea46e3bbf4d60394afe8ffb5f5d6bf90481
         if (remoteMessage.getNotification() != null) {
             String flag = remoteMessage.getData().get("flag");
             Log.d("lw",flag);
@@ -181,7 +177,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     double dLon = lon1 - lon2;
                     double dLat = lat1 - lat2;
                     double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                    distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))/1000;
                     Log.d(Double.toString(distkms), "distance in kms");
                     // double R=6371;
 
@@ -193,7 +189,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     Log.d("dist", dis);
                     Log.i("JL", "VicinityCalc" + dis);
 
-                    distkms=5;
+                    //distkms=5;
                     if (distkms <= 10) {
                         Log.i("JL", "Vicinity10");
 
