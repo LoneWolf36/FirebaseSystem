@@ -43,7 +43,6 @@ import java.util.Calendar;
 
 import butterknife.ButterKnife;
 import sih.firebasesendnotif.Classes.Alarmnotif;
-import sih.firebasesendnotif.Classes.ScheduledNotif;
 import sih.firebasesendnotif.Fragments.AddScheduleFragment;
 import sih.firebasesendnotif.Fragments.ContactAuthority;
 import sih.firebasesendnotif.Fragments.DamLocationPicker;

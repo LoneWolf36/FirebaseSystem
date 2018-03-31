@@ -98,9 +98,6 @@ public class SubscribeFragment extends Fragment {
                     ll.addView(cb);
                 }
 
-
-
-
                 for(final Switch cb:citycb){
                     cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
@@ -130,9 +127,7 @@ public class SubscribeFragment extends Fragment {
 
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
 
         });
 

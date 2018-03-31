@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -88,6 +89,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                         Date futureDate = null;
                                         String citname = String.valueOf(value.city_name);
                                         String damname = String.valueOf(value.dam_name);
+                                        String time = String.valueOf(value.time);
                                         String test = value.getDate();
                                         Log.e("Testing", citname);
                                         Log.e("Testing date", test);
@@ -103,19 +105,21 @@ public class Alarmnotif extends BroadcastReceiver {
                                         {
                                                 long diff = futureDate.getTime() - currentDate.getTime();
                                                 Log.e("Difference", String.valueOf(diff));
-                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 10000) {
+                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 14*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 7*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 2*60 * 60 * 24 * 1000 && diff >= 10000) {
                                                     Log.e("Chalja", "plis");
                                                     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                                                     String channelId = "12";
                                                     NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, channelId)
                                                             .setSmallIcon(R.mipmap.ic_launcher)
-                                                            .setContentTitle("Dam city:")
-                                                            .setContentText(damname)
-                                                            .setContentText(citname)
+                                                            .setContentTitle("Timely notif for:")
+                                                            .setStyle(new NotificationCompat.InboxStyle()
+                                                                    .addLine(damname +" " + citname)
+                                                                    .addLine(futureDate + " "+ time))
                                                             .setSound(alarmSound)
                                                             .setAutoCancel(true).setWhen(when)
                                                             .setContentIntent(pendingIntent)
                                                             .setVibrate(new long[]{1000, 1000});
+
                                                     notificationManager.notify(MID, mNotifyBuilder.build());
                                                     MID++;
                                                 }

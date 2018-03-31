@@ -8,6 +8,40 @@
     tools:context="sih.firebasesendnotif.NavbarActivity"
     >
 
+    <Button
+        android:id="@+id/post_tw"
+        android:layout_width="137dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="124dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/post_to_twitter"
+        android:textColor="@color/white"
+        android:backgroundTint="#00cdd2"
+        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <Button
+        android:id="@+id/post_fb"
+        android:layout_width="137dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="124dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/post_to_facebook"
+        android:textColor="@color/white"
+        android:backgroundTint="#0058d2"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
     <EditText
         android:id="@+id/text1"
         android:layout_width="0dp"

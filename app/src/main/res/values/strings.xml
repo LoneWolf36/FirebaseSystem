@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Water Release</string>
     <string name="main_activity">Schedules</string>
     <string name="enter_your_data">Enter your data</string>
@@ -85,7 +85,7 @@
     <string name="add_schedule">Add a schedule</string>
     <string name="nav_emergency">Send Emergency Notification</string>
     <string name="nav_subscribe">Get Notifiations From</string>
-    <string name="location_picker">Change Dam Location</string>
+    <string name="location_picker">Pick Most Affected Location</string>
     <string name="nav_contact">Contact dam authority</string>
     <string name="emergency">Emergency Contacts</string>
     <string name="nav_view_query">View questions</string>
@@ -95,8 +95,8 @@
 
     <!--Strings related to recycle adapter-->
     <string name="water_rel">Water will be released on</string>
-    <string name="at">at</string>
-    <string name="for_duration">for a duration of</string>
+    <string name="at">Time</string>
+    <string name="for_duration">Duration:</string>
     <string name="hourss">hours</string>
 
     <!--Strings related to add schedule fragment-->
@@ -128,6 +128,12 @@
     <string name="success">Success</string>
 
     <string name="query">Query the authority</string>
+    <string name="post_to_facebook">Post to Facebook</string>
+    <string name="facebook_app_id">612465245782300</string>
+    <string name="post_to_twitter">Post to Twitter</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">xXsmt8VHVXwGqddC4L7p3zFHh</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">RIuutAJDVMSLMSEUnsXSKrc9oKgVX5LiHqLbWt6kCX0q6ekQBA</string>
+    <string name="share">Share</string>
     <string name="phone1">Enter Phone No. of cellular Tower 1</string>
     <string name="phone2">Enter Phone No. of cellular Tower 2</string>
     <string name="phone3">Enter Phone No. of cellular Tower 3</string>
