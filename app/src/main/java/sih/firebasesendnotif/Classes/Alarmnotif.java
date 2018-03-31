@@ -52,6 +52,7 @@ public class Alarmnotif extends BroadcastReceiver {
 
         final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         city_list = new ArrayList<String>();
         cityRef = FirebaseDatabase.getInstance().getReference();
         cityRef.child("cities").addValueEventListener(new ValueEventListener() {
@@ -107,23 +108,20 @@ public class Alarmnotif extends BroadcastReceiver {
                                         {
                                                 long diff = futureDate.getTime() - currentDate.getTime();
                                                 Log.e("Difference", String.valueOf(diff));
-                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 14*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 7*60 * 60 * 24 * 1000 && diff >= 10000 || diff <= 2*60 * 60 * 24 * 1000 && diff >= 10000) {
+                                                if (diff <= 60 * 60 * 24 * 1000 && diff >= 1000 || diff <= 14*60 * 60 * 24 * 1000 && diff >= 1000 || diff <= 7*60 * 60 * 24 * 1000 && diff >= 1000 || diff <= 2*60 * 60 * 24 * 1000 && diff >= 1000) {
                                                     Log.e("Chalja", "plis");
                                                     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                                                     String channelId = "12";
                                                     NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, channelId)
-                                                            .setSmallIcon(R.mipmap.ic_launcher)
                                                             .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                                     R.mipmap.ic_launcher))
+                                                            .setSmallIcon(R.mipmap.ic_launcher)
                                                             .setContentTitle("Scheduled alert:")
-                                                            .setStyle(new NotificationCompat.InboxStyle()
-                                                                    .addLine(damname +" " + citname)
-                                                                    .addLine(fDate + " "+ time))
+                                                            .setContentText("Water Released from" + damname + " at time: " + time + " on date: " + test)
                                                             .setSound(alarmSound)
+                                                            .setSmallIcon(R.drawable.logo)
                                                             .setAutoCancel(true).setWhen(when)
-                                                            .setContentIntent(pendingIntent)
-                                                            .setVibrate(new long[]{1000, 1000});
-
+                                                            .setContentIntent(pendingIntent).setStyle(new NotificationCompat.BigTextStyle().bigText("Water Released from " + damname + " at time: " + time + " on date: " + test));
                                                     notificationManager.notify(MID, mNotifyBuilder.build());
                                                     MID++;
                                                 }
@@ -140,11 +138,7 @@ public class Alarmnotif extends BroadcastReceiver {
                         });
                     }
                 }
-
-
             }
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }

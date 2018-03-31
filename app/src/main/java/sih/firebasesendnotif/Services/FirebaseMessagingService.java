@@ -146,10 +146,10 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     Log.i("lw", "alert: ");
                     String dam_name = remoteMessage.getData().get("dam_name");
                     String text = remoteMessage.getData().get("text");
-                    String time = remoteMessage.getData().get("time");
+//                    String time = remoteMessage.getData().get("time");
                     String city_name = remoteMessage.getData().get("city_name");
                     String title = remoteMessage.getNotification().getTitle();
-                    String message = dam_name + " in " + city_name + "'s message: " + text + " for release at " + time;
+                    String message = dam_name + " in " + city_name + " ALERT: " + text + " for emergency release";
                     sendNotification(title, message);
                     Log.d("title", title);
                     Log.d("message", message);
@@ -221,6 +221,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                         .setContentTitle(title)
                         .setContentText(messageBody)
                         .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.logo)
                         .setSound(defaultSoundUri)
                         .setColor(getResources().getColor(R.color.red))
                         .setContentIntent(pendingIntent).setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody));
