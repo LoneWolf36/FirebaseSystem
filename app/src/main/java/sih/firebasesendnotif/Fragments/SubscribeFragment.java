@@ -1,39 +1,39 @@
 package sih.firebasesendnotif.Fragments;
 
 import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.Fragment;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.CheckBox;
-        import android.widget.CompoundButton;
-        import android.widget.LinearLayout;
-        import android.widget.Spinner;
-        import android.widget.Switch;
-        import android.widget.Button;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-        import sih.firebasesendnotif.CityPickerActivity;
-        import sih.firebasesendnotif.R;
+import sih.firebasesendnotif.CityPickerActivity;
+import sih.firebasesendnotif.R;
 
-        import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Belal on 18/09/16.
@@ -111,7 +111,7 @@ public class SubscribeFragment extends Fragment {
                                 editor.putBoolean(cb.getText().toString(), true);
                                 editor.apply();
 
-                                
+
                             }
                             else
                             {
@@ -123,7 +123,7 @@ public class SubscribeFragment extends Fragment {
                         }
                     });
                 }
-            //    saveArray(cities.toArray(new String[cities.size()]),"citieslocal",getActivity());
+                //    saveArray(cities.toArray(new String[cities.size()]),"citieslocal",getActivity());
 
             }
             @Override
@@ -132,42 +132,42 @@ public class SubscribeFragment extends Fragment {
         });
 
         b1.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View view) {
-                                      myRef.child("cities").addValueEventListener(new ValueEventListener() {
-                                          @Override
-                                          public void onDataChange(DataSnapshot dataSnapshot) {
-                                              // Is better to use a List, because you don't know the size
-                                              // of the iterator returned by dataSnapshot.getChildren() to
-                                              // initialize the array
-                                              Log.i("lw", "onDataChange: I am here!");
-                                              Boolean flag = false;
-                                              for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
-                                                  String cityName = citySnapshot.getValue(String.class);
-                                                  //xif(cities.c)
-                                                  cities.add(cityName);
-                                                  Boolean chk1 = prefs.getBoolean(cityName, false);
-                                                  Switch cb = new Switch(getActivity());
+            @Override
+            public void onClick(View view) {
+                myRef.child("cities").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Is better to use a List, because you don't know the size
+                        // of the iterator returned by dataSnapshot.getChildren() to
+                        // initialize the array
+                        Log.i("lw", "onDataChange: I am here!");
+                        Boolean flag = false;
+                        for (DataSnapshot citySnapshot : dataSnapshot.getChildren()) {
+                            String cityName = citySnapshot.getValue(String.class);
+                            //xif(cities.c)
+                            cities.add(cityName);
+                            Boolean chk1 = prefs.getBoolean(cityName, false);
+                            Switch cb = new Switch(getActivity());
 
-                                                  if (chk1) {
-                                                      flag = true;
-                                                  }
-                                              }
-                                              if (flag == true) {
-                                                  FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                                  ft.replace(R.id.toPopulate, new ScheduleFragment());
-                                                  ft.commit();
-                                              } else {
-                                                  Toast.makeText(getContext(), "No Cities subscribed!", Toast.LENGTH_SHORT).show();
-                                              }
-                                          }
+                            if (chk1) {
+                                flag = true;
+                            }
+                        }
+                        if (flag == true) {
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.toPopulate, new ScheduleFragment());
+                            ft.commit();
+                        } else {
+                            Toast.makeText(getContext(), getContext().getResources().getString(R.string.no_city), Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                                          @Override
-                                          public void onCancelled(DatabaseError databaseError) {
-                                          }
-                                      });
-                                  }
-                              });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+            }
+        });
     }
 }
 //

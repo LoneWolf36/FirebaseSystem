@@ -82,8 +82,8 @@ public class LocationPickerActivity extends AppCompatActivity {
                 Lat = queriedLocation.latitude;
                 Long = queriedLocation.longitude;
                 Log.e("Latitude= " , ""+queriedLocation.latitude);
-                tvLong.setText("Longitude= " + String.valueOf(Lat));
-                tvLat.setText("Latitude= " + String.valueOf(Long));
+                tvLong.setText(this.getResources().getString(R.string.lat) + " "+String.valueOf(Lat));
+                tvLat.setText(this.getResources().getString(R.string.longi) + " "+String.valueOf(Long));
                // tvLat.setText(place.getAddress());
             }
         }

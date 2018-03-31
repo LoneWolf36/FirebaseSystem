@@ -83,4 +83,27 @@
     <string name="confirm_exit">क्या आप ऐप बंद करना चाहते हैं?</string>
     <string name="success">कार्य पूरा हुआ</string>
     <string name="query">अधिकारियों से पूछिए</string>
+    <string name="post_to_facebook">फेसबुक पर पोस्ट करें</string>
+    <string name="post_to_twitter">ट्विटर पर पोस्ट करें</string>
+    <string name="share">शेयर करें</string>
+    <string name="phone1">सेलुलर टॉवर 1 का फोन नंबर दर्ज करें</string>
+    <string name="phone2">सेलुलर टॉवर 2 का फोन नंबर दर्ज करें</string>
+    <string name="phone3">सेलुलर टॉवर 3 का फोन नंबर दर्ज करें</string>
+    <string name="msg">सेल टॉवर को संदेश भेजें</string>
+    <string name="timely">समय के आधार पर अधिसूचना:</string>
+    <string name="loc_full">स्थान सफलतापूर्वक सबमिट हो गया</string>
+    <string name="water">पानी छोड़ा जाएगा</string>
+    <string name="jo">से जो</string>
+    <string name="loca">में स्थित है। कृपया सावधान रहें</string>
+    <string name="auth_mes">अधिकारियों का संदेश:</string>
+    <string name="no_city">आपने किसी भी शहर को चुना नही हैं।</string>
+    <string name="invalid_info">यह जानकारी अमान्य है</string>
+    <string name="select">कृपया कुछ चुनें</string>
+    <string name="confirm_ex_ac">क्या आप वाकई गतिविधि बंद करना चाहते हैं?</string>
+    <string name="close_act">गतिविधि को बंद करें</string>
+    <string name="check">जांच हो रही है...</string>
+    <string name="no_int">आप इंटरनेट से कनेक्ट नहीं हैं!</string>
+    <string name="invalid_cred">अमान्य क्रेडेंशियल, फिर से प्रयास करें</string>
+    <string name="authen">जांच हो रही है...</string>
+
 </resources>

@@ -114,7 +114,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
             myHoder.share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String message="Water to be released from "+mylist.getDam_name()+" located at "+mylist.getAddress()+" at time "+mylist.getTime()+" on "+mylist.getDate() ;
+                    String message=context.getResources().getString(R.string.water)+mylist.getDam_name()+context.getResources().getString(R.string.jo)+mylist.getAddress()+context.getResources().getString(R.string.at)+mylist.getTime()+context.getResources().getString(R.string.for_duration)+mylist.getDate() ;
                     Intent share = new Intent(Intent.ACTION_SEND);
                     share.setType("text/plain");
                     share.putExtra(Intent.EXTRA_TEXT, message);
@@ -237,7 +237,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
                         } else {
                             futureDate = dateFormat.parse(String.valueOf(events1));
                             tvEventStart.setVisibility(View.VISIBLE);
-                            tvEventStart.setText("Water is Released");
+                            tvEventStart.setText(context.getResources().getString(R.string.water));
                             textViewGone();
 
                         }

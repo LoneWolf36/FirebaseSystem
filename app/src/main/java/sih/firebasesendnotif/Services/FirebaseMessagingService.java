@@ -94,93 +94,117 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
     }
 
+    //    @Override
+//    public void onMessageReceived(RemoteMessage remoteMessage) {
+//        String str;
+//
+//
+//        if (remoteMessage.getData().size() > 0) {
+//            Log.d(TAG, "Message data : " + remoteMessage.getData());
+//        }
+//
+//        if (remoteMessage.getNotification() != null) {
+//            String title = remoteMessage.getNotification().getTitle();
+//            String message = remoteMessage.getNotification().getBody();
+//            Log.d(TAG, "Title " + title);
+//            Log.d(TAG, "Body " + message);
+//            sendNotification(title, message);
+//        }
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        if (remoteMessage.getData().size() > 0) {
-            Log.d("lw", "Message data : " + remoteMessage.getData());
-        }
-        Log.d("JL", remoteMessage.getData().toString());
-
         if (remoteMessage.getNotification() != null) {
             String flag = remoteMessage.getData().get("flag");
-            Log.d("here", flag);
-            if (flag.equals("notify")) {
-                Log.i("JL", "Notify");
-                String dam_name = remoteMessage.getData().get("dam_name");
-                String latfcm = remoteMessage.getData().get("lat");
-                String lonfcm = remoteMessage.getData().get("lon");
-                String city_name = remoteMessage.getData().get("city_name");
-                String time = remoteMessage.getData().get("time");
-                String duration = remoteMessage.getData().get("duration");
-                String date = remoteMessage.getData().get("date");
-                //Log.i("JL",lat+"  "+lon);
-                String message = "Water Released from " + dam_name + " at time: " + time + " on date: " + date;
-                String title = remoteMessage.getNotification().getTitle();
-                //String message = remoteMessage.getNotification().getBody();
-                Log.d(TAG, "Title " + title);
-                Log.d(TAG, "Body " + message);
-                sendNotification(title, message);
-            } else if (flag.equals("alert")) {
-                Log.i("JL", "ALERT");
-                Log.d("here", "inside alert flag");
-                String dam_name = remoteMessage.getData().get("dam_name");
-                String text = remoteMessage.getData().get("text");
-                String time = remoteMessage.getData().get("time");
-                String city_name = remoteMessage.getData().get("city_name");
-                String title = remoteMessage.getNotification().getTitle();
-                String message = dam_name + " in " + city_name + "'s message: " + text + " for release at " + time;
-                sendNotification(title, message);
-                Log.d("title", title);
-                Log.d("message", message);
-                Log.d("notif", "built");
-            } else if (flag.equals("vicinity")) {
-                Log.i("JL", "Vicinity");
-                String dam_name = remoteMessage.getData().get("dam_name");
-                String latfcm = remoteMessage.getData().get("lat");
-                String lonfcm = remoteMessage.getData().get("lon");
-                String city_name = remoteMessage.getData().get("city_name");
-                String time = remoteMessage.getData().get("time");
-                String duration = remoteMessage.getData().get("duration");
-                String date = remoteMessage.getData().get("date");
-                //Log.i("JL",lat+"  "+lon);
-                Log.d("latfcm", latfcm);
-                Log.d("longfcm", lonfcm);
-                double R = 6371;
-                double lat1 = UserLat;
-                double lon1 = UserLong;
-                double lon2 = Double.parseDouble(lonfcm);
-                double lat2 = Double.parseDouble(latfcm);
-                double dLon = lon1 - lon2;
-                double dLat = lat1 - lat2;
-                double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                Log.d(Double.toString(distkms), "distance in kms");
-                // double R=6371;
-
-                // double dLon=UserLong-lonfcmdo;
-                //double dLat=UserLat-latfcmdo;
-                //double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(UserLat)*Math.cos(deg2rad(latfcmdo))*Math.sin(dLon/2)*Math.sin(dLon/2));
-                //double dist = R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-                String dis = Double.toString(distkms);
-                Log.d("dist", dis);
-                Log.i("JL", "VicinityCalc" + dis);
-
-                if (distkms <= 10) {
-                    Log.i("JL", "Vicinity10");
-
+            Log.d("here",flag);
+            switch (flag) {
+                case "notify": {
+                    Log.i("JL", "Notify");
+                    String dam_name = remoteMessage.getData().get("dam_name");
+                    String latfcm = remoteMessage.getData().get("lat");
+                    String lonfcm = remoteMessage.getData().get("lon");
+                    String city_name = remoteMessage.getData().get("city_name");
+                    String time = remoteMessage.getData().get("time");
+                    String duration = remoteMessage.getData().get("duration");
+                    String date = remoteMessage.getData().get("date");
+                    //Log.i("JL",lat+"  "+lon);
                     String message = "Water Released from " + dam_name + " at time: " + time + " on date: " + date;
+                    Log.i("lw", "onMessageReceived: "+message);
+
                     String title = remoteMessage.getNotification().getTitle();
                     //String message = remoteMessage.getNotification().getBody();
                     Log.d(TAG, "Title " + title);
                     Log.d(TAG, "Body " + message);
                     sendNotification(title, message);
+                    break;
+                }
+                case "alert": {
+                    Log.i("JL", "ALERT");
+                    Log.d("here", "inside alert flag");
+                    String dam_name = remoteMessage.getData().get("dam_name");
+                    String text = remoteMessage.getData().get("text");
+                    String time = remoteMessage.getData().get("time");
+                    String city_name = remoteMessage.getData().get("city_name");
+                    String title = remoteMessage.getNotification().getTitle();
+                    String message = dam_name + " in " + city_name + "'s message: " + text + " for release at " + time;
+                    sendNotification(title, message);
+                    Log.d("title", title);
+                    Log.d("message", message);
+                    Log.d("notif", "built");
+                    break;
+                }
+                case "vicinity": {
+                    Log.i("JL", "Vicinity");
+                    String dam_name = remoteMessage.getData().get("dam_name");
+                    String latfcm = remoteMessage.getData().get("lat");
+                    String lonfcm = remoteMessage.getData().get("lon");
+                    String city_name = remoteMessage.getData().get("city_name");
+                    String time = remoteMessage.getData().get("time");
+                    String duration = remoteMessage.getData().get("duration");
+                    String date = remoteMessage.getData().get("date");
+                    //Log.i("JL",lat+"  "+lon);
+                    Log.d("latfcm", latfcm);
+                    Log.d("longfcm", lonfcm);
+                    double R = 6371;
+                    double lat1 = UserLat;
+                    double lon1 = UserLong;
+                    double lon2 = Double.parseDouble(lonfcm);
+                    double lat2 = Double.parseDouble(latfcm);
+                    double dLon = lon1 - lon2;
+                    double dLat = lat1 - lat2;
+                    double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                    distkms = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    Log.d(Double.toString(distkms), "distance in kms");
+                    // double R=6371;
+
+                    // double dLon=UserLong-lonfcmdo;
+                    //double dLat=UserLat-latfcmdo;
+                    //double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(UserLat)*Math.cos(deg2rad(latfcmdo))*Math.sin(dLon/2)*Math.sin(dLon/2));
+                    //double dist = R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+                    String dis = Double.toString(distkms);
+                    Log.d("dist", dis);
+                    Log.i("JL", "VicinityCalc" + dis);
+
+                    distkms=5;
+                    if (distkms <= 10) {
+                        Log.i("JL", "Vicinity10");
+
+                        String message = "IN VICINITY OF DANGER Water Released from " + dam_name + " at time: " + time + " on date: " + date;
+                        String title = "EMERGENCY ALERT : "+remoteMessage.getNotification().getTitle();
+                        //String message = remoteMessage.getNotification().getBody();
+                        Log.d(TAG, "Title " + title);
+                        Log.d(TAG, "Body " + message);
+                        sendNotification(title, message);
+                    }
+                    break;
                 }
             }
         }
     }
 
     private void sendNotification(String title, String messageBody) {
-        Intent intent = new Intent(this, LoginActivity.class);
+//        Intent intent = new Intent(this, LoginActivity.class);
+        Log.i("lw", "sendNotification: Im here!"+messageBody);
+        Intent intent = new Intent(this, NavbarActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        intent.putExtra("Current Location", true);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -188,6 +212,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         String channelId = "8605+";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Log.d("inside", "notification");
+//        Log.d("inside","notification");
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -208,9 +233,12 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
-    private double deg2rad(Double lat) {
+
+    //private double deg2rad(Double lat) {
+    private double deg2rad (Double lat){
         return lat * (Math.PI / 180);
     }
 
@@ -285,5 +313,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 //            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
 //        }
 //    }
+
 
 

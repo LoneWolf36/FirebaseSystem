@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        FirebaseMessaging.getInstance().subscribeToTopic("vicinity");
 
         // Initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
@@ -145,9 +147,9 @@ public class LoginActivity extends AppCompatActivity {
             progress.setIndeterminate(true);
             progress.setCancelable(false);
             progress.setCanceledOnTouchOutside(false);
-            progress.setMessage("Authenticating...");
+            progress.setMessage(getResources().getString(R.string.authen));
             progress.show();
-            Toasty.warning(this, "Checking....", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(this, this.getResources().getString(R.string.check), Toast.LENGTH_SHORT, true).show();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -203,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
                         final SharedPreferences.Editor editor = getSharedPreferences("JaisPrefrence", MODE_PRIVATE).edit();
                         editor.putBoolean("admin_login",true);
                         editor.apply();
-                        Toasty.success(LoginActivity.this, "Success!", Toast.LENGTH_SHORT, true).show();
+                        Toasty.success(LoginActivity.this, LoginActivity.this.getResources().getString(R.string.success), Toast.LENGTH_SHORT, true).show();
 
 
                         //if(city_name.equals("unset")){
@@ -227,12 +229,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     } else {
                         if (!isOnline()){
-                            Toasty.info(LoginActivity.this, "You're not connected to the internet!", Toast.LENGTH_SHORT, true).show();
+                            Toasty.info(LoginActivity.this, LoginActivity.this.getResources().getString(R.string.no_int), Toast.LENGTH_SHORT, true).show();
                             progress.dismiss();
                         }
                         else {
                             progress.dismiss();
-                            Toasty.error(LoginActivity.this, "Invalid credentials, try again", Toast.LENGTH_SHORT, true).show();
+                            Toasty.error(LoginActivity.this,LoginActivity.this.getResources().getString(R.string.no_int), Toast.LENGTH_SHORT, true).show();
                         }
                     }
                 }

@@ -83,6 +83,10 @@
                     android:hint="@string/longi"
                     android:padding="10dp" />
 
+<<<<<<< HEAD
+    </LinearLayout>
+    </LinearLayout>
+=======
                 <TextView
                     android:id="@+id/tvLat"
                     android:layout_width="wrap_content"
@@ -113,6 +117,7 @@
 
             </LinearLayout>
         </LinearLayout>
+>>>>>>> 010651f0a77a17e98c54310c88a673827c463edc
 
         <Button
             android:id="@+id/submit_loc"

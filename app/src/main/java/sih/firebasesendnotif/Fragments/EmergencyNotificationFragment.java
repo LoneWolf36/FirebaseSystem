@@ -89,8 +89,8 @@ public class EmergencyNotificationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String message = text.getText().toString();
-                String mess ="Water to be released from "+prefs.getString("Dam_Name","")+" located at "+prefs.getString("Place","")+
-                        " Authority message :  "+message;
+                String mess =getContext().getResources().getString(R.string.water)+prefs.getString("Dam_Name","")+getContext().getResources().getString(R.string.jo)+prefs.getString("Place","")+getContext().getResources().getString(R.string.loca)+
+                        getContext().getResources().getString(R.string.auth_mes)+message;
                 Log.i("JL",mess);
                if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
@@ -106,8 +106,8 @@ public class EmergencyNotificationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String message = text.getText().toString();
-                String mess ="Water to be released from "+prefs.getString("Dam_Name","")+" located at "+prefs.getString("Place","")+
-                        " Authority message :  "+message;
+                String mess =getContext().getResources().getString(R.string.water)+prefs.getString("Dam_Name","")+getContext().getResources().getString(R.string.jo)+prefs.getString("Place","")+getContext().getResources().getString(R.string.loca)+
+                        getContext().getResources().getString(R.string.auth_mes)+message;
                 Log.i("JL",mess);
                 TwitterConfig config = new TwitterConfig.Builder(getContext())
                         .logger(new DefaultLogger(Log.DEBUG))

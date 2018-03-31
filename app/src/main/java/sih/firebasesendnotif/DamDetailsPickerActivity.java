@@ -108,7 +108,7 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                 place_pick=tvPlace.getText().toString();
 
                 if (city_pick.equals("")||dam_pick.equals("")||place_pick.equals("")){
-                    Toast.makeText(DamDetailsPickerActivity.this, "Invalid information", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DamDetailsPickerActivity.this, DamDetailsPickerActivity.this.getResources().getString(R.string.invalid_info), Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(DamDetailsPickerActivity.this, NavbarActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -153,9 +153,6 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
 
             }
         });
-
-
-
     }
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -170,16 +167,16 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
 
         public void onNothingSelected(AdapterView<?> parent) {
             // Another interface callback
-            Toast.makeText(this, "Please select something", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, this.getResources().getString(R.string.select), Toast.LENGTH_SHORT).show();
         }
 
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to close this activity?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                .setTitle(this.getResources().getString(R.string.close_act))
+                .setMessage(this.getResources().getString(R.string.confirm_ex_ac))
+                .setPositiveButton(this.getResources().getString(R.string.yes), new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -192,7 +189,7 @@ public class DamDetailsPickerActivity extends AppCompatActivity implements Adapt
                     }
 
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(this.getResources().getString(R.string.no), null)
                 .show();
     }
 

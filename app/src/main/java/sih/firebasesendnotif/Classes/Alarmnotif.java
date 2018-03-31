@@ -111,7 +111,7 @@ public class Alarmnotif extends BroadcastReceiver {
                                                     String channelId = "12";
                                                     NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, channelId)
                                                             .setSmallIcon(R.mipmap.ic_launcher)
-                                                            .setContentTitle("Timely notif for:")
+                                                            .setContentTitle(context.getResources().getString(R.string.timely))
                                                             .setStyle(new NotificationCompat.InboxStyle()
                                                                     .addLine(damname +" " + citname)
                                                                     .addLine(futureDate + " "+ time))
